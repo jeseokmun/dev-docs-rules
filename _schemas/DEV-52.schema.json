@@ -1,0 +1,53 @@
+{
+  "code": "DEV-52",
+  "title": "기능플래그명세서",
+  "path_pattern": "{docs_root}/DEV-52-기능플래그명세서/DEV-52-{슬러그}.md",
+  "single_file": false,
+  "required": [
+    {
+      "id": "플래그",
+      "label": "＊ 플래그",
+      "type": "table",
+      "columns": [
+        "플래그",
+        "기본",
+        "대상",
+        "제거조건"
+      ],
+      "min_rows": 1
+    }
+  ],
+  "optional": [
+    {
+      "id": "관련_코드",
+      "label": "○ 관련 코드",
+      "type": "table",
+      "columns": [
+        "종류",
+        "경로"
+      ]
+    }
+  ],
+  "meta": [
+    "상태",
+    "코드",
+    "마지막 갱신",
+    "범위",
+    "비범위"
+  ],
+  "open_items": {
+    "id": "open",
+    "label": "미결",
+    "type": "table",
+    "columns": [
+      "ID",
+      "미결",
+      "다음에 할 일"
+    ]
+  },
+  "rules": [
+    "empty_required_becomes_open_item",
+    "no_fake_fill",
+    "json_ephemeral_md_ssot"
+  ]
+}

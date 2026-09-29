@@ -1,0 +1,64 @@
+{
+  "code": "DEV-88",
+  "title": "오픈소스라이선스목록",
+  "path_pattern": "{docs_root}/DEV-88-오픈소스라이선스목록.md",
+  "single_file": true,
+  "required": [
+    {
+      "id": "의존성_라이선스",
+      "label": "＊ 의존성·라이선스",
+      "type": "table",
+      "columns": [
+        "패키지",
+        "라이선스",
+        "용도",
+        "의무"
+      ],
+      "min_rows": 1
+    },
+    {
+      "id": "고지_위치",
+      "label": "＊ 고지 위치",
+      "type": "table",
+      "columns": [
+        "위치",
+        "내용"
+      ],
+      "min_rows": 1
+    }
+  ],
+  "optional": [
+    {
+      "id": "생성_갱신",
+      "label": "○ 생성·갱신",
+      "type": "table",
+      "columns": [
+        "방법",
+        "주기",
+        "산출 경로"
+      ]
+    }
+  ],
+  "meta": [
+    "상태",
+    "코드",
+    "마지막 갱신",
+    "범위",
+    "비범위"
+  ],
+  "open_items": {
+    "id": "open",
+    "label": "미결",
+    "type": "table",
+    "columns": [
+      "ID",
+      "미결",
+      "다음에 할 일"
+    ]
+  },
+  "rules": [
+    "empty_required_becomes_open_item",
+    "no_fake_fill",
+    "json_ephemeral_md_ssot"
+  ]
+}

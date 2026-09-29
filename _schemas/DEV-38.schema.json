@@ -1,0 +1,87 @@
+{
+  "code": "DEV-38",
+  "title": "데이터이전명세서",
+  "path_pattern": "{docs_root}/DEV-38-데이터이전명세서/DEV-38-{슬러그}.md",
+  "single_file": false,
+  "required": [
+    {
+      "id": "대상",
+      "label": "＊ 대상",
+      "type": "table",
+      "columns": [
+        "출발",
+        "도착",
+        "변환",
+        "검증"
+      ],
+      "min_rows": 1
+    },
+    {
+      "id": "절차",
+      "label": "＊ 절차",
+      "type": "table",
+      "columns": [
+        "순서",
+        "행위자",
+        "행동",
+        "검증"
+      ],
+      "min_rows": 1
+    },
+    {
+      "id": "롤백",
+      "label": "＊ 롤백",
+      "type": "table",
+      "columns": [
+        "실패 지점",
+        "되돌림",
+        "확인"
+      ],
+      "min_rows": 1
+    },
+    {
+      "id": "검증",
+      "label": "＊ 검증",
+      "type": "table",
+      "columns": [
+        "#",
+        "확인",
+        "기대"
+      ],
+      "min_rows": 1
+    }
+  ],
+  "optional": [
+    {
+      "id": "관련_문서",
+      "label": "○ 관련 문서",
+      "type": "table",
+      "columns": [
+        "코드",
+        "경로"
+      ]
+    }
+  ],
+  "meta": [
+    "상태",
+    "코드",
+    "마지막 갱신",
+    "범위",
+    "비범위"
+  ],
+  "open_items": {
+    "id": "open",
+    "label": "미결",
+    "type": "table",
+    "columns": [
+      "ID",
+      "미결",
+      "다음에 할 일"
+    ]
+  },
+  "rules": [
+    "empty_required_becomes_open_item",
+    "no_fake_fill",
+    "json_ephemeral_md_ssot"
+  ]
+}

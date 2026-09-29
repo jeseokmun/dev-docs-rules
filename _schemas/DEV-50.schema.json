@@ -1,0 +1,21 @@
+{
+  "code": "DEV-50",
+  "title": "기술결정기록",
+  "path_pattern": "{docs_root}/DEV-50-기술결정기록/DEV-50-{슬러그}.md",
+  "single_file": false,
+  "required": [
+    {"id": "title", "label": "＊ 제목", "type": "string", "min": 1},
+    {"id": "context", "label": "＊ 맥락", "type": "string", "min": 1},
+    {"id": "decision", "label": "＊ 결정", "type": "string", "min": 1},
+    {"id": "reasons", "label": "＊ 이유", "type": "table", "columns": ["#", "이유"], "min_rows": 2},
+    {"id": "rejected", "label": "＊ 버린 대안", "type": "table", "columns": ["대안", "버린 이유"], "min_rows": 1}
+  ],
+  "optional": [
+    {"id": "risks", "label": "○ 결과·리스크", "type": "table", "columns": ["항목", "내용"]},
+    {"id": "revert", "label": "○ 되돌리는 조건", "type": "table", "columns": ["조건", "다음 행동"]},
+    {"id": "related", "label": "○ 관련", "type": "table", "columns": ["종류", "링크"]}
+  ],
+  "meta": ["상태", "코드", "마지막 갱신", "결정 상태", "범위", "비범위"],
+  "open_items": {"id": "open", "label": "미결", "type": "table", "columns": ["ID", "내용"]},
+  "rules": ["empty_required_becomes_open_item", "no_fake_fill", "json_ephemeral_md_ssot"]
+}

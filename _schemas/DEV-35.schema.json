@@ -1,0 +1,91 @@
+{
+  "code": "DEV-35",
+  "title": "데이터모델명세서",
+  "path_pattern": "{docs_root}/DEV-35-데이터모델명세서/DEV-35-{슬러그}.md",
+  "single_file": false,
+  "required": [
+    {
+      "id": "개요",
+      "label": "＊ 개요",
+      "type": "string",
+      "min": 1
+    },
+    {
+      "id": "모델",
+      "label": "＊ 모델",
+      "type": "table",
+      "columns": [
+        "엔티티",
+        "필드",
+        "형",
+        "제약"
+      ],
+      "min_rows": 1
+    },
+    {
+      "id": "관계",
+      "label": "＊ 관계",
+      "type": "table",
+      "columns": [
+        "출발",
+        "도착",
+        "기수",
+        "설명"
+      ],
+      "min_rows": 1
+    },
+    {
+      "id": "금지",
+      "label": "＊ 금지",
+      "type": "table",
+      "columns": [
+        "금지",
+        "이유"
+      ],
+      "min_rows": 1
+    }
+  ],
+  "optional": [
+    {
+      "id": "수명_삭제",
+      "label": "○ 수명·삭제",
+      "type": "table",
+      "columns": [
+        "엔티티",
+        "보관",
+        "삭제"
+      ]
+    },
+    {
+      "id": "관련_문서",
+      "label": "○ 관련 문서",
+      "type": "table",
+      "columns": [
+        "코드",
+        "경로"
+      ]
+    }
+  ],
+  "meta": [
+    "상태",
+    "코드",
+    "마지막 갱신",
+    "범위",
+    "비범위"
+  ],
+  "open_items": {
+    "id": "open",
+    "label": "미결",
+    "type": "table",
+    "columns": [
+      "ID",
+      "미결",
+      "다음에 할 일"
+    ]
+  },
+  "rules": [
+    "empty_required_becomes_open_item",
+    "no_fake_fill",
+    "json_ephemeral_md_ssot"
+  ]
+}

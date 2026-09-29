@@ -1,0 +1,17 @@
+{
+  "code": "DEV-90",
+  "title": "릴리즈변경기록",
+  "path_pattern": "{docs_root}/DEV-90-릴리즈변경기록/DEV-90-{슬러그}.md",
+  "single_file": false,
+  "required": [
+    {"id": "version_date", "label": "＊ 버전·날짜", "type": "table", "columns": ["항목", "값"], "min_rows": 2},
+    {"id": "changes", "label": "＊ 변경", "type": "table", "columns": ["종류", "사용자에게 보이는 것"], "min_rows": 1},
+    {"id": "impact", "label": "＊ 사용자 영향", "type": "table", "columns": ["누가", "무엇이 달라지나"], "min_rows": 1}
+  ],
+  "optional": [
+    {"id": "migration", "label": "○ 마이그레이션·호환", "type": "table", "columns": ["항목", "내용"]}
+  ],
+  "meta": ["상태", "코드", "마지막 갱신", "범위", "비범위"],
+  "open_items": {"id": "open", "label": "미결", "type": "table", "columns": ["ID", "내용"]},
+  "rules": ["empty_required_becomes_open_item", "no_fake_fill", "json_ephemeral_md_ssot"]
+}

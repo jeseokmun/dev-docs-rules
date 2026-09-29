@@ -1,0 +1,54 @@
+{
+  "code": "DEV-82",
+  "title": "관측및알람명세서",
+  "path_pattern": "{docs_root}/DEV-82-관측및알람명세서/DEV-82-{슬러그}.md",
+  "single_file": false,
+  "required": [
+    {
+      "id": "관측",
+      "label": "＊ 관측",
+      "type": "table",
+      "columns": [
+        "신호",
+        "임계",
+        "알림",
+        "대응"
+      ],
+      "min_rows": 1
+    }
+  ],
+  "optional": [
+    {
+      "id": "대시보드",
+      "label": "○ 대시보드",
+      "type": "table",
+      "columns": [
+        "이름",
+        "링크",
+        "비고"
+      ]
+    }
+  ],
+  "meta": [
+    "상태",
+    "코드",
+    "마지막 갱신",
+    "범위",
+    "비범위"
+  ],
+  "open_items": {
+    "id": "open",
+    "label": "미결",
+    "type": "table",
+    "columns": [
+      "ID",
+      "미결",
+      "다음에 할 일"
+    ]
+  },
+  "rules": [
+    "empty_required_becomes_open_item",
+    "no_fake_fill",
+    "json_ephemeral_md_ssot"
+  ]
+}

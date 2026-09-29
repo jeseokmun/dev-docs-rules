@@ -1,0 +1,64 @@
+{
+  "code": "DEV-62",
+  "title": "장애대응사례집",
+  "path_pattern": "{docs_root}/DEV-62-장애대응사례집/DEV-62-{슬러그}.md",
+  "single_file": false,
+  "required": [
+    {
+      "id": "사례",
+      "label": "＊ 사례",
+      "type": "table",
+      "columns": [
+        "증상",
+        "원인",
+        "조치",
+        "재발방지"
+      ],
+      "min_rows": 1
+    },
+    {
+      "id": "영향",
+      "label": "＊ 영향",
+      "type": "table",
+      "columns": [
+        "누가",
+        "무엇",
+        "범위"
+      ],
+      "min_rows": 1
+    },
+    {
+      "id": "사실_추측",
+      "label": "＊ 사실 / 추측",
+      "type": "table",
+      "columns": [
+        "종류",
+        "내용"
+      ],
+      "min_rows": 1
+    }
+  ],
+  "optional": [],
+  "meta": [
+    "상태",
+    "코드",
+    "마지막 갱신",
+    "범위",
+    "비범위"
+  ],
+  "open_items": {
+    "id": "open",
+    "label": "미결",
+    "type": "table",
+    "columns": [
+      "ID",
+      "미결",
+      "다음에 할 일"
+    ]
+  },
+  "rules": [
+    "empty_required_becomes_open_item",
+    "no_fake_fill",
+    "json_ephemeral_md_ssot"
+  ]
+}

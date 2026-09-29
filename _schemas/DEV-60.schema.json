@@ -1,0 +1,80 @@
+{
+  "code": "DEV-60",
+  "title": "운영절차서",
+  "path_pattern": "{docs_root}/DEV-60-운영절차서/DEV-60-{슬러그}.md",
+  "single_file": false,
+  "required": [
+    {
+      "id": "목적",
+      "label": "＊ 목적",
+      "type": "string",
+      "min": 1
+    },
+    {
+      "id": "사전_조건",
+      "label": "＊ 사전 조건",
+      "type": "table",
+      "columns": [
+        "구분",
+        "내용"
+      ],
+      "min_rows": 1
+    },
+    {
+      "id": "절차",
+      "label": "＊ 절차",
+      "type": "table",
+      "columns": [
+        "순서",
+        "행위자",
+        "행동",
+        "검증"
+      ],
+      "min_rows": 1
+    },
+    {
+      "id": "실패_시",
+      "label": "＊ 실패 시",
+      "type": "table",
+      "columns": [
+        "증상",
+        "로그",
+        "롤백"
+      ],
+      "min_rows": 1
+    }
+  ],
+  "optional": [
+    {
+      "id": "필요_권한",
+      "label": "○ 필요 권한",
+      "type": "table",
+      "columns": [
+        "권한",
+        "용도"
+      ]
+    }
+  ],
+  "meta": [
+    "상태",
+    "코드",
+    "마지막 갱신",
+    "범위",
+    "비범위"
+  ],
+  "open_items": {
+    "id": "open",
+    "label": "미결",
+    "type": "table",
+    "columns": [
+      "ID",
+      "미결",
+      "다음에 할 일"
+    ]
+  },
+  "rules": [
+    "empty_required_becomes_open_item",
+    "no_fake_fill",
+    "json_ephemeral_md_ssot"
+  ]
+}

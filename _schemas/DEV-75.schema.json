@@ -1,0 +1,62 @@
+{
+  "code": "DEV-75",
+  "title": "코드작성규칙",
+  "path_pattern": "{docs_root}/DEV-75-코드작성규칙.md",
+  "single_file": true,
+  "required": [
+    {
+      "id": "규칙",
+      "label": "＊ 규칙",
+      "type": "table",
+      "columns": [
+        "규칙",
+        "이유",
+        "예외"
+      ],
+      "min_rows": 1
+    }
+  ],
+  "optional": [
+    {
+      "id": "디렉터리_네이밍",
+      "label": "○ 디렉터리·네이밍",
+      "type": "table",
+      "columns": [
+        "대상",
+        "규칙",
+        "예외"
+      ]
+    },
+    {
+      "id": "관련_문서",
+      "label": "○ 관련 문서",
+      "type": "table",
+      "columns": [
+        "코드",
+        "경로"
+      ]
+    }
+  ],
+  "meta": [
+    "상태",
+    "코드",
+    "마지막 갱신",
+    "범위",
+    "비범위"
+  ],
+  "open_items": {
+    "id": "open",
+    "label": "미결",
+    "type": "table",
+    "columns": [
+      "ID",
+      "미결",
+      "다음에 할 일"
+    ]
+  },
+  "rules": [
+    "empty_required_becomes_open_item",
+    "no_fake_fill",
+    "json_ephemeral_md_ssot"
+  ]
+}

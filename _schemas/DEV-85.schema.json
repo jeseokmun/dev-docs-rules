@@ -1,0 +1,61 @@
+{
+  "code": "DEV-85",
+  "title": "스토어제출명세서",
+  "path_pattern": "{docs_root}/DEV-85-스토어제출명세서/DEV-85-{슬러그}.md",
+  "single_file": false,
+  "required": [
+    {
+      "id": "식별",
+      "label": "＊ 식별",
+      "type": "table",
+      "columns": [
+        "항목",
+        "값"
+      ],
+      "min_rows": 1
+    },
+    {
+      "id": "짧은_설명",
+      "label": "＊ 짧은 설명",
+      "type": "table",
+      "columns": [
+        "언어",
+        "문구",
+        "잠금?"
+      ],
+      "min_rows": 1
+    }
+  ],
+  "optional": [
+    {
+      "id": "긴_설명",
+      "label": "○ 긴 설명",
+      "type": "table",
+      "columns": [
+        "언어",
+        "상태"
+      ]
+    }
+  ],
+  "meta": [
+    "상태",
+    "코드",
+    "마지막 갱신",
+    "범위",
+    "비범위"
+  ],
+  "open_items": {
+    "id": "open",
+    "label": "미결",
+    "type": "table",
+    "columns": [
+      "ID",
+      "내용"
+    ]
+  },
+  "rules": [
+    "empty_required_becomes_open_item",
+    "no_fake_fill",
+    "json_ephemeral_md_ssot"
+  ]
+}

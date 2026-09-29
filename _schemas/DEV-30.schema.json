@@ -1,0 +1,106 @@
+{
+  "code": "DEV-30",
+  "title": "구조명세서",
+  "path_pattern": "{docs_root}/DEV-30-구조명세서.md",
+  "single_file": true,
+  "required": [
+    {
+      "id": "summary",
+      "label": "＊ 한 줄 구조 요약",
+      "type": "string",
+      "min": 1
+    },
+    {
+      "id": "modules",
+      "label": "＊ 모듈/레이어",
+      "type": "table",
+      "columns": [
+        "모듈",
+        "책임",
+        "비고"
+      ],
+      "min_rows": 3
+    },
+    {
+      "id": "mermaid",
+      "label": "＊ 구조도 (Mermaid)",
+      "type": "mermaid",
+      "min_nodes": 4,
+      "label_language": "DOC-CONFIG.language"
+    },
+    {
+      "id": "deps",
+      "label": "＊ 의존 규칙",
+      "type": "table",
+      "columns": [
+        "방향",
+        "허용?",
+        "설명"
+      ],
+      "min_rows": 2
+    },
+    {
+      "id": "danger",
+      "label": "＊ 건드리기 위험 구역",
+      "type": "table",
+      "columns": [
+        "모듈",
+        "이유",
+        "경로(□)"
+      ],
+      "min_rows": 1
+    }
+  ],
+  "optional": [
+    {
+      "id": "flow",
+      "label": "○ 핵심 실행 흐름",
+      "type": "table_or_mermaid",
+      "columns": [
+        "단계",
+        "행위자",
+        "행동"
+      ]
+    },
+    {
+      "id": "data",
+      "label": "○ 데이터 위치",
+      "type": "table",
+      "columns": [
+        "데이터",
+        "위치"
+      ]
+    },
+    {
+      "id": "related",
+      "label": "○ 관련 문서",
+      "type": "table",
+      "columns": [
+        "코드",
+        "경로"
+      ]
+    }
+  ],
+  "meta": [
+    "상태",
+    "코드",
+    "마지막 갱신",
+    "범위",
+    "비범위"
+  ],
+  "open_items": {
+    "id": "open",
+    "label": "미결",
+    "type": "table",
+    "columns": [
+      "ID",
+      "내용"
+    ]
+  },
+  "rules": [
+    "empty_required_becomes_open_item",
+    "no_fake_fill",
+    "json_ephemeral_md_ssot",
+    "mermaid_visible_labels_match_language"
+  ]
+}

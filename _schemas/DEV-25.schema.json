@@ -1,0 +1,81 @@
+{
+  "code": "DEV-25",
+  "title": "화면정의서",
+  "path_pattern": "{docs_root}/DEV-25-화면정의서/DEV-25-{슬러그}.md",
+  "single_file": false,
+  "required": [
+    {
+      "id": "화면_목적",
+      "label": "＊ 화면 목적",
+      "type": "string",
+      "min": 1
+    },
+    {
+      "id": "진입_이탈",
+      "label": "＊ 진입·이탈",
+      "type": "table",
+      "columns": [
+        "구분",
+        "경로"
+      ],
+      "min_rows": 1
+    },
+    {
+      "id": "주요_ui_요소",
+      "label": "＊ 주요 UI 요소",
+      "type": "table",
+      "columns": [
+        "요소",
+        "동작"
+      ],
+      "min_rows": 1
+    },
+    {
+      "id": "상태",
+      "label": "＊ 상태",
+      "type": "table",
+      "columns": [
+        "상태",
+        "사용자에게 보이는 것"
+      ],
+      "min_rows": 1
+    }
+  ],
+  "optional": [
+    {
+      "id": "흐름_mermaid",
+      "label": "○ 흐름 (Mermaid)",
+      "type": "string"
+    },
+    {
+      "id": "관련_문서",
+      "label": "○ 관련 문서",
+      "type": "table",
+      "columns": [
+        "코드",
+        "경로"
+      ]
+    }
+  ],
+  "meta": [
+    "상태",
+    "코드",
+    "마지막 갱신",
+    "범위",
+    "비범위"
+  ],
+  "open_items": {
+    "id": "open",
+    "label": "미결",
+    "type": "table",
+    "columns": [
+      "ID",
+      "내용"
+    ]
+  },
+  "rules": [
+    "empty_required_becomes_open_item",
+    "no_fake_fill",
+    "json_ephemeral_md_ssot"
+  ]
+}

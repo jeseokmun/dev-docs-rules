@@ -1,0 +1,105 @@
+{
+  "code": "DEV-10",
+  "title": "개요서",
+  "path_pattern": "{docs_root}/DEV-10-개요서.md",
+  "single_file": true,
+  "required": [
+    {
+      "id": "one_liner",
+      "label": "＊ 한 줄 소개",
+      "type": "string",
+      "min": 1
+    },
+    {
+      "id": "audience",
+      "label": "＊ 누구를 위한가",
+      "type": "kv_rows",
+      "keys": [
+        "사용자",
+        "비사용자"
+      ],
+      "min_rows": 2
+    },
+    {
+      "id": "features",
+      "label": "＊ 핵심 기능",
+      "type": "numbered_rows",
+      "columns": [
+        "#",
+        "사용자가 하는 일"
+      ],
+      "min_rows": 3
+    },
+    {
+      "id": "run",
+      "label": "＊ 실행·설치",
+      "type": "kv_rows",
+      "keys": [
+        "개발",
+        "사용자",
+        "환경"
+      ],
+      "min_rows": 1
+    },
+    {
+      "id": "boundary",
+      "label": "＊ 시스템 경계",
+      "type": "table",
+      "columns": [
+        "하지 않는 것",
+        "이유"
+      ],
+      "min_rows": 2
+    }
+  ],
+  "optional": [
+    {
+      "id": "why",
+      "label": "○ 왜 필요한가",
+      "type": "kv_rows",
+      "keys": [
+        "문제",
+        "접근"
+      ]
+    },
+    {
+      "id": "success",
+      "label": "○ 성공·검증",
+      "type": "table",
+      "columns": [
+        "성공 모습",
+        "검증 방법"
+      ]
+    },
+    {
+      "id": "related",
+      "label": "○ 관련 문서",
+      "type": "table",
+      "columns": [
+        "코드",
+        "경로"
+      ]
+    }
+  ],
+  "meta": [
+    "상태",
+    "코드",
+    "마지막 갱신",
+    "범위",
+    "비범위"
+  ],
+  "open_items": {
+    "id": "open",
+    "label": "미결",
+    "type": "table",
+    "columns": [
+      "ID",
+      "내용"
+    ]
+  },
+  "rules": [
+    "empty_required_becomes_open_item",
+    "no_fake_fill",
+    "json_ephemeral_md_ssot"
+  ]
+}

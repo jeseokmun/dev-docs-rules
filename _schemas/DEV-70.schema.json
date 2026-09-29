@@ -1,0 +1,81 @@
+{
+  "code": "DEV-70",
+  "title": "구현작업명세서",
+  "path_pattern": "{docs_root}/DEV-70-구현작업명세서/DEV-70-{슬러그}.md",
+  "single_file": false,
+  "required": [
+    {
+      "id": "목표_비범위",
+      "label": "＊ 목표 / 비범위",
+      "type": "table",
+      "columns": [
+        "구분",
+        "내용"
+      ],
+      "min_rows": 1
+    },
+    {
+      "id": "사실_추측_미결",
+      "label": "＊ 사실 · 추측 · 미결",
+      "type": "table",
+      "columns": [
+        "종류",
+        "내용"
+      ],
+      "min_rows": 1
+    },
+    {
+      "id": "완료_조건",
+      "label": "＊ 완료 조건",
+      "type": "table",
+      "columns": [
+        "#",
+        "조건"
+      ],
+      "min_rows": 1
+    },
+    {
+      "id": "검증",
+      "label": "＊ 검증",
+      "type": "table",
+      "columns": [
+        "#",
+        "방법"
+      ],
+      "min_rows": 1
+    },
+    {
+      "id": "금지",
+      "label": "＊ 금지",
+      "type": "table",
+      "columns": [
+        "금지",
+        "이유"
+      ],
+      "min_rows": 1
+    }
+  ],
+  "optional": [
+    {
+      "id": "관련",
+      "label": "○ 관련",
+      "type": "table",
+      "columns": [
+        "종류",
+        "링크"
+      ]
+    }
+  ],
+  "meta": [
+    "상태",
+    "코드",
+    "마지막 갱신",
+    "범위",
+    "비범위"
+  ],
+  "rules": [
+    "empty_required_becomes_open_item",
+    "no_fake_fill",
+    "json_ephemeral_md_ssot"
+  ]
+}

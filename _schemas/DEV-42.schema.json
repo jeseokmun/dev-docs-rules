@@ -1,0 +1,65 @@
+{
+  "code": "DEV-42",
+  "title": "이벤트메시지명세서",
+  "path_pattern": "{docs_root}/DEV-42-이벤트메시지명세서/DEV-42-{슬러그}.md",
+  "single_file": false,
+  "required": [
+    {
+      "id": "이벤트",
+      "label": "＊ 이벤트",
+      "type": "table",
+      "columns": [
+        "이벤트",
+        "페이로드",
+        "발행자",
+        "구독자"
+      ],
+      "min_rows": 1
+    },
+    {
+      "id": "페이로드_필드",
+      "label": "＊ 페이로드 필드",
+      "type": "table",
+      "columns": [
+        "필드",
+        "형",
+        "필수",
+        "설명"
+      ],
+      "min_rows": 1
+    }
+  ],
+  "optional": [
+    {
+      "id": "재시도_멱등_순서",
+      "label": "○ 재시도·멱등·순서",
+      "type": "table",
+      "columns": [
+        "항목",
+        "규칙"
+      ]
+    }
+  ],
+  "meta": [
+    "상태",
+    "코드",
+    "마지막 갱신",
+    "범위",
+    "비범위"
+  ],
+  "open_items": {
+    "id": "open",
+    "label": "미결",
+    "type": "table",
+    "columns": [
+      "ID",
+      "미결",
+      "다음에 할 일"
+    ]
+  },
+  "rules": [
+    "empty_required_becomes_open_item",
+    "no_fake_fill",
+    "json_ephemeral_md_ssot"
+  ]
+}

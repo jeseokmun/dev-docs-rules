@@ -1,0 +1,21 @@
+{
+  "code": "DEV-20",
+  "title": "요구사항명세서",
+  "path_pattern": "{docs_root}/DEV-20-요구사항명세서.md",
+  "single_file": true,
+  "required": [
+    {"id": "goal", "label": "＊ 목표", "type": "string", "min": 1},
+    {"id": "out_of_scope", "label": "＊ 비범위", "type": "table", "columns": ["항목", "이유"], "min_rows": 2},
+    {"id": "users", "label": "＊ 사용자·장면", "type": "kv_rows", "keys": ["사용자", "장면"], "min_rows": 1},
+    {"id": "features", "label": "＊ 기능 요구", "type": "table", "columns": ["#", "요구", "검증 힌트"], "min_rows": 3},
+    {"id": "done", "label": "＊ 완료의 정의", "type": "table", "columns": ["#", "조건"], "min_rows": 2}
+  ],
+  "optional": [
+    {"id": "nfr", "label": "○ 비기능", "type": "table", "columns": ["항목", "목표", "측정"]},
+    {"id": "prio", "label": "○ 우선순위", "type": "table", "columns": ["요구 #", "Must/Should/Could"]},
+    {"id": "related", "label": "○ 관련 문서", "type": "table", "columns": ["코드", "경로"]}
+  ],
+  "meta": ["상태", "코드", "마지막 갱신", "범위", "비범위"],
+  "open_items": {"id": "open", "label": "미결", "type": "table", "columns": ["ID", "내용"]},
+  "rules": ["empty_required_becomes_open_item", "no_fake_fill", "json_ephemeral_md_ssot"]
+}

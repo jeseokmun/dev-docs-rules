@@ -1,0 +1,63 @@
+{
+  "code": "DEV-68",
+  "title": "성능목표명세서",
+  "path_pattern": "{docs_root}/DEV-68-성능목표명세서.md",
+  "single_file": true,
+  "required": [
+    {
+      "id": "목표_지표",
+      "label": "＊ 목표 지표",
+      "type": "table",
+      "columns": [
+        "지표",
+        "목표",
+        "측정"
+      ],
+      "min_rows": 1
+    },
+    {
+      "id": "비목표",
+      "label": "＊ 비목표",
+      "type": "table",
+      "columns": [
+        "안 잼",
+        "이유"
+      ],
+      "min_rows": 1
+    }
+  ],
+  "optional": [
+    {
+      "id": "부하_가정",
+      "label": "○ 부하 가정",
+      "type": "table",
+      "columns": [
+        "가정",
+        "값",
+        "사실/추측"
+      ]
+    }
+  ],
+  "meta": [
+    "상태",
+    "코드",
+    "마지막 갱신",
+    "범위",
+    "비범위"
+  ],
+  "open_items": {
+    "id": "open",
+    "label": "미결",
+    "type": "table",
+    "columns": [
+      "ID",
+      "미결",
+      "다음에 할 일"
+    ]
+  },
+  "rules": [
+    "empty_required_becomes_open_item",
+    "no_fake_fill",
+    "json_ephemeral_md_ssot"
+  ]
+}

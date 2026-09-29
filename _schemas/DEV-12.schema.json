@@ -1,0 +1,18 @@
+{
+  "code": "DEV-12",
+  "title": "제품로드맵",
+  "path_pattern": "{docs_root}/DEV-12-제품로드맵.md",
+  "single_file": true,
+  "required": [
+    {"id": "period", "label": "＊ 기간", "type": "table", "columns": ["시작", "끝"], "min_rows": 1},
+    {"id": "milestones", "label": "＊ 마일스톤", "type": "table", "columns": ["이름", "목표", "시점"], "min_rows": 2},
+    {"id": "out_of_scope", "label": "＊ 비범위", "type": "table", "columns": ["항목", "이유"], "min_rows": 2}
+  ],
+  "optional": [
+    {"id": "risks", "label": "○ 의존·리스크", "type": "table", "columns": ["요인", "영향", "완화"]},
+    {"id": "related", "label": "○ 관련 문서", "type": "table", "columns": ["코드", "경로"]}
+  ],
+  "meta": ["상태", "코드", "마지막 갱신", "범위", "비범위"],
+  "open_items": {"id": "open", "label": "미결", "type": "table", "columns": ["ID", "내용"]},
+  "rules": ["empty_required_becomes_open_item", "no_fake_fill", "json_ephemeral_md_ssot"]
+}

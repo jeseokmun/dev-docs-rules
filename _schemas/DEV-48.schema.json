@@ -1,0 +1,73 @@
+{
+  "code": "DEV-48",
+  "title": "외부SaaS명세서",
+  "path_pattern": "{docs_root}/DEV-48-외부SaaS명세서/DEV-48-{슬러그}.md",
+  "single_file": false,
+  "required": [
+    {
+      "id": "saas",
+      "label": "＊ SaaS",
+      "type": "table",
+      "columns": [
+        "SaaS",
+        "용도",
+        "데이터",
+        "중단시"
+      ],
+      "min_rows": 1
+    },
+    {
+      "id": "연동",
+      "label": "＊ 연동",
+      "type": "table",
+      "columns": [
+        "항목",
+        "내용"
+      ],
+      "min_rows": 1
+    }
+  ],
+  "optional": [
+    {
+      "id": "한도_요금",
+      "label": "○ 한도·요금",
+      "type": "table",
+      "columns": [
+        "항목",
+        "한도",
+        "비고"
+      ]
+    },
+    {
+      "id": "관련_문서",
+      "label": "○ 관련 문서",
+      "type": "table",
+      "columns": [
+        "코드",
+        "경로"
+      ]
+    }
+  ],
+  "meta": [
+    "상태",
+    "코드",
+    "마지막 갱신",
+    "범위",
+    "비범위"
+  ],
+  "open_items": {
+    "id": "open",
+    "label": "미결",
+    "type": "table",
+    "columns": [
+      "ID",
+      "미결",
+      "다음에 할 일"
+    ]
+  },
+  "rules": [
+    "empty_required_becomes_open_item",
+    "no_fake_fill",
+    "json_ephemeral_md_ssot"
+  ]
+}

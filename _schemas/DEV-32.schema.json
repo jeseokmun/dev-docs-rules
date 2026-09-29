@@ -1,0 +1,97 @@
+{
+  "code": "DEV-32",
+  "title": "모듈명세서",
+  "path_pattern": "{docs_root}/DEV-32-모듈명세서/DEV-32-{슬러그}.md",
+  "single_file": false,
+  "required": [
+    {
+      "id": "모듈",
+      "label": "＊ 모듈",
+      "type": "table",
+      "columns": [
+        "모듈",
+        "책임",
+        "입력",
+        "출력"
+      ],
+      "min_rows": 1
+    },
+    {
+      "id": "공개_인터페이스",
+      "label": "＊ 공개 인터페이스",
+      "type": "table",
+      "columns": [
+        "이름",
+        "종류",
+        "입력",
+        "출력"
+      ],
+      "min_rows": 1
+    },
+    {
+      "id": "의존",
+      "label": "＊ 의존",
+      "type": "table",
+      "columns": [
+        "대상",
+        "방향",
+        "허용?",
+        "설명"
+      ],
+      "min_rows": 1
+    },
+    {
+      "id": "건드리기_위험",
+      "label": "＊ 건드리기 위험",
+      "type": "table",
+      "columns": [
+        "구역",
+        "영향",
+        "경로(□)"
+      ],
+      "min_rows": 1
+    }
+  ],
+  "optional": [
+    {
+      "id": "불변조건_실패_시",
+      "label": "○ 불변조건·실패 시",
+      "type": "table",
+      "columns": [
+        "조건",
+        "실패 시"
+      ]
+    },
+    {
+      "id": "관련_문서",
+      "label": "○ 관련 문서",
+      "type": "table",
+      "columns": [
+        "코드",
+        "경로"
+      ]
+    }
+  ],
+  "meta": [
+    "상태",
+    "코드",
+    "마지막 갱신",
+    "범위",
+    "비범위"
+  ],
+  "open_items": {
+    "id": "open",
+    "label": "미결",
+    "type": "table",
+    "columns": [
+      "ID",
+      "미결",
+      "다음에 할 일"
+    ]
+  },
+  "rules": [
+    "empty_required_becomes_open_item",
+    "no_fake_fill",
+    "json_ephemeral_md_ssot"
+  ]
+}

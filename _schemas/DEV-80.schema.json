@@ -1,0 +1,76 @@
+{
+  "code": "DEV-80",
+  "title": "배포및장애절차서",
+  "path_pattern": "{docs_root}/DEV-80-배포및장애절차서/DEV-80-{슬러그}.md",
+  "single_file": false,
+  "required": [
+    {
+      "id": "환경",
+      "label": "＊ 환경",
+      "type": "table",
+      "columns": [
+        "환경",
+        "대상",
+        "비고"
+      ],
+      "min_rows": 1
+    },
+    {
+      "id": "배포_단계",
+      "label": "＊ 배포 단계",
+      "type": "table",
+      "columns": [
+        "순서",
+        "행위자",
+        "행동",
+        "검증"
+      ],
+      "min_rows": 1
+    },
+    {
+      "id": "롤백",
+      "label": "＊ 롤백",
+      "type": "table",
+      "columns": [
+        "조건",
+        "방법",
+        "확인"
+      ],
+      "min_rows": 1
+    }
+  ],
+  "optional": [
+    {
+      "id": "장애시",
+      "label": "○ 장애시",
+      "type": "table",
+      "columns": [
+        "징후",
+        "초기 대응",
+        "에스컬레이션"
+      ]
+    }
+  ],
+  "meta": [
+    "상태",
+    "코드",
+    "마지막 갱신",
+    "범위",
+    "비범위"
+  ],
+  "open_items": {
+    "id": "open",
+    "label": "미결",
+    "type": "table",
+    "columns": [
+      "ID",
+      "미결",
+      "다음에 할 일"
+    ]
+  },
+  "rules": [
+    "empty_required_becomes_open_item",
+    "no_fake_fill",
+    "json_ephemeral_md_ssot"
+  ]
+}

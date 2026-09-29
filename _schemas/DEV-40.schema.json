@@ -1,0 +1,110 @@
+{
+  "code": "DEV-40",
+  "title": "API명세서",
+  "path_pattern": "{docs_root}/DEV-40-API명세서/DEV-40-{슬러그}.md",
+  "single_file": false,
+  "required": [
+    {
+      "id": "개요",
+      "label": "＊ 개요",
+      "type": "string",
+      "min": 1
+    },
+    {
+      "id": "엔드포인트",
+      "label": "＊ 엔드포인트",
+      "type": "table",
+      "columns": [
+        "메서드",
+        "경로",
+        "설명"
+      ],
+      "min_rows": 1
+    },
+    {
+      "id": "요청",
+      "label": "＊ 요청",
+      "type": "table",
+      "columns": [
+        "위치",
+        "이름",
+        "형",
+        "필수",
+        "설명"
+      ],
+      "min_rows": 1
+    },
+    {
+      "id": "응답",
+      "label": "＊ 응답",
+      "type": "table",
+      "columns": [
+        "필드",
+        "형",
+        "설명"
+      ],
+      "min_rows": 1
+    },
+    {
+      "id": "에러",
+      "label": "＊ 에러",
+      "type": "table",
+      "columns": [
+        "코드",
+        "의미"
+      ],
+      "min_rows": 1
+    },
+    {
+      "id": "인증",
+      "label": "＊ 인증",
+      "type": "table",
+      "columns": [
+        "방식",
+        "비고"
+      ],
+      "min_rows": 1
+    }
+  ],
+  "optional": [
+    {
+      "id": "버전_호환",
+      "label": "○ 버전·호환",
+      "type": "table",
+      "columns": [
+        "항목",
+        "내용"
+      ]
+    },
+    {
+      "id": "관련_문서",
+      "label": "○ 관련 문서",
+      "type": "table",
+      "columns": [
+        "코드",
+        "경로"
+      ]
+    }
+  ],
+  "meta": [
+    "상태",
+    "코드",
+    "마지막 갱신",
+    "범위",
+    "비범위"
+  ],
+  "open_items": {
+    "id": "open",
+    "label": "미결",
+    "type": "table",
+    "columns": [
+      "ID",
+      "내용"
+    ]
+  },
+  "rules": [
+    "empty_required_becomes_open_item",
+    "no_fake_fill",
+    "json_ephemeral_md_ssot"
+  ]
+}
