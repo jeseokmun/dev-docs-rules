@@ -14,10 +14,6 @@ SECRET = re.compile(r"""(?:api[_-]?key|password|secret|token)\s*[:=]\s*["']?[^\s
 PKG = Path(__file__).resolve().parents[1]
 
 
-def headings(text):
-    return {label for label, _ in sections(text) if label is not None}
-
-
 def check_file(path, schema, settings=None):
     path = Path(path)
     if not path.is_file():
@@ -68,10 +64,9 @@ def check_file(path, schema, settings=None):
                 fails.append(f"MIN_LENGTH {path.name}: {label}")
         elif kind == "mermaid":
             match = re.search(r"```mermaid\s*\n(.*?)```", content, re.S)
-            # Structural smoke check, not a full Mermaid syntax validator.
-            nodes = re.findall(r"\b([A-Za-z_][\w-]*)\s*\[", match[1]) if match else []
-            if not match or len(set(nodes)) < field.get("min_nodes", 1):
-                fails.append(f"MERMAID_NODES {path.name}: {label}")
+            # Node syntax/count and diagram meaning require a Mermaid renderer or review.
+            if not match or placeholder(match[1]):
+                fails.append(f"MISSING_MERMAID {path.name}: {label}")
         else:
             found = list(tables(content))
             if not found:

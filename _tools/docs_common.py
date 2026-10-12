@@ -33,6 +33,11 @@ def load_object(path):
     return value
 
 
+def escape_cell(value):
+    text = str(value).replace("\r", " ").replace("\n", " ").replace("|", "\\|").strip() if value is not None else ""
+    return text or "—"
+
+
 def run(command):
     env = dict(os.environ, PYTHONIOENCODING="utf-8", PYTHONUTF8="1")
     return subprocess.run(command, capture_output=True, text=True,

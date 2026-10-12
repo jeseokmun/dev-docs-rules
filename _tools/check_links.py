@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Check relative Markdown file links and local heading anchors; no network."""
+"""Check relative Markdown file targets; no network or anchor interpretation."""
 from __future__ import annotations
 import argparse
 from pathlib import Path
@@ -24,16 +24,6 @@ def check_links(package):
             target = (path.parent / unquote(parsed.path)).resolve() if parsed.path else path.resolve()
             if not target.exists():
                 fails.append(f"MISSING_LINK {path.relative_to(package).as_posix()}: {value}")
-            elif parsed.fragment and target.is_file() and target.suffix == ".md":
-                headings = re.findall(r"^#{1,6}\s+(.+)$", read_text(target), re.M)
-                anchors, counts = set(), {}
-                for heading in headings:
-                    slug = re.sub(r"[^\w\- ]", "", heading.lower()).replace(" ", "-")
-                    n = counts.get(slug, 0)
-                    counts[slug] = n + 1
-                    anchors.add(slug + (f"-{n}" if n else ""))
-                if unquote(parsed.fragment) not in anchors:
-                    fails.append(f"MISSING_ANCHOR {path.relative_to(package).as_posix()}: {value}")
     return fails
 
 

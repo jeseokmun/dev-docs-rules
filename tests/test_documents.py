@@ -16,7 +16,6 @@ TOOLS = PKG / "_tools"
 sys.path.insert(0, str(TOOLS))
 from docs_common import atomic_write, cells, load_object, sections, tables
 from docs_lint import check_file
-from document_edit import refresh_text
 from extract_values import extract
 from render_doc import render_dev10, render_dev30
 from schema_sync_check import catalog_fails, check_pair
@@ -90,8 +89,6 @@ class Documents(unittest.TestCase):
         self.fail_has(self.p10, self.s10, "DUPLICATE_SECTION")
 
     def test_too_few_rows(self):
-        values = copy.deepcopy(self.v10)
-        values["features"] = values["features"][:2]
         # Preserve the heading with a two-row table to test the checker, not renderer.
         text = render_dev10(self.s10, self.v10)
         text = text.replace("| 3 | " + self.v10["features"][2] + " |\n", "").replace("| 4 | " + self.v10["features"][3] + " |\n", "")
@@ -115,9 +112,17 @@ class Documents(unittest.TestCase):
         self.p10.write_text(self.p10.read_text(encoding="utf-8").replace("| 코드 | DEV-10 |", "| 코드 | DEV-30 |"), encoding="utf-8")
         self.fail_has(self.p10, self.s10, "META_CODE")
 
-    def test_short_mermaid_fails(self):
-        self.p30.write_text(self.p30.read_text(encoding="utf-8").replace("D[로컬DB]", "D"), encoding="utf-8")
-        self.fail_has(self.p30, self.s30, "MERMAID_NODES")
+    def test_missing_mermaid_fails(self):
+        self.p30.write_text(self.p30.read_text(encoding="utf-8").replace("```mermaid", "```text"), encoding="utf-8")
+        self.fail_has(self.p30, self.s30, "MISSING_MERMAID")
+
+    def test_round_mermaid_nodes_are_not_rejected(self):
+        text = self.p30.read_text(encoding="utf-8")
+        for square, rounded in [("A[화면]", "A(화면)"), ("B[유스케이스]", "B(유스케이스)"),
+                                ("C[도메인]", "C(도메인)"), ("D[로컬DB]", "D(로컬DB)")]:
+            text = text.replace(square, rounded)
+        self.p30.write_text(text, encoding="utf-8")
+        self.assertEqual(check_file(self.p30, self.s30), [])
 
     def test_table_width(self):
         self.p10.write_text(self.p10.read_text(encoding="utf-8").replace("| 1 |", "| 1 | extra |"), encoding="utf-8")
@@ -376,11 +381,12 @@ class Documents(unittest.TestCase):
         self.assertEqual(r.returncode, 1)
         self.assertIn("MISSING", r.stdout)
 
-    def test_links_detect_missing_target_and_anchor(self):
+    def test_links_detect_missing_target(self):
         (self.root / "a.md").write_text("[broken](missing.md)\n[anchor](b.md#nope)", encoding="utf-8")
         (self.root / "b.md").write_text("# Found", encoding="utf-8")
         fails = check_links(self.root)
-        self.assertEqual(len(fails), 2)
+        self.assertEqual(len(fails), 1)
+        self.assertIn("MISSING_LINK", fails[0])
 
     def test_all_clis_help(self):
         for path in sorted(TOOLS.glob("*.py")):
@@ -411,6 +417,11 @@ class Documents(unittest.TestCase):
             header += f"- **{key}:** {value}\n"
         self.p10.write_text(header + "\n" + "".join(raw for _, raw in blocks[1:]), encoding="utf-8")
         self.assertEqual(check_file(self.p10, self.s10), [])
+        r = self.refresh(patch_file=self.value_file({"meta": {"마지막 갱신": "2026-10-12"}}))
+        self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+        result = self.p10.read_text(encoding="utf-8")
+        self.assertIn("- **마지막 갱신:** 2026-10-12", result)
+        self.assertIn("- **범위:** " + self.v10["meta"]["범위"], result)
 
     def test_explicit_no_decisions_index_full_profile(self):
         shutil.copytree(PKG / "demo-docs", self.root / "full")

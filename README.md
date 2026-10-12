@@ -13,7 +13,7 @@ AI와 함께 개발할 때 쓰는 **개발 문서 룰(헌법)과 문서 템플�
 | `DEV-CONSTITUTION.md` | 문서 헌법. 모든 문서가 따르는 규칙 |
 | `DOC-CONFIG.md` | 프로젝트별 설정 양식 (`docs_root`, `required_profile` 등) |
 | `_templates/` | 문서 템플릿 30종 + `DOC-CONFIG` 템플릿 (v2.1, 표 우선) |
-| `_schemas/` | 템플릿별 JSON 스키마 30종 (템플릿과 1:1) |
+| `_schemas/` | 템플릿별 문서 명세 JSON 30종 (템플릿과 1:1) |
 | `_tools/` | 초안 생성·렌더·검사용 Python CLI |
 | `_skills/` | 에이전트가 문서 초안·갱신·검사를 돌릴 때 쓰는 스킬 실행본 |
 | `_examples/` · `demo-docs/` | 가상 앱 HabitCheck로 채운 예시 문서 (참고용, 기준본 아님) |

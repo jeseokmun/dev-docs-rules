@@ -9,7 +9,7 @@
 | single_file, path_pattern | 단건/다건 저장 경로 |
 | required, optional | id·label·type을 갖는 섹션 배열 |
 | columns, keys | 표 열 또는 키-값 표의 역할 키 |
-| min, min_rows, min_nodes | 문자열·행·DEV-30 구조 노드 최소 |
+| min, min_rows, min_nodes | 문자열·행 최소와 구조 노드 수의 수동 검토 기준 |
 | meta | 문서 공통 헤더의 필수 키 |
 | open_items | 미결 표 형식 |
 | rules | 작성 원칙 식별자; 별도 자동 실행 규칙 언어가 아님 |

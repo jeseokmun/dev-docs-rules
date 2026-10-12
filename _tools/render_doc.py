@@ -2,13 +2,8 @@
 # -*- coding: utf-8 -*-
 """Render ephemeral values JSON + schema → markdown. Does not invent facts."""
 from __future__ import annotations
-import argparse, json, sys
-from pathlib import Path
-from docs_common import atomic_write, cli, load_object
-
-def esc(s):
-    s = str(s).replace("\r", " ").replace("\n", " ").replace("|", "\\|").strip() if s is not None else ""
-    return s if s else "—"
+import argparse, sys
+from docs_common import atomic_write, cli, escape_cell as esc, load_object
 
 def table(headers, rows):
     lines = ["| " + " | ".join(headers) + " |", "|" + "|".join(["---"] * len(headers)) + "|"]

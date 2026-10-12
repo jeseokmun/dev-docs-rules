@@ -1,8 +1,7 @@
 """Lossless section edits for the supported DEV-10/30 value fields."""
 from __future__ import annotations
 import re
-from docs_common import cells, sections
-from render_doc import esc
+from docs_common import cells, escape_cell as esc, sections
 
 FIELDS = {
     "DEV-10": {"one_liner": "＊ 한 줄 소개", "why": "○ 왜 필요한가", "audience": "＊ 누구를 위한가",
@@ -63,6 +62,11 @@ def refresh_text(original, rendered, code, patch):
                         row = cells(line)
                         if len(row) == 2 and row[0] in pending:
                             line = "| " + esc(row[0]) + " | " + esc(pending.pop(row[0])) + " |" + newline
+                    else:
+                        bullet = re.match(r"^(-\s+\*\*([^:*]+):?\*\*:?\s*).+", line)
+                        if bullet and bullet[2] in pending:
+                            value = pending.pop(bullet[2]).replace("\r", " ").replace("\n", " ")
+                            line = bullet[1] + value + newline
                     lines.append(line)
                 if pending:
                     raise ValueError("cannot add unknown metadata keys during refresh")

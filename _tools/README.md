@@ -1,71 +1,54 @@
 # 문서 CLI
-Python 3.10 이상과 표준 라이브러리만 사용한다. 아래 명령은 저장소 루트 기준이며 Windows에서는 `python`, macOS/Linux에서는 환경에 따라 `python3`를 쓴다.
 
-| 도구 | 역할 | 주요 옵션 |
-|---|---|---|
-| [docs_draft_cli.py](docs_draft_cli.py) | DEV-10·30 초안 생성, 검사 후 원자적 저장 | `--values`, `--from-md`, `--patch`, `--overwrite`, `--skip-lint` |
-| [docs_refresh_cli.py](docs_refresh_cli.py) | 기존 DEV-10·30에서 지정한 섹션만 갱신 | `--docs-root`, `--type`, `--patch`, `--from-md` |
-| [docs_lint.py](docs_lint.py) | 프로필 존재 및 작성된 문서 전체 검사 | `--profile light/full`, `--only DEV-XX`, `--json`, `--summary-only` |
-| [schema_sync_check.py](schema_sync_check.py) | 헌법 카탈로그·템플릿·스키마 양방향 검사 | `--package`, `--json`, `--summary-only` |
-| [sample_schema_check.py](sample_schema_check.py) | 30종 HabitCheck 예제 본문 검사 | `--package`, `--json`, `--summary-only` |
-| [render_doc.py](render_doc.py) | DEV-10·30 값 객체를 md로 렌더 | `--schema`, `--values`, `--out` |
-| [extract_values.py](extract_values.py) | DEV-10·30 md에서 알려진 값 추출 | `--md`, `--out`, `--stdout` |
-| [ideal_check_min.py](ideal_check_min.py) | DEV-10·30 보강 힌트, 기본 advisory | `--strict`, `--json`, `--summary-only`, `--print-boundary` |
-| [plant_light_preflight.py](plant_light_preflight.py) | 패키지·명시한 대상의 읽기 전용 사전 검사 | `--docs-root`, `--json`, `--summary-only` |
-| [regress_docs_pipeline.py](regress_docs_pipeline.py) | 예제·데모·링크·테스트 통합 회귀 | `--package`, `--json`, `--summary-only` |
-| [quality_regress_check.py](quality_regress_check.py) | 통합 회귀와 선택적 결과 저장 | `--write`, `--no-write`, `--json`, `--summary-only` |
-| [check_links.py](check_links.py) | 상대 Markdown 파일 링크·앵커 검사 | `--package` |
+Python 3.10 이상과 표준 라이브러리만 사용한다. 명령은 저장소 루트 기준이다. 환경에 따라 `python` 대신 `python3`를 쓴다.
 
-`docs_common.py`와 `document_edit.py`는 내부 공통 모듈이다. 도구별 상세 인자는 `python _tools/도구명.py --help`로 확인한다.
+## 시작 명령
 
-## 재현 가능한 검증
 ```bash
+# 패키지 전체 검사: 정합·예제·full 데모·파일 링크·행동 테스트
 python _tools/regress_docs_pipeline.py --summary-only
-python _tools/quality_regress_check.py --json
-python -m unittest discover -s tests -v
-python _tools/docs_lint.py demo-docs --profile full --summary-only
-```
 
-기본 검사는 저장소 파일을 수정하지 않는다. `quality_regress_check.py --write`만 `_check/QUALITY-REGRESS-LAST.md`를 생성하며, 생성 결과는 Git에서 제외한다. `--json`과 `--summary-only`는 함께 쓸 수 없다.
+# 프로젝트 문서 검사
+python _tools/docs_lint.py docs --summary-only
 
-## 생성과 갱신
-```bash
+# 가상 예제 값으로 새 초안 생성
 python _tools/docs_draft_cli.py --docs-root work/my-docs --type DEV-10 --values _tools/_fixtures/habitcheck-dev10.values.json
+
+# 확인된 변경으로 기존 문서 갱신
 python _tools/docs_refresh_cli.py --docs-root work/my-docs --type DEV-10 --patch work/confirmed-patch.json
 ```
 
-첫 명령의 값은 가상 예제다. 실제 프로젝트에는 확인한 사실을 임시 JSON으로 전달한다. 예제의 날짜·제품·실행 명령을 그대로 제품 사실로 쓰지 않는다. CLI가 만드는 중간 파일은 임시 디렉터리에만 있으며 종료 시 제거한다. 호출자가 제공한 입력 JSON은 호출자가 삭제한다.
+실제 프로젝트에는 확인한 사실을 일회 JSON으로 전달한다. 호출자가 준 입력 JSON은 호출자가 삭제하고, CLI 내부 임시 파일은 자동 제거한다.
 
-| 동작 | 보장과 경계 |
+| 동작 | 규칙 |
 |---|---|
-| 신규 생성 | 기존 파일이 있으면 실패. 명시적 전체 교체만 `--overwrite` 사용 |
-| 갱신 | patch가 지정한 섹션만 교체. 나머지 메모·표·Mermaid·미결 열 유지 |
-| 검사 실패 | 대상 원본과 신규 대상 경로에 쓰지 않음 |
-| 저장 | 대상 옆 임시 파일 작성 후 동일 파일시스템에서 원자적 교체 |
-| 동시 수정 | 검사 전후 원본 바이트를 비교하고 변경 감지 시 중단. 모든 외부 편집기를 잠그지는 않음 |
-| 무변경 갱신 | 같은 경로이면 BOM·CRLF를 포함한 바이트 유지 |
-| `--skip-lint` | 미완성 초안 저장을 명시적으로 허용. 통과 판정을 뜻하지 않음 |
-| 저수준 render/extract | 구조 변환용. 임의 사용자 섹션을 전부 표현하지 않으므로 실제 갱신은 refresh 사용 |
+| 생성 | DEV-10·30 지원. 기존 파일 전체 교체에만 명시적 `--overwrite` 필요 |
+| 갱신 | 지정 섹션만 교체하고 나머지 메모·표·다이어그램·미결 열 유지 |
+| 저장 | 후보 검사 후 원자적 교체. 실패하거나 검사 중 원본 변경을 감지하면 반영하지 않음 |
+| patch | 객체는 키 병합, 배열은 해당 섹션 전체 교체 |
+| 미완성 초안 | `--skip-lint`로 저장 가능. 검사 통과로 보고하지 않음 |
+| 문서 검사 | DOC-CONFIG의 light/full을 따름. `--profile`은 덮어쓰기, `--only`는 한 유형만 검사 |
 
-필수 섹션을 비우거나 미결 표만 남기면 lint는 실패한다. 모르는 사실은 미결에 다음 행동과 함께 기록하고 문서는 draft로 유지한다. `features`, `boundary` 등의 배열 patch는 해당 섹션 전체를 대체하고 객체 patch는 키를 병합한다.
+필수 본문·헤더·표 열·최소 행·키·단건/다건 경로와 흔한 비밀 패턴을 검사한다. 빈 필수 항목을 미결 표만으로 대신 통과시키지 않는다. 무변경 갱신은 같은 경로의 BOM·CRLF를 포함한 바이트를 유지한다.
 
-## 검사 범위
-| 검사 | 자동 확인 |
+## 보조 도구
+
+각 도구의 상세 인자는 `python _tools/도구명.py --help`로 확인한다. `--json`과 `--summary-only`는 함께 쓸 수 없다.
+
+| 도구 | 용도 |
 |---|---|
-| 프로필 | light=10·30, full=10·20·30·50·90. DOC-CONFIG를 읽고 `--profile`로 덮어쓸 수 있음 |
-| 작성된 선택 문서 | 카탈로그 코드·단건/다건 경로·필수 본문을 함께 검사 |
-| 필수 본문 | 실제 H2, 중복, 빈칸·자리표시자, 열·행 최소, 필수 역할 키 |
-| 헤더 | 상태·코드·실제 달력 날짜·범위·비범위 |
-| 구조도 | DEV-30 Mermaid 블록과 명시된 사각 노드 수 |
-| 비밀 | 흔한 키·토큰·개인키 패턴. 일치한 값을 출력하지 않음 |
-| 미결 | 필수 본문 부족을 대신 통과시키지 않음. 내용의 사실성은 사람 리뷰 |
-| 언어 | IDEAL에서 ko 라벨 힌트 제공. 다른 언어는 수동 확인으로 SKIP |
+| [schema_sync_check.py](schema_sync_check.py) | 카탈로그·템플릿·명세 양방향 정합 |
+| [sample_schema_check.py](sample_schema_check.py) | 30종 HabitCheck 예제 본문 |
+| [check_links.py](check_links.py) | 상대 링크의 대상 파일 존재 |
+| [ideal_check_min.py](ideal_check_min.py) | DEV-10·30 보강 힌트; 기본 advisory |
+| [plant_light_preflight.py](plant_light_preflight.py) | 명시한 대상과 패키지의 읽기 전용 사전 검사 |
+| [quality_regress_check.py](quality_regress_check.py) | 통합 회귀의 호환 진입점. 기존 `--write`로 결과 저장 가능 |
+| [render_doc.py](render_doc.py) · [extract_values.py](extract_values.py) | DEV-10·30 구조 변환. 사용자 문서 갱신에는 refresh 사용 |
 
-전체 Mermaid 문법, 사실성, 외부 URL 응답, 개인정보 탐지는 자동 검증 범위 밖이다. Markdown 표의 셀 내부 `|`는 인라인 코드에서도 `\|`로 이스케이프한다. `_schemas`는 일반 JSON Schema가 아니라 이 도구의 문서 명세 형식이다.
+검사는 기본 읽기 전용이다. 명시적 `quality_regress_check.py --write`만 `_check/QUALITY-REGRESS-LAST.md`를 저장한다. `docs_common.py`와 `document_edit.py`는 내부 모듈이다.
 
-| 종료 코드 | 의미 |
-|---|---|
-| 0 | 검사 통과 또는 실행 성공 |
-| 1 | 문서·회귀 검사 실패 |
-| 2 | 잘못된 인자·입력·I/O 오류 |
-| IDEAL 예외 | 기본은 advisory여서 FAIL도 0. `--strict`는 FAIL 또는 필수 파일 누락이면 1 |
+종료 코드: **0** 성공, **1** 검사 실패, **2** 입력·I/O 오류. IDEAL은 기본 FAIL도 0이며 `--strict`일 때 FAIL·파일 누락을 1로 반환한다.
+
+## 검증 한계
+
+Mermaid는 비어 있지 않은 블록의 존재만 검사한다. 전체 문법·최소 노드 수·의미, 링크 앵커·외부 URL, 문서 사실성·개인정보는 수동 검토한다. 비밀 탐지는 휴리스틱이다. 동시 수정 감지는 모든 외부 편집기를 잠그지 않는다. Markdown 표 안의 `|`는 인라인 코드에서도 `\|`로 이스케이프한다. `_schemas`는 범용 JSON Schema가 아닌 자체 문서 명세다.

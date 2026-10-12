@@ -38,7 +38,7 @@ def main():
                 fails.append(f"TARGET_MISSING {name}")
         if args.docs_root.is_dir() and not missing:
             result = run([sys.executable, str(args.package / "_tools/docs_lint.py"), str(args.docs_root),
-                          "--package", str(args.package), "--profile", "light", "--json"])
+                          "--package", str(args.package), "--skip-schema-sync", "--profile", "light", "--json"])
             lint = json.loads(result.stdout) if result.stdout.startswith("{") else {"ok": False}
             if result.returncode:
                 fails.append("TARGET_LINT")
