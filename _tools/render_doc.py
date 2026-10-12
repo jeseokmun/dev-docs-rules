@@ -4,9 +4,10 @@
 from __future__ import annotations
 import argparse, json, sys
 from pathlib import Path
+from docs_common import atomic_write, cli, load_object
 
 def esc(s):
-    s = str(s).replace("\n", " ").strip() if s is not None else ""
+    s = str(s).replace("\r", " ").replace("\n", " ").replace("|", "\\|").strip() if s is not None else ""
     return s if s else "—"
 
 def table(headers, rows):
@@ -169,9 +170,12 @@ def main():
     ap.add_argument("--values", required=True)
     ap.add_argument("--out", required=True)
     args = ap.parse_args()
-    schema = json.loads(Path(args.schema).read_text(encoding="utf-8"))
-    values = json.loads(Path(args.values).read_text(encoding="utf-8"))
+    schema = load_object(args.schema)
+    values = load_object(args.values)
     code = schema.get("code")
+    from document_edit import validate_values
+    if code in ("DEV-10", "DEV-30"):
+        validate_values(code, values)
     if code == "DEV-10":
         md = render_dev10(schema, values)
     elif code == "DEV-30":
@@ -179,9 +183,9 @@ def main():
     else:
         print("unsupported", code, file=sys.stderr)
         return 2
-    Path(args.out).write_text(md, encoding="utf-8")
+    atomic_write(args.out, md)
     print(args.out)
     return 0
 
 if __name__ == "__main__":
-    raise SystemExit(main())
+    raise SystemExit(cli(main))

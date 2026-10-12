@@ -1,76 +1,23 @@
-# docs-draft (1차 · 실행본)
+# docs-draft
+확인된 사실로 DEV-10·30의 새 초안을 만든다. 출력 md가 기준본이며 값 JSON은 일회 입력이다.
 
-| 항목 | 내용 |
+| 입력 | 내용 |
 |---|---|
-| 종류 | Studio **스킬** (미션 아님) |
-| 1차 유형 | `DEV-10` · `DEV-30`만 |
-| 입력 | `docs_root`, 유형 1개, **확인된** 사실만 |
-| 출력 | `{docs_root}` 아래 md (**SSOT**) |
-| 중간 | 값 JSON — **디스크에 남기지 않음** (`docs_draft_cli` temp) |
-| CLI | `_tools/docs_draft_cli.py` |
+| docs_root | 사용자가 지정한 문서 루트 |
+| type | DEV-10 또는 DEV-30 |
+| values | 확인된 사실 객체; 입력 파일은 호출 후 호출자가 제거 |
 
-## 값 객체 (스키마 키)
-| 공통 | 내용 |
-|---|---|
-| `product` | 제품명 문자열 |
-| `meta` | `상태`/`마지막 갱신`/`범위`/`비범위` |
-| `open` | 미결 행 `[{ID, 내용}, …]` |
-
-| DEV-10 required | 키 |
-|---|---|
-| ＊ 한 줄 소개 | `one_liner` |
-| ＊ 누구를 위한가 | `audience` |
-| ＊ 핵심 기능 | `features` |
-| ＊ 실행·설치 | `run` |
-| ＊ 시스템 경계 | `boundary` |
-
-| DEV-30 required | 키 |
-|---|---|
-| ＊ 한 줄 구조 요약 | `summary` |
-| ＊ 모듈/레이어 | `modules` |
-| ＊ 구조도 | `mermaid` |
-| ＊ 의존 규칙 | `deps` |
-| ＊ 건드리기 위험 구역 | `danger` |
-
-## 절차 (CLI)
 ```bash
-# A) 신규: 확인된 values만 (temp 입력 파일은 CLI 밖 temp에 두고 호출 후 삭제)
-python3 _tools/docs_draft_cli.py \
-  --docs-root "{docs_root}" \
-  --type DEV-10 \
-  --values /tmp/vals.json \
-  --package .
-
-# B) 기존 md 기반 갱신형 draft: extract + patch (JSON은 docs_root에 안 남김)
-python3 _tools/docs_draft_cli.py \
-  --docs-root "{docs_root}" \
-  --type DEV-10 \
-  --from-md "{docs_root}/DEV-10-개요서.md" \
-  --patch /tmp/patch.json \
-  --package .
+python _tools/docs_draft_cli.py --docs-root "{docs_root}" --type DEV-10 --values "{temporary-values.json}" --package .
 ```
-내부: `extract_values` → merge → `render_doc` → `docs_lint` → temp 삭제.
 
-## 완료 기준
-| 통과 | 실패 |
+필수 키 목록은 [_schemas/DEV-10](../_schemas/DEV-10.schema.json), [_schemas/DEV-30](../_schemas/DEV-30.schema.json)을 확인한다. 제품·날짜·범위는 실제 근거로 채운다. 모르는 항목은 미결과 다음 행동으로 남기고, 미완성 저장이 필요한 경우에만 명시적 `--skip-lint`를 쓴다. 이 경우 lint 통과로 보고하지 않는다.
+
+| 동작 | 처리 |
 |---|---|
-| md 존재 + lint(또는 미결만) | 템플릿 전문 재작성 |
-| docs_root에 `.json` values 없음 | 31종 일괄·假채움 |
+| 기존 파일 존재 | 자동 교체 금지. 갱신은 [docs-refresh](docs-refresh.md), 전체 교체는 명시적 --overwrite |
+| 검증 실패 | 대상에 쓰지 않고 실패 이유 보고 |
+| 임시 파일 | 내부 중간 파일 자동 제거; docs_root에 JSON을 만들지 않음 |
+| 완료 | md 저장과 lint 성공을 확인하고 실제 결과만 보고 |
 
-## 금지
-| 금지 | 이유 |
-|---|---|
-| 템플릿 전문을 모델이 다시 쓰기 | 토큰·형식 붕괴 |
-| values를 docs_root에 저장 | SSOT=md |
-| 假채움 | 헌법 |
-
-## 관련 스킬
-| 다음 | 스킬 |
-|---|---|
-| 신규 | `docs-draft` |
-| 갱신 | `docs-refresh` |
-| draft 게이트 | `docs-lint` |
-| advisory | `docs-ideal-min` |
-| 패키지 회귀 | `docs-quality-regress` |
-| 목록 | `README.md` · `STUDIO-WIRING.md` |
-
+코드·제품 사실을 추정하거나 카탈로그 밖 유형을 만들지 않는다. [CLI 세부 동작](../_tools/README.md)을 따른다.

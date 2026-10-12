@@ -9,6 +9,7 @@ become empty strings / omitted kv keys.
 from __future__ import annotations
 import argparse, json, re, sys
 from pathlib import Path
+from docs_common import cli, cells, sections as markdown_sections
 
 SEP = re.compile(r"^\|[-:| ]+\|\s*$")
 H1 = re.compile(r"^#\s+DEV-(10|30)\s+[^\n—\-]*[—\-]\s*(.+?)\s*$")
@@ -90,18 +91,10 @@ def parse_tables_and_blocks(md: str):
         # plain string under heading
         sections.append((cur_h, "string", text.strip()))
 
-    while i < len(lines):
-        ln = lines[i]
-        hm = H2.match(ln)
-        if hm:
-            flush()
-            cur_h = hm.group(1).strip()
-            i += 1
-            continue
-        # leading meta table before any H2
-        buf.append(ln)
-        i += 1
-    flush()
+    for label, raw in markdown_sections("\n".join(lines[i:])):
+        cur_h = label
+        buf = raw.splitlines()[1:] if label else raw.splitlines()
+        flush()
     return product, sections
 
 
@@ -112,8 +105,7 @@ def parse_md_table(tlines: list[str]) -> list[list[str]]:
             break
         if SEP.match(ln.strip()):
             continue
-        cells = [c.strip() for c in ln.strip().strip("|").split("|")]
-        rows.append(cells)
+        rows.append(cells(ln))
     return rows
 
 
@@ -149,7 +141,7 @@ def map_dev10(product, sections) -> dict:
             continue  # extra H2 ignored — not invented
         if mode == "string" and kind in ("string", "none"):
             if kind == "string" and payload:
-                values[key] = clean(payload.splitlines()[0]) if payload else ""
+                values[key] = clean(payload) if payload else ""
         elif mode == "kv" and kind == "kv":
             values[key] = payload
         elif mode == "features" and kind == "table":
@@ -211,7 +203,7 @@ def map_dev30(product, sections) -> dict:
         if key is None:
             continue
         if mode == "string" and kind == "string":
-            values[key] = clean(payload.splitlines()[0]) if payload else ""
+            values[key] = clean(payload) if payload else ""
         elif mode == "mermaid" and kind == "mermaid":
             values[key] = payload or ""
         elif mode == "table" and kind == "table":
@@ -228,11 +220,14 @@ def map_dev30(product, sections) -> dict:
 
 
 def detect_code(md: str, schema_hint: str | None) -> str:
-    if schema_hint:
-        return schema_hint
     m = re.search(r"^#\s+DEV-(10|30)\b", md, re.M)
     if m:
-        return f"DEV-{m.group(1)}"
+        detected = f"DEV-{m.group(1)}"
+        if schema_hint and schema_hint != detected:
+            raise ValueError("code hint conflicts with document")
+        return detected
+    if schema_hint:
+        return schema_hint
     raise SystemExit("cannot detect DEV-10/30; pass --code")
 
 
@@ -253,7 +248,7 @@ def main() -> int:
     ap.add_argument("--stdout", action="store_true", help="also print JSON")
     args = ap.parse_args()
     path = Path(args.md)
-    md = path.read_text(encoding="utf-8")
+    md = path.read_text(encoding="utf-8-sig")
     code = detect_code(md, args.code)
     values = extract(md, code)
     out = Path(args.out)
@@ -267,4 +262,4 @@ def main() -> int:
 
 
 if __name__ == "__main__":
-    raise SystemExit(main())
+    raise SystemExit(cli(main))

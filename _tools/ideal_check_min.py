@@ -9,6 +9,7 @@ Mechanically unknowable items → SKIP (not FAIL).
 from __future__ import annotations
 import argparse, json, re, sys
 from pathlib import Path
+from docs_common import cli, config
 
 HEADING = re.compile(r"^##\s+(.+?)\s*$", re.M)
 URL = re.compile(r"https?://\S+|git@\S+")
@@ -57,7 +58,7 @@ def check_dev10(path: Path) -> list[dict]:
     return out
 
 
-def check_dev30(path: Path) -> list[dict]:
+def check_dev30(path: Path, language="ko") -> list[dict]:
     t = path.read_text(encoding="utf-8")
     hs = headings(t)
     out = []
@@ -88,7 +89,9 @@ def check_dev30(path: Path) -> list[dict]:
         ascii_boxes = ASCII_BOX.findall(body)
         # allow mixed; flag if many ASCII-only boxes and almost no Hangul
         hangul = bool(re.search(r"[가-힣]", body))
-        if hangul and len(ascii_boxes) <= 2:
+        if language != "ko":
+            out.append(row("5 Mermaid 라벨 언어", "SKIP", "한국어 외 언어는 수동 확인"))
+        elif hangul and len(ascii_boxes) <= 2:
             out.append(row("5 Mermaid 라벨 언어", "PASS", "한글 라벨 감지"))
         elif hangul:
             out.append(row("5 Mermaid 라벨 언어", "PASS", f"한글 있음·ASCII박스 {len(ascii_boxes)}(경고만)"))
@@ -202,7 +205,7 @@ def main() -> int:
         if show_tables:
             print(f"(skip DEV-10 — missing {p10})\n")
     if p30.exists():
-        rows = check_dev30(p30)
+        rows = check_dev30(p30, config(root)["language"])
         all_rows.extend(rows)
         reports.append({"type": "DEV-30", "path": str(p30), "rows": rows})
         if show_tables:
@@ -236,10 +239,10 @@ def main() -> int:
         print(json.dumps(payload, ensure_ascii=False))
     elif want_summary:
         print_summary(root, all_rows, missing)
-    if args.strict and fails:
+    if args.strict and (fails or missing):
         return 1
     return 0
 
 
 if __name__ == "__main__":
-    raise SystemExit(main())
+    raise SystemExit(cli(main))

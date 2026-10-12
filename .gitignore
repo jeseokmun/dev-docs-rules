@@ -1,2 +1,5 @@
 __pycache__/
-*.pyc
+*.py[cod]
+.venv/
+work/
+_check/QUALITY-REGRESS-LAST.md

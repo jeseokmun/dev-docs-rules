@@ -8,6 +8,7 @@ Values JSON stays ephemeral (handled by docs_draft_cli). DEV-10 / DEV-30 only.
 from __future__ import annotations
 import argparse, subprocess, sys
 from pathlib import Path
+from docs_common import cli
 
 TOOLS = Path(__file__).resolve().parent
 PKG = TOOLS.parent
@@ -26,7 +27,6 @@ def main() -> int:
     ap.add_argument("--patch", help="confirmed-facts JSON patch (ephemeral input)")
     ap.add_argument("--package", default=str(PKG))
     ap.add_argument("--skip-lint", action="store_true")
-    ap.add_argument("--keep-temp", action="store_true")
     args = ap.parse_args()
 
     docs_root = Path(args.docs_root)
@@ -46,10 +46,8 @@ def main() -> int:
         cmd.extend(["--patch", args.patch])
     if args.skip_lint:
         cmd.append("--skip-lint")
-    if args.keep_temp:
-        cmd.append("--keep-temp")
     return subprocess.call(cmd)
 
 
 if __name__ == "__main__":
-    raise SystemExit(main())
+    raise SystemExit(cli(main))

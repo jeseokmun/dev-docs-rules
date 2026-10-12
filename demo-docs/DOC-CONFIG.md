@@ -1,7 +1,7 @@
 # DOC-CONFIG
 
 - **language:** ko
-- **docs_root:** docs
+- **docs_root:** demo-docs
 - **required_profile:** full
 - **timezone:** Asia/Seoul
 - **statuses:** draft, active, deprecated

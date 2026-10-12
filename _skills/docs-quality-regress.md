@@ -1,44 +1,17 @@
-# docs-quality-regress (1차 · 실행본)
+# docs-quality-regress
+패키지의 재현 가능한 검사를 실행한다. 외부 제품에 문서를 생성하거나 인증 상태를 추정하지 않는다.
 
-| 항목 | 내용 |
-|---|---|
-| 종류 | Studio **스킬** (미션 아님) · 패키지 건강 점검 |
-| 입력 | 없음 (패키지 `_tools` / `_check` 기준) |
-| 출력 | 콘솔 + `_check/QUALITY-REGRESS-LAST.md` · 선택 `--json` / `--summary-only` |
-| 승인 | 없음 (읽기·리포트 쓰기만) |
-| 심기 | **안 함** — GatewAI **오늘 스킵** · md 심기 금지 |
-
-## 명령
 ```bash
-python3 _tools/quality_regress_check.py
-# 보드/채팅용 한 줄
-python3 _tools/quality_regress_check.py --summary-only
-# Studio/기계 파싱
-python3 _tools/quality_regress_check.py --json
-# 표 원본: _check/QUALITY-REGRESS.md
-# 통합 회귀: python3 _tools/regress_docs_pipeline.py --summary-only
+python _tools/quality_regress_check.py --summary-only
+python _tools/quality_regress_check.py --json
+python _tools/quality_regress_check.py --write --summary-only
 ```
 
-## SUMMARY 예
-`SUMMARY quality_regress PASS PASS=5 FAIL=0 checks=5 plant=no A-F=see_QUALITY.md fails=-`
-
-## 생애주기 위치
-| 순서 | 스킬 | 역할 |
-|---|---|---|
-| 1 | `docs-draft` | 신규 md |
-| 2 | `docs-refresh` | 기존 md 패치 |
-| 3 | `docs-lint` | draft 게이트(＊) |
-| 4 | `docs-ideal-min` | advisory IDEAL |
-| 5 | `docs-quality-regress` | 패키지 회귀 원샷 |
-
-## 완료 기준
-| 통과 | 실패 |
+| 항목 | 처리 |
 |---|---|
-| LAST 리포트 PASS · GatewAI BLOCKED 허용 | package tools 깨짐 |
-| A–F 점수를 5로 올리지 않음 | 심기·사실 발명 |
-| `--json`에 `ok`/`summary`/`rows` | draft 게이트로 오용 |
+| 기본 | 읽기 전용; 30종 정합·예제·full 데모·링크·테스트 실행 |
+| --write | _check/QUALITY-REGRESS-LAST.md 생성, Git에서는 제외 |
+| 결과 | exit 0/1/2와 ok·rows·summary 확인 |
+| 점수 | 자동으로 올리지 않음; [평가 근거](../QUALITY-REVIEW.md)에서 판단 |
 
-## 관련
-| 도구 | |
-|---|---|
-| `sample_schema_check.py` | HabitCheck↔전유형 스키마 (regress에 포함) |
+검사 실패를 PASS나 SKIP으로 숨기지 않는다. IDEAL은 실행·JSON 계약만 회귀 검사하고 의미적 FAIL은 draft 실패로 승격하지 않는다.

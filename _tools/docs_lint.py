@@ -1,123 +1,180 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""docs-lint: check ＊ coverage on real docs_root files (DEV-10/30)."""
+"""Validate document bodies and profile presence using the bundled catalog."""
 from __future__ import annotations
-import argparse, json, re, sys, subprocess
+import argparse
+from datetime import date
+import json
 from pathlib import Path
+import re
+import sys
 
-FAKE = re.compile(r"(^|\s)(_+|TBD TBD|lorem ipsum)(\s|$)", re.I)
-SECRET = re.compile(r"(api[_-]?key\s*=\s*\S+|sk-[A-Za-z0-9]{10,}|Bearer\s+[A-Za-z0-9\-._]{12,})", re.I)
-HEADING = re.compile(r"^##\s+(.+?)\s*$", re.M)
+from docs_common import body, cli, config, load_object, placeholder, read_text, run, sections, tables
 
-def star_labels(schema_path: Path) -> list[str]:
-    if not schema_path.exists():
-        return []
-    data = json.loads(schema_path.read_text(encoding="utf-8"))
-    return [f["label"] for f in data.get("required", [])]
+SECRET = re.compile(r"""(?:api[_-]?key|password|secret|token)\s*[:=]\s*["']?[^\s"'|]{8,}|sk-[A-Za-z0-9_-]{10,}|Bearer\s+[A-Za-z0-9._-]{12,}|-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----""", re.I)
+PKG = Path(__file__).resolve().parents[1]
 
-def headings(text: str) -> set[str]:
-    return {m.group(1).strip() for m in HEADING.finditer(text)}
 
-def check_file(path: Path, reqs: list[str]) -> list[str]:
+def headings(text):
+    return {label for label, _ in sections(text) if label is not None}
+
+
+def check_file(path, schema, settings=None):
+    path = Path(path)
+    if not path.is_file():
+        return [f"MISSING {path.name}"]
+    settings = settings or {"statuses": "draft, active, deprecated"}
+    text = read_text(path)
+    blocks = sections(text)
+    labels = [label for label, _ in blocks if label is not None]
     fails = []
-    if not path.exists():
-        return [f"MISSING {path}"]
-    t = path.read_text(encoding="utf-8")
-    hs = headings(t)
-    for r in reqs:
-        bare = r.split(" ", 1)[-1] if " " in r else r
-        if r in hs:
+    for label in set(labels):
+        if labels.count(label) > 1:
+            fails.append(f"DUPLICATE_SECTION {path.name}")
+    contents = {label: body(raw).strip() for label, raw in blocks if label is not None}
+    if SECRET.search(text):
+        fails.append(f"SECRET_LIKE {path.name}")
+    meta_tables = list(tables(blocks[0][1]))
+    meta = dict(meta_tables[0][1]) if meta_tables and all(len(r) == 2 for r in meta_tables[0][1]) else {}
+    # Constitution §4 also permits a bullet header.
+    meta.update(dict(re.findall(r"^-\s+\*\*([^:*]+):?\*\*:?\s*(.+?)\s*$", blocks[0][1], re.M)))
+    for key in schema.get("meta", []):
+        if key not in meta or placeholder(meta[key]):
+            fails.append(f"META_REQUIRED {path.name}: {key}")
+    if meta.get("코드") != schema["code"]:
+        fails.append(f"META_CODE {path.name}")
+    if not re.search(r"^#\s+" + re.escape(schema["code"]) + r"\b", text, re.M):
+        fails.append(f"TITLE_CODE {path.name}")
+    if meta.get("상태") not in [s.strip() for s in settings["statuses"].split(",")]:
+        fails.append(f"META_STATUS {path.name}")
+    try:
+        value = meta.get("마지막 갱신", "")
+        if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", value):
+            raise ValueError("expected YYYY-MM-DD")
+        date.fromisoformat(value)
+    except ValueError:
+        fails.append(f"META_DATE {path.name}")
+    for field in schema.get("required", []):
+        label = field["label"]
+        if label not in contents:
+            fails.append(f"MISSING_SECTION {path.name}: {label}")
             continue
-        if any(bare in h and ("＊" in h or "○" in h) for h in hs):
+        content = re.sub(r"<!--.*?-->", "", contents[label], flags=re.S).strip()
+        if placeholder(content):
+            fails.append(f"EMPTY_SECTION {path.name}: {label}")
             continue
-        fails.append(f"MISSING_SECTION {path.name}: {r}")
-    if FAKE.search(t):
-        fails.append(f"FAKEFILL {path}")
-    if SECRET.search(t):
-        fails.append(f"SECRET_LIKE {path}")
-    for i, line in enumerate(t.splitlines(), 1):
-        if line.startswith("|") and "|---|" not in line:
-            cells = [c.strip() for c in line.strip("|").split("|")]
-            if any(c == "" for c in cells):
-                fails.append(f"EMPTY_CELL {path.name}:{i}")
-                break
-    return fails
+        kind = field["type"]
+        if kind == "string":
+            if len(content) < field.get("min", 1):
+                fails.append(f"MIN_LENGTH {path.name}: {label}")
+        elif kind == "mermaid":
+            match = re.search(r"```mermaid\s*\n(.*?)```", content, re.S)
+            # Structural smoke check, not a full Mermaid syntax validator.
+            nodes = re.findall(r"\b([A-Za-z_][\w-]*)\s*\[", match[1]) if match else []
+            if not match or len(set(nodes)) < field.get("min_nodes", 1):
+                fails.append(f"MERMAID_NODES {path.name}: {label}")
+        else:
+            found = list(tables(content))
+            if not found:
+                fails.append(f"MISSING_TABLE {path.name}: {label}")
+                continue
+            headers, rows = found[0]
+            expected = ["구분", "내용"] if kind == "kv_rows" else field.get("columns", [])
+            if headers != expected:
+                fails.append(f"TABLE_COLUMNS {path.name}: {label}")
+            if len(rows) < field.get("min_rows", 1):
+                fails.append(f"MIN_ROWS {path.name}: {label}")
+            for row in rows:
+                if len(row) != len(headers):
+                    fails.append(f"TABLE_WIDTH {path.name}: {label}")
+                elif any(placeholder(c) for h, c in zip(headers, row) if h != "비고" and "□" not in h):
+                    fails.append(f"FAKEFILL {path.name}: {label}")
+            if kind == "kv_rows":
+                keys = {r[0] for r in rows if r}
+                if keys - set(field.get("keys", [])):
+                    fails.append(f"UNKNOWN_KEYS {path.name}: {label}")
+                if field.get("min_rows", 1) >= len(field.get("keys", [])):
+                    if not set(field.get("keys", [])) <= keys:
+                        fails.append(f"MISSING_KEYS {path.name}: {label}")
+    for headers, rows in tables(text):
+        for row in rows:
+            if len(row) != len(headers):
+                fails.append(f"TABLE_WIDTH {path.name}")
+            elif any(not c for h, c in zip(headers, row) if h != "비고" and "□" not in h):
+                fails.append(f"EMPTY_CELL {path.name}")
+    return list(dict.fromkeys(fails))
 
-def main() -> int:
-    ap = argparse.ArgumentParser(description="docs-lint DEV-10/30 ＊ headings + empty/secret")
-    ap.add_argument("docs_root")
-    ap.add_argument("--package", default=str(Path(__file__).resolve().parents[1]))
+
+def main():
+    ap = argparse.ArgumentParser(description=__doc__)
+    ap.add_argument("docs_root", type=Path)
+    ap.add_argument("--package", type=Path, default=PKG)
     ap.add_argument("--skip-schema-sync", action="store_true")
-    ap.add_argument("--only", choices=["DEV-10", "DEV-30"], help="check one type only")
-    ap.add_argument("--json", action="store_true", help="machine JSON on stdout")
-    ap.add_argument(
-        "--summary-only",
-        action="store_true",
-        help="print one SUMMARY line only",
-    )
+    ap.add_argument("--only", help="check one catalog code; skip presence of other types")
+    ap.add_argument("--profile", choices=["light", "full"], help="override DOC-CONFIG profile")
+    output = ap.add_mutually_exclusive_group()
+    output.add_argument("--json", action="store_true")
+    output.add_argument("--summary-only", action="store_true")
     args = ap.parse_args()
-    root = Path(args.docs_root)
-    pkg = Path(args.package)
-    req10 = star_labels(pkg / "_schemas" / "DEV-10.schema.json") or [
-        "＊ 한 줄 소개", "＊ 누구를 위한가", "＊ 핵심 기능", "＊ 실행·설치", "＊ 시스템 경계"
-    ]
-    req30 = star_labels(pkg / "_schemas" / "DEV-30.schema.json") or [
-        "＊ 한 줄 구조 요약", "＊ 모듈/레이어", "＊ 구조도 (Mermaid)", "＊ 의존 규칙", "＊ 건드리기 위험 구역"
-    ]
-    fails: list[str] = []
-    checked = []
-    if args.only in (None, "DEV-10"):
-        checked.append("DEV-10")
-        fails += check_file(root / "DEV-10-개요서.md", req10)
-    if args.only in (None, "DEV-30"):
-        checked.append("DEV-30")
-        fails += check_file(root / "DEV-30-구조명세서.md", req30)
+    if not args.docs_root.is_dir():
+        ap.error("docs_root must be an existing directory")
+    schemas = {p.stem.split(".")[0]: load_object(p) for p in (args.package / "_schemas").glob("DEV-*.schema.json")}
+    if not schemas:
+        ap.error("package has no schemas")
+    if args.only and args.only not in schemas:
+        ap.error("--only must name a catalog code")
+    settings = config(args.docs_root)
+    profile = args.profile or settings["required_profile"]
+    required = {args.only} if args.only else {"DEV-10", "DEV-30"}
+    if not args.only and profile == "full":
+        required |= {"DEV-20", "DEV-50", "DEV-90"}
+    fails, checked = [], []
+    for code, schema in sorted(schemas.items()):
+        if args.only and code != args.only:
+            continue
+        title = schema["title"]
+        folder = args.docs_root / f"{code}-{title}"
+        files = [args.docs_root / f"{code}-{title}.md"] if schema["single_file"] else sorted(folder.glob(f"{code}-*.md"))
+        files = [p for p in files if p.is_file()]
+        if files:
+            checked.append(code)
+            for path in files:
+                fails.extend(check_file(path, schema, settings))
+        elif code in required:
+            index = folder / "INDEX.md"
+            if code == "DEV-50" and index.is_file() and re.search(r"^(?:[-*]\s+)?결정 없음[.!]?$", read_text(index), re.M):
+                checked.append(code)
+            else:
+                fails.append(f"MISSING {code}")
+    if not args.only:
+        for path in args.docs_root.rglob("DEV-*.md"):
+            rel = path.relative_to(args.docs_root)
+            if any(p.startswith("_") or p == "archive" for p in rel.parts[:-1]) or path.name.startswith("DEV-CONSTITUTION"):
+                continue
+            match = re.match(r"^(DEV-\d+)-", path.name)
+            code = match[1] if match else ""
+            schema = schemas.get(code)
+            if not schema:
+                fails.append(f"UNKNOWN_CODE {rel.as_posix()}")
+            elif (schema["single_file"] and rel.as_posix() != f"{code}-{schema['title']}.md") or (not schema["single_file"] and (len(rel.parts) != 2 or rel.parts[0] != f"{code}-{schema['title']}")):
+                fails.append(f"DOC_PATH {rel.as_posix()}")
     sync_line = ""
-    pkg_check = pkg / "_check" / "check_docs.py"
-    if pkg_check.exists():
-        r = subprocess.run([sys.executable, str(pkg_check), str(pkg)], capture_output=True, text=True)
-        if r.returncode != 0:
-            fails.append("TEMPLATE_CHECK\n" + (r.stdout or r.stderr))
     if not args.skip_schema_sync:
-        sync = Path(__file__).with_name("schema_sync_check.py")
-        if sync.exists():
-            cmd = [sys.executable, str(sync), "--package", str(pkg)]
-            if args.summary_only or args.json:
-                cmd.append("--summary-only")
-            r = subprocess.run(cmd, capture_output=True, text=True)
-            sync_line = (r.stdout or "").strip()
-            if r.returncode != 0:
-                fails.append("SCHEMA_SYNC\n" + sync_line + (r.stderr or ""))
+        r = run([sys.executable, str(Path(__file__).with_name("schema_sync_check.py")), "--package", str(args.package), "--summary-only"])
+        sync_line = r.stdout.strip()
+        if r.returncode:
+            fails.append("SCHEMA_SYNC " + sync_line)
     ok = not fails
-    summary = (
-        f"SUMMARY docs_lint status={'PASS' if ok else 'FAIL'} "
-        f"docs_root={root} types={','.join(checked)} fail_n={len(fails)}"
-    )
-    payload = {
-        "tool": "docs_lint",
-        "ok": ok,
-        "docs_root": str(root),
-        "types": checked,
-        "fail_n": len(fails),
-        "fails": fails,
-        "schema_sync": sync_line,
-        "summary": summary,
-    }
+    summary = f"SUMMARY docs_lint status={'PASS' if ok else 'FAIL'} docs_root={args.docs_root} profile={profile} types={','.join(checked)} fail_n={len(fails)}"
+    payload = dict(tool="docs_lint", ok=ok, docs_root=str(args.docs_root), profile=profile, types=checked, fail_n=len(fails), fails=fails, schema_sync=sync_line, summary=summary)
     if args.json:
         print(json.dumps(payload, ensure_ascii=False))
-        return 0 if ok else 1
-    if args.summary_only:
+    else:
         print(summary)
-        return 0 if ok else 1
-    if sync_line and not args.skip_schema_sync:
-        print(sync_line)
-    if fails:
-        print("FAIL")
-        for f in fails:
-            print(" ", f)
-        return 1
-    print("PASS docs-lint (DEV-10/30 ＊ headings from schema + empty/secret + schema_sync)")
-    return 0
+        if not args.summary_only:
+            for fail in fails:
+                print(fail)
+    return 0 if ok else 1
+
 
 if __name__ == "__main__":
-    raise SystemExit(main())
+    raise SystemExit(cli(main))

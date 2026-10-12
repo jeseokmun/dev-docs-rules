@@ -18,7 +18,9 @@ AI와 함께 개발할 때 쓰는 **개발 문서 룰(헌법)과 문서 템플�
 | `_skills/` | 에이전트가 문서 초안·갱신·검사를 돌릴 때 쓰는 스킬 실행본 |
 | `_examples/` · `demo-docs/` | 가상 앱 HabitCheck로 채운 예시 문서 (참고용, 기준본 아님) |
 | `VERSION` · `VERSION-CHANGELOG.md` | 버전 태그와 변경 이력 |
-| `PACKAGE-NOTES.md` | 작업 패키지 원본 README (내부 점검 폴더 경로가 남아 있음) |
+| `PACKAGE-NOTES.md` | 패키지 범위와 과거 기록 안내 |
+| `QUALITY-REVIEW.md` | 평가 기준·개선 근거·검증 한계 |
+| `tests/` · `.github/workflows/` | 동작 회귀 테스트와 운영체제별 CI |
 
 ## 템플릿 목록
 
@@ -69,14 +71,14 @@ AI와 함께 개발할 때 쓰는 **개발 문서 룰(헌법)과 문서 템플�
 ### 2. 필수 문서부터 초안 쓰기
 
 1. light면 `DEV-10 개요서`, `DEV-30 구조명세서`부터 쓴다. full이면 `DEV-20`, `DEV-50`, `DEV-90`을 더한다.
-2. `_templates/`에서 해당 템플릿을 `docs_root`로 복사한다.
+2. 템플릿의 **복사용 본문**만 가져온다. 단건은 루트 파일, 다건은 헌법의 유형 폴더 안에 `DEV-번호-슬러그.md`로 저장한다. 템플릿 설명과 바깥 코드 펜스를 제품 문서에 복사하지 않는다.
 3. 첫 목표는 `＊` 섹션만 채우는 것이다. 처음부터 완벽하게 채울 필요는 없다.
 4. 확인하지 않은 사실은 쓰지 않는다. 대신 **미결** 표에 과제로 남긴다.
 5. 나머지 템플릿은 필요해질 때 추가한다.
 
 ### 3. CLI로 초안 만들고 검사하기 (선택)
 
-Python 3만 있으면 된다. 저장소 루트에서 실행한다.
+Python 3.10 이상이면 된다. 추가 패키지 설치는 필요 없다. Windows에서는 `python`, macOS/Linux에서는 환경에 따라 `python3`를 쓴다. 저장소 루트에서 실행한다.
 
 ```bash
 # 값(JSON)으로 템플릿을 채워 md 생성
@@ -86,14 +88,22 @@ python3 _tools/render_doc.py --help
 python3 _tools/docs_draft_cli.py --help
 python3 _tools/docs_refresh_cli.py --help
 
-# ＊ 섹션 누락·빈칸·비밀값 의심 문자열 검사
-python3 _tools/docs_lint.py docs/ --summary-only
+# full 데모의 필수 문서·본문·표·헤더·비밀 패턴 검사
+python _tools/docs_lint.py demo-docs --summary-only
 
 # 템플릿과 스키마가 서로 맞는지 검사
 python3 _tools/schema_sync_check.py --summary-only
 ```
 
-도구별 설명은 `_tools/README.md`에 있다. `quality_regress_check.py`, `regress_docs_pipeline.py`, `plant_light_preflight.py`는 작업 환경의 점검 폴더와 로컬 경로를 기본값으로 쓰는 내부 회귀용이라, 이 저장소만으로는 경로 인자를 직접 넘겨야 한다.
+도구별 설명과 생성·갱신 예시는 [_tools/README.md](_tools/README.md)에 있다. 렌더·초안·갱신은 DEV-10·30만 지원하며 lint는 30종과 light/full을 지원한다. 갱신은 지정한 섹션만 바꾸고 검사 실패 시 원본을 보존한다.
+
+새 clone에서 전체 검증:
+
+```bash
+python _tools/regress_docs_pipeline.py --summary-only
+```
+
+[기여 절차](CONTRIBUTING.md), [보안 안내](SECURITY.md), [평가 근거](QUALITY-REVIEW.md)를 함께 확인한다.
 
 ### 4. 규칙 요약
 

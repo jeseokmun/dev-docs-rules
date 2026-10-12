@@ -1,49 +1,21 @@
-# docs-lint (1차 · 실행본)
+# docs-lint
+지정한 docs_root를 읽고 수정 없이 결과를 보고한다.
 
-| 항목 | 내용 |
-|---|---|
-| 종류 | Studio **스킬** (미션 아님) |
-| 입력 | `docs_root` |
-| 승인 | **없음** (읽기 전용) |
-| 출력 | 통과 / 미달 표 (콘솔). md 수정 안 함 |
-
-## 명령
 ```bash
-python3 _tools/docs_lint.py "{docs_root}" --package .
-python3 _tools/docs_lint.py "{docs_root}" --summary-only
-python3 _tools/schema_sync_check.py --package . --summary-only
-python3 _tools/regress_docs_pipeline.py --help    # 전체 실행은 인자 없이
+python _tools/docs_lint.py "{docs_root}" --package . --summary-only
+python _tools/docs_lint.py "{docs_root}" --package . --json
 ```
 
-CLI 표: `_tools/README.md`
-
-## 검사 항목
-| 검사 | 내용 |
+| 검사 | 범위 |
 |---|---|
-| ＊ 섹션 | 스키마 required 라벨이 `## ＊ …` 헤딩으로 존재 (미결 문구만으로 통과 불가) |
-| 빈 표칸 | 假채움·비밀 휴리스틱 |
-| 템플릿 check | 패키지 템플릿과의 대조 |
-| schema sync | `schema_sync_check` (required↔템플릿 ＊·○ 1:1) |
+| 필수 존재 | DOC-CONFIG light/full; --profile으로 명시적 변경 |
+| 작성된 문서 | 30종 카탈로그의 코드·단건/다건 경로 |
+| 본문 | 실제 필수 H2·중복·내용·자리표시자·표 열·최소 행·키 |
+| 헤더 | 상태·코드·날짜·범위·비범위 |
+| 구조도 | DEV-30 Mermaid와 최소 명시 노드 |
+| 보안 | 흔한 비밀 패턴; 실제 값 미출력 |
+| 패키지 | 템플릿↔스키마 양방향 정합 |
 
-## 완료 기준
-| 통과 | 실패로 보고 |
-|---|---|
-| exit 0 | MISSING_SECTION / 假채움 / sync FAIL |
-| selection/docs 등 실문서에 재현 | docs_root 밖 몰래 수정 |
+exit 0=통과, 1=검사 실패, 2=입력/실행 오류. 미결 표만으로 필수 내용을 대신하지 않는다. 실패 항목은 구체적인 보강 과제로 보고한다. `--only DEV-XX`는 선택한 한 유형만 검사하므로 전체 프로필 통과로 보고하지 않는다.
 
-회귀가 기대하는 것: full fixture PASS · empty 문서는 ＊ 헤딩 없어 FAIL.
-
-## 다음 (advisory)
-lint PASS 뒤 보강 요청만 보려면 `docs-ideal-min` → `_tools/ideal_check_min.py "{docs_root}" --summary-only`.
-IDEAL FAIL은 draft 탈락이 **아님**.
-
-## 관련 스킬
-| 다음 | 스킬 |
-|---|---|
-| 신규 | `docs-draft` |
-| 갱신 | `docs-refresh` |
-| draft 게이트 | `docs-lint` |
-| advisory | `docs-ideal-min` |
-| 패키지 회귀 | `docs-quality-regress` |
-| 목록 | `README.md` · `STUDIO-WIRING.md` |
-
+[IDEAL](docs-ideal-min.md)은 보강 힌트이며 draft 게이트와 분리한다. [검사 한계](../_tools/README.md)를 함께 따른다.

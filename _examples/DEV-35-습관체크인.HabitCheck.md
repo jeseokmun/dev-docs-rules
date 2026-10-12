@@ -13,14 +13,14 @@
 로컬 DB에 습관과 일자별 체크인을 저장한다.
 
 ## ＊ 모델
-| 엔티티/필드 | 타입 | 제약 | 설명 |
+| 엔티티 | 필드 | 형 | 제약 |
 |---|---|---|---|
-| Habit.id | UUID | PK | 로컬 DB에 습관과 일자별 체크인을 저장 |
-| Habit.name | text | not null | 습관 |
-| Habit.weeklyGoal | int | ≥1 | 주당 목표 |
-| CheckIn.id | UUID | PK | 로컬 DB에 습관과 일자별 체크인을 저장 |
-| CheckIn.habitId | UUID | FK | 일자별 체크인 |
-| CheckIn.localDate | date | unique(habitId,localDate) | 기기 로컬 일자 |
+| Habit | id | UUID | PK |
+| Habit | name | text | not null |
+| Habit | weeklyGoal | int | ≥1 |
+| CheckIn | id | UUID | PK |
+| CheckIn | habitId | UUID | FK |
+| CheckIn | localDate | date | unique(habitId,localDate) |
 
 ## ＊ 관계 (Mermaid)
 ```mermaid
@@ -52,10 +52,9 @@ erDiagram
 
 
 ## ＊ 관계
-| from | to | 관계 |
-|---|---|---|
-| Habit | CheckIn | 1:N |
-| CheckIn | (없음) | — |
+| 출발 | 도착 | 기수 | 설명 |
+|---|---|---|---|
+| Habit | CheckIn | 1:N | 습관의 일자별 체크인; CheckIn.habitId 참조 |
 
 ## ＊ 금지
 | 금지 | 이유 |
