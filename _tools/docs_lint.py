@@ -153,6 +153,14 @@ def check_file(path, schema, settings=None):
                 if field.get("min_rows", 1) >= len(field.get("keys", [])):
                     if not set(field.get("keys", [])) <= keys:
                         fails.append(f"MISSING_KEYS {path.name}: {label}")
+            if headers == expected:
+                for name, words in (field.get("column_keys") or {}).items():
+                    if name not in headers:
+                        continue
+                    index = headers.index(name)
+                    for row in rows:
+                        if index < len(row) and row[index] not in words:
+                            fails.append(f"COLUMN_VALUE {path.name}: {label}")
     if schema.get("code") == "DEV-50":
         claim = "\n".join(contents.get(label, "") for label in ("＊ 제목", "＊ 결정"))
         state = meta.get("결정 상태", "").strip()

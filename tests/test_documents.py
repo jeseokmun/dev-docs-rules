@@ -453,6 +453,15 @@ class Documents(unittest.TestCase):
         rows = json.loads(r.stdout)["reports"][1]["rows"]
         self.assertEqual(rows[-1]["status"], "SKIP")
 
+    def test_debt_kind_is_only_risk_or_debt(self):
+        src = PKG / "_examples/DEV-64-위험및기술부채.HabitCheck.md"
+        path = self.docs / src.name
+        schema = load_object(PKG / "_schemas/DEV-64.schema.json")
+        path.write_text(src.read_text(encoding="utf-8"), encoding="utf-8")
+        self.assertEqual(check_file(path, schema), [])
+        path.write_text(path.read_text(encoding="utf-8").replace("| 기술부채 |", "| 기타 |", 1), encoding="utf-8")
+        self.assertIn("COLUMN_VALUE DEV-64-위험및기술부채.HabitCheck.md: ＊ 항목", check_file(path, schema))
+
     def test_fact_and_guess_cannot_oppose_the_same_span(self):
         src = PKG / "_examples/DEV-62-장애대응-체크중복.HabitCheck.md"
         path = self.docs / src.name
@@ -501,7 +510,7 @@ class Documents(unittest.TestCase):
 
     def test_demo_template_copies_match_canonical_sources(self):
         sources = list((PKG / "_templates").glob("*.md"))
-        self.assertEqual(len(sources), 32)
+        self.assertEqual(len(sources), 33)
         for path in sources:
             with self.subTest(template=path.name):
                 copy_path = PKG / "demo-docs/_templates" / path.name

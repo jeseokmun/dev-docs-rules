@@ -1,6 +1,6 @@
 # 문서 명세
 
-`_schemas/DEV-*.schema.json` 31개는 헌법 §3.1·§3.2의 DEV 유형과 `_templates/DEV-*.md` 31개와 1:1이다. `DOC-CONFIG`는 설정 파일이며 이 31개에 들어가지 않는다.
+`_schemas/DEV-*.schema.json` 32개는 헌법 §3.1·§3.2의 DEV 유형과 `_templates/DEV-*.md` 32개와 1:1이다. `DOC-CONFIG`는 설정 파일이며 이 32개에 들어가지 않는다.
 
 이 JSON은 범용 JSON Schema가 아니다. 그 표준의 검증기에 넣지 않는다. 패키지 도구가 읽는 문서 명세이며, 필드 뜻은 아래 표와 `_tools/docs_lint.py`의 `check_file`, `_tools/schema_sync_check.py`의 `check_pair`가 구현한 동작이다.
 
@@ -114,7 +114,7 @@ Mermaid의 문법, 노드 수, 한글 라벨, 링크 앵커, 외부 URL, 본문�
 
 `python _tools/schema_sync_check.py --summary-only`가 카탈로그·스키마·템플릿을 양방향으로 본다. 템플릿의 `##`는 코드 펜스 안도 세므로, 복사용 본문의 H2가 스키마 label과 정확히 한 번씩 맞아야 한다. `＊`로 시작하는 H2는 required에만, `○`로 시작하는 H2는 optional에만 있을 수 있다. 필수 표의 열은 복사용 본문과 스키마가 같아야 한다.
 
-예제 31종은 `python _tools/sample_schema_check.py --summary-only`로 같은 `check_file`을 적용한다.
+예제 32종은 `python _tools/sample_schema_check.py --summary-only`로 같은 `check_file`을 적용한다.
 
 새 DEV 코드는 헌법 §0의 개정 절차로 카탈로그에 넣은 뒤에만 스키마와 템플릿을 추가한다.
 

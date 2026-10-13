@@ -17,4 +17,4 @@ python _tools/quality_regress_check.py --json
 
 이 페이지는 그 형식만 적는다. 명령을 지금 실행한 결과는 적지 않는다. 실행 결과의 자리는 `regress_docs_pipeline.py`의 표준 출력이다. 여섯 검사의 스크립트 이름은 [README.md](../README.md)의 전체 검증 표가 맡는다.
 
-여섯 검사는 스키마 정합, HabitCheck 예제 31종, `demo-docs` full lint, 상대 파일 링크, 사실 주인, `tests/` 행동 테스트다. 점수는 만들지 않는다. 검증의 한계는 [평가 근거](../QUALITY-REVIEW.md)에 있다.
+여섯 검사는 스키마 정합, HabitCheck 예제 32종, `demo-docs` full lint, 상대 파일 링크, 사실 주인, `tests/` 행동 테스트다. 점수는 만들지 않는다. 검증의 한계는 [평가 근거](../QUALITY-REVIEW.md)에 있다.
