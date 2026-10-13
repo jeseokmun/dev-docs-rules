@@ -72,6 +72,7 @@ light면 DEV-10과 DEV-30부터 둔다. full이면 DEV-20, DEV-50, DEV-90을 더
 | HC-FLAG | `_examples/DEV-52-기능플래그-주간요약.HabitCheck.md` |
 | HC-MIDNIGHT | `_examples/DEV-70-오늘체크.HabitCheck.md`, `demo-docs/DEV-70-구현작업명세서/DEV-70-001-오늘체크-유스케이스.md` |
 | HC-PLATFORM | `_examples/DEV-10-개요서.HabitCheck.md`, `demo-docs/DEV-10-개요서.md` |
+| HC-C4 | `_examples/DEV-30-구조명세서.HabitCheck.md`, `demo-docs/DEV-30-구조명세서.md` |
 | TOOL-PY | `README.md`. `python`과 `python3`의 구분은 아래 검사 절에 한 번 적는다 |
 | TOOL-EXIT | `_tools/README.md` |
 
