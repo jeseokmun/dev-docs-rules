@@ -38,7 +38,7 @@
 | 구분 | 내용 |
 |---|---|
 | 개발 | `git clone <repo-url> && cd HabitCheck && flutter pub get && flutter run -d android`. `<repo-url>`은 저장소 주소가 아니다. HC-REPO는 값이 없다. 미결 1 |
-| 사용자 | 사이드로드할 파일 이름은 `dist/habitcheck-v0.1.0.apk`다. HC-HASH는 값이 없다(DEV-90 미결 1). 만드는 절차는 예제 DEV-60 |
+| 사용자 | 사이드로드할 파일 이름은 `dist/habitcheck-v0.1.0.apk`다 |
 | 환경 | Android 8.0+ · Flutter 3.22+ · Dart 3.4+. 이 하한은 HC-PLATFORM이다. DEV-20은 이 하한으로 iOS를 뺀다. 기기별 측정표는 없다 |
 
 ## ＊ 시스템 경계
