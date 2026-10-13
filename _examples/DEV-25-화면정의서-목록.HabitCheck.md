@@ -21,7 +21,8 @@
 ## ＊ 주요 UI 요소
 | 요소 | 동작 |
 |---|---|
-| 습관 행(이름, 오늘 체크) | 오늘을 체크하거나 해제한다(DEV-22). 문구는 DEV-28의 `list.pending`, `list.check`, `list.uncheck` |
+| 습관 행(이름, 오늘 체크) | 오늘을 체크하거나 해제한다(DEV-22) |
+| 습관 행 문구 | DEV-28의 `list.pending`, `list.check`, `list.uncheck` |
 | 추가 버튼 | 습관 추가 화면으로 간다 |
 | 주간 요약 | 노출은 `HC-FLAG` (`_examples/DEV-52-기능플래그-주간요약.HabitCheck.md`). 화면 전환은 미결 1 |
 
