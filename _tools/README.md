@@ -1,6 +1,6 @@
 # 문서 CLI
 
-Python 3.10 이상과 표준 라이브러리만 사용한다. 명령은 저장소 루트 기준이다. `python`과 `python3`의 구분은 `TOOL-PY`([README](../README.md))가 맡는다.
+실행 환경은 `TOOL-PY`([README](../README.md))다. 명령은 저장소 루트 기준이다. `python`과 `python3`의 구분도 그 문장이다.
 
 ## 시작 명령
 

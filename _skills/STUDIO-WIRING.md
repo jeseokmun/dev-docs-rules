@@ -13,6 +13,6 @@
 | 보강 | [docs-ideal-min](docs-ideal-min.md) | advisory |
 | 회귀 | [docs-quality-regress](docs-quality-regress.md) | 패키지 검사 |
 
-호출 환경은 Python 3.10 이상, 패키지 경로, 사용자가 지정한 docs_root다. 종료 코드는 `TOOL-EXIT`([_tools/README.md](../_tools/README.md))이다. IDEAL의 기본과 `--strict`도 그 문장이고, 구분은 [docs-ideal-min](docs-ideal-min.md)에 있다. JSON과 종료 코드에 없는 수정은 하지 않는다. 앱에 스킬을 올리는 값은 위 문단대로 비어 있고, 이 문단에서 다시 정하지 않는다.
+호출 환경의 파이썬은 `TOOL-PY`([README](../README.md))다. 그 밖에 패키지 경로와 사용자가 지정한 docs_root가 있다. 종료 코드는 `TOOL-EXIT`([_tools/README.md](../_tools/README.md))이다. IDEAL의 기본과 `--strict`도 그 문장이고, 구분은 [docs-ideal-min](docs-ideal-min.md)에 있다. JSON과 종료 코드에 없는 수정은 하지 않는다. 앱에 스킬을 올리는 값은 위 문단대로 비어 있고, 이 문단에서 다시 정하지 않는다.
 
 [CLI 옵션](../_tools/README.md), [스킬 목록](README.md), [평가 근거](../QUALITY-REVIEW.md)를 참고한다. 과거 작업일지의 계정·경로·보류 상태를 현재 실행 조건으로 사용하지 않는다.
