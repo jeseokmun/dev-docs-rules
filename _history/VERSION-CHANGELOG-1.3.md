@@ -1,5 +1,19 @@
 # VERSION 변경 요약 (2026-09-09~10 · 야간 EOD hold)
 
+이 파일은 2026-09-09부터 09-11까지의 작업 일지다. 현재 패키지의 실행 조건은 루트 [VERSION-CHANGELOG.md](../VERSION-CHANGELOG.md)와 `VERSION`(1.4.1)이다.
+
+아래 표의 약어와 점수는 이 저장소가 지금 정의하지 않는다. 본문은 당시 문장을 고치지 않았다.
+
+| 일지에만 있는 말 | 현재 트리에서 확인되는 것 |
+|---|---|
+| GatewAI, Selection, Studio, 문제석 | 실행 조건이 아님. [PACKAGE-NOTES.md](../PACKAGE-NOTES.md) |
+| QUALITY A–F, D/F, 정수 4·5 | 차원 정의가 없음. 1.4.1에서 9.85식 정밀 점수는 철회됨 |
+| `UNBLOCK-DF.md`, `DAY-SUMMARY*.md`, STATUS, CYCLE | 이 경로의 파일이 없음 |
+
+빠진 정의와 파일을 추정해 본문을 다시 쓰지 않는다. 그래서 이 일지만으로 당시 점수의 의미를 복원할 수 없다.
+
+
+
 ## 1.3.12-unblock-df (2026-09-11)
 
 | 항목 | 내용 |

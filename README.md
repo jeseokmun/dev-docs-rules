@@ -2,7 +2,7 @@
 
 AI와 함께 개발할 때 쓰는 **개발 문서 룰(헌법)과 문서 템플릿 모음**이다. 문서는 md(+Mermaid)로 쓰고, 표를 먼저 쓴다.
 
-- 현재 버전: `VERSION` 파일 참고
+- 현재 버전: 루트 `VERSION` 한 줄. 이 파일을 읽을 때 그 줄은 `1.4.1`이다.
 - 필수 칸 표기: 템플릿에서 반드시 채워야 하는 섹션은 `＊`로 표시한다.
 - 모르는 내용은 지어내지 않고 **미결**에 과제로 남긴다.
 
@@ -78,7 +78,7 @@ AI와 함께 개발할 때 쓰는 **개발 문서 룰(헌법)과 문서 템플�
 
 ### 3. CLI로 초안 만들고 검사하기 (선택)
 
-Python 3.10 이상이면 된다. 추가 패키지 설치는 필요 없다. Windows에서는 `python`, macOS/Linux에서는 환경에 따라 `python3`를 쓴다. 저장소 루트에서 실행한다.
+Python 3.10 이상이면 된다. 추가 패키지 설치는 필요 없다. 아래 블록은 `python3`로 적는다. Windows에서 `python3`가 없으면 그 자리만 `python`으로 바꾼다. 저장소 루트에서 실행한다.
 
 ```bash
 # 값(JSON)으로 템플릿을 채워 md 생성
@@ -89,7 +89,7 @@ python3 _tools/docs_draft_cli.py --help
 python3 _tools/docs_refresh_cli.py --help
 
 # full 데모의 필수 문서·본문·표·헤더·비밀 패턴 검사
-python _tools/docs_lint.py demo-docs --summary-only
+python3 _tools/docs_lint.py demo-docs --summary-only
 
 # 템플릿과 스키마가 서로 맞는지 검사
 python3 _tools/schema_sync_check.py --summary-only
@@ -100,10 +100,22 @@ python3 _tools/schema_sync_check.py --summary-only
 새 clone에서 전체 검증:
 
 ```bash
-python _tools/regress_docs_pipeline.py --summary-only
+python3 _tools/regress_docs_pipeline.py --summary-only
 ```
 
-[기여 절차](CONTRIBUTING.md), [보안 안내](SECURITY.md), [평가 근거](QUALITY-REVIEW.md)를 함께 확인한다.
+이 명령은 아래 다섯을 한 번씩 실행한다. 저장소 파일은 고치지 않는다.
+
+| 순서 | 스크립트 | 보는 것 |
+|---|---|---|
+| 1 | `_tools/schema_sync_check.py` | 템플릿과 스키마 |
+| 2 | `_tools/sample_schema_check.py` | HabitCheck 예제 30종 |
+| 3 | `_tools/docs_lint.py demo-docs` | full 프로필 본문 |
+| 4 | `_tools/check_links.py` | 상대 링크의 파일 |
+| 5 | `python -m unittest discover -s tests` | 행동 테스트 |
+
+다섯이 모두 끝나면 종료 코드 0이다. 하나라도 실패하면 1이다. 경로나 JSON이 잘못되면 2다.
+
+lint가 보지 않는 선택 열, 미결 열, Mermaid 노드 수는 [_tools/README.md](_tools/README.md)와 [_schemas/README.md](_schemas/README.md)가 맡는다. [기여 절차](CONTRIBUTING.md), [보안 안내](SECURITY.md), [평가 근거](QUALITY-REVIEW.md)를 함께 확인한다.
 
 ### 4. 규칙 요약
 

@@ -4,25 +4,35 @@
 |---|---|
 | 상태 | draft |
 | 코드 | DEV-75 |
-| 마지막 갱신 | 2026-09-01 |
-| 범위 | HabitCheck v1 관련 |
-| 비범위 | 해당 유형 밖 상세 |
-| 관련 문서 | 본문 ○ 참고 |
+| 마지막 갱신 | 2026-10-13 |
+| 범위 | 이 가상 앱의 포맷, 레이어, 비밀, Must의 테스트 근거 |
+| 비범위 | 저장소 CI 파일의 실제 경로(아직 없음) |
+| 관련 문서 | 아래 관련 문서 표 |
 
 ## ＊ 규칙
 | 규칙 | 이유 | 예외 |
 |---|---|---|
-| `dart format`, `flutter analyze` 통과 | 스타일·포맷 | 미결 |
-| Must 기능은 테스트 또는 DEV-70 검증 근거 | PR·리뷰 | 미결 |
-| presentation에서 DB import | 금지 | 미결 |
-| 문서에 시크릿 | 금지 | 미결 |
+| `dart format`과 `flutter analyze`를 통과 | 포맷과 정적 분석을 맞춘다 | 없음 |
+| Must(DEV-20 요구 1–3)는 요구마다 검증을 남긴다. 요구 2는 DEV-22, 요구 1·3은 DEV-65와 DEV-10 성공 절차, 구현 검증은 DEV-70 | DEV-20 완료의 정의가 그렇게 나뉜다 | 없음 |
+| presentation에서 DB를 import하지 않는다 | DEV-30이 그 방향을 금지 | 없음 |
+| 문서·예제·값 JSON에 비밀 값을 적지 않는다 | SECURITY, DEV-55 | 없음 |
 
 ## ○ 디렉터리·네이밍
 | 대상 | 규칙 | 예외 |
 |---|---|---|
-| 레이어 폴더명 | DEV-30 레이어 폴더명 준수 | 미결 |
+| 레이어 폴더 | DEV-30의 presentation, application, domain, infrastructure 이름을 쓴다. 파일 경로는 아직 없다 | 없음 |
 
-## 미결
-| ID | 내용 |
+## ○ 관련 문서
+| 코드 | 경로 |
 |---|---|
-| 1 | CI workflow 파일 |
+| DEV-30 | `DEV-30-구조명세서.HabitCheck.md` |
+| DEV-65 | `DEV-65-테스트명세서.HabitCheck.md` |
+| DEV-20 | `DEV-20-요구사항.HabitCheck.md` |
+| DEV-22 | `DEV-22-오늘체크.HabitCheck.md` |
+| DEV-70 | `DEV-70-오늘체크.HabitCheck.md` |
+| DEV-55 | `DEV-55-보안명세서.HabitCheck.md` |
+| DEV-10 | `DEV-10-개요서.HabitCheck.md` |
+## 미결
+| ID | 미결 | 다음에 할 일 |
+|---|---|---|
+| 1 | CI 워크플로 파일 경로가 없다 | 파일이 생기면 포맷 규칙의 이유 칸에 그 잡이 `dart format`과 `flutter analyze`를 실행한다고 적는다. 예외 칸에 잡 이름을 넣지 않는다 |

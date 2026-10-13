@@ -11,7 +11,20 @@
 python _tools/docs_draft_cli.py --docs-root "{docs_root}" --type DEV-10 --values "{temporary-values.json}" --package .
 ```
 
-필수 키 목록은 [_schemas/DEV-10](../_schemas/DEV-10.schema.json), [_schemas/DEV-30](../_schemas/DEV-30.schema.json)을 확인한다. 제품·날짜·범위는 실제 근거로 채운다. 모르는 항목은 미결과 다음 행동으로 남기고, 미완성 저장이 필요한 경우에만 명시적 `--skip-lint`를 쓴다. 이 경우 lint 통과로 보고하지 않는다.
+이 블록의 `python`은 CI가 쓰는 이름이다. 그 이름이 없으면 [README](../README.md)의 `python3`로 같은 스크립트를 실행한다. 값 파일의 예는 [_tools/_fixtures/habitcheck-dev10.values.json](../_tools/_fixtures/habitcheck-dev10.values.json)이다. 그 파일의 제품 문장을 다른 제품에 복사하지 않는다.
+
+CLI가 받는 값 객체 키는 `_tools/document_edit.py`의 `FIELDS`와 같다. `product`와 `meta`는 두 유형이 모두 받는다.
+
+| 유형 | 키 |
+|---|---|
+| DEV-10 | `one_liner`, `why`, `audience`, `features`, `run`, `boundary`, `success`, `related`, `open` |
+| DEV-30 | `summary`, `modules`, `mermaid`, `deps`, `danger`, `flow`, `data`, `related`, `open` |
+
+비면 안 되는 id는 따로 있다. DEV-10은 `one_liner`, `audience`, `features`, `run`, `boundary`다. DEV-30은 `summary`, `modules`, `mermaid`, `deps`, `danger`다.
+
+그 값이 비면 렌더는 본문 대신 미결 행을 만든다. 열 이름과 최소 행은 [_schemas/DEV-10](../_schemas/DEV-10.schema.json)과 [_schemas/DEV-30](../_schemas/DEV-30.schema.json)에 있다.
+
+제품·날짜·범위는 실제 근거로 채운다. 모르는 항목은 미결과 다음 행동으로 남긴다. 미완성 저장이 필요할 때만 `--skip-lint`를 쓴다. 그 저장은 lint 통과가 아니다.
 
 | 동작 | 처리 |
 |---|---|
@@ -20,4 +33,4 @@ python _tools/docs_draft_cli.py --docs-root "{docs_root}" --type DEV-10 --values
 | 임시 파일 | 내부 중간 파일 자동 제거; docs_root에 JSON을 만들지 않음 |
 | 완료 | md 저장과 lint 성공을 확인하고 실제 결과만 보고 |
 
-코드·제품 사실을 추정하거나 카탈로그 밖 유형을 만들지 않는다. [CLI 세부 동작](../_tools/README.md)을 따른다.
+코드·제품 사실을 추정하거나 카탈로그 밖 유형을 만들지 않는다. 종료 코드 0은 저장과 lint 성공, 1은 검사 실패(대상 미변경), 2는 입력 오류다. 세부 동작은 [CLI 설명](../_tools/README.md)을 따른다.

@@ -33,7 +33,16 @@ python _tools/docs_refresh_cli.py --docs-root work/my-docs --type DEV-10 --patch
 
 ## 보조 도구
 
-각 도구의 상세 인자는 `python _tools/도구명.py --help`로 확인한다. `--json`과 `--summary-only`는 함께 쓸 수 없다.
+여기 없는 인자는 `python _tools/도구명.py --help`가 맡는다. `--json`과 `--summary-only`는 함께 쓸 수 없다.
+
+시작 명령에 코드로 있는 인자는 다음이다.
+
+| 스크립트 | 인자 |
+|---|---|
+| `regress_docs_pipeline.py` | `--package`, `--json`, `--summary-only` |
+| `docs_lint.py` | `docs_root`, `--package`, `--only`, `--profile`, `--skip-schema-sync` |
+| `docs_draft_cli.py` | `--docs-root`, `--type`(DEV-10 또는 DEV-30), `--values`, `--from-md`, `--patch`, `--overwrite`, `--skip-lint` |
+| `docs_refresh_cli.py` | `--docs-root`, `--type`, `--from-md`, `--patch`, `--skip-lint` |
 
 | 도구 | 용도 |
 |---|---|
@@ -47,8 +56,18 @@ python _tools/docs_refresh_cli.py --docs-root work/my-docs --type DEV-10 --patch
 
 검사는 기본 읽기 전용이다. 명시적 `quality_regress_check.py --write`만 `_check/QUALITY-REGRESS-LAST.md`를 저장한다. `docs_common.py`와 `document_edit.py`는 내부 모듈이다.
 
+`out-DEV-10-empty.md`는 `empty-dev10.values.json`을 `render_doc.py`로 렌더한 결과와 바이트가 같다. 그 파일만 고치면 생성기와 어긋난다. 빈 입력 렌더는 유효한 개요서가 아니다. 필수 칸이 미결로만 옮겨진 실패 형태를 보여 준다.
+
+`out-DEV-10.md`와 `out-DEV-30.md`는 같은 이름의 values JSON으로 렌더한 뒤에, 성공 절차와 실패 단계를 읽어 고친 파일이다.
+
+그 둘을 JSON만으로 다시 렌더하면 고친 문장이 덮인다.
+
 종료 코드: **0** 성공, **1** 검사 실패, **2** 입력·I/O 오류. IDEAL은 기본 FAIL도 0이며 `--strict`일 때 FAIL·파일 누락을 1로 반환한다.
 
 ## 검증 한계
 
-Mermaid는 비어 있지 않은 블록의 존재만 검사한다. 전체 문법·최소 노드 수·의미, 링크 앵커·외부 URL, 문서 사실성·개인정보는 수동 검토한다. 비밀 탐지는 휴리스틱이다. 동시 수정 감지는 모든 외부 편집기를 잠그지 않는다. Markdown 표 안의 `|`는 인라인 코드에서도 `\|`로 이스케이프한다. `_schemas`는 범용 JSON Schema가 아닌 자체 문서 명세다.
+Mermaid는 비어 있지 않은 블록의 존재만 검사한다. 전체 문법, 최소 노드 수, 의미, 링크 앵커, 외부 URL, 문서 사실성, 개인정보는 수동 검토한다. 선택(○) 절과 미결 표의 열 이름은 lint가 검사하지 않는다. 그 열의 기준은 [_schemas/README.md](../_schemas/README.md)다.
+
+비밀 탐지는 [SECURITY](../SECURITY.md)의 네 패턴이다. 대입은 8자 이상이다. 접두는 `sk-` 뒤 10자다. 인증 헤더는 `Bearer` 뒤 12자다. 개인키 블록은 `BEGIN`과 `PRIVATE KEY`다. 식은 `docs_lint.py`의 `re.I`라 대소문자를 가리지 않는다. 걸리면 `SECRET_LIKE`와 파일 이름만 내고 값은 내지 않는다.
+
+동시 수정 감지는 모든 외부 편집기를 잠그지 않는다. Markdown 표 안의 `|`는 인라인 코드에서도 `\|`로 이스케이프한다. `_schemas`는 범용 JSON Schema가 아닌 자체 문서 명세다.
