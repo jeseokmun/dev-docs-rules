@@ -27,13 +27,6 @@
 |---|---|
 | ko | 없음. 공개 제출 전이라 문구를 잠그지 않음 |
 
-## 제출 전 확인
-| 항목 | 내용 |
-|---|---|
-| 스토어 등록 | 하지 않음 |
-| 내부 APK | 파일 이름은 `dist/habitcheck-v0.1.0.apk`다(DEV-10). HC-HASH는 값이 없다(DEV-90). HC-CHANNEL은 값이 없다(DEV-60 미결 1) |
-| 서명 키 | 값은 적지 않는다. 규칙의 위치는 패키지 `SECURITY.md`와 예제 DEV-60의 사전 조건이다 |
-
 ## 메타·에셋
 | 항목 | 상태 |
 |---|---|
@@ -52,6 +45,7 @@
 | DEV-12 | `../../_examples/DEV-12-제품로드맵.HabitCheck.md` |
 | DEV-60 | `../../_examples/DEV-60-운영절차서-내부apk.HabitCheck.md` |
 | DEV-90 | `../DEV-90-릴리즈변경기록/DEV-90-v0.1.0.md` |
+| DEV-86 | `../../_examples/DEV-86-내부apk.HabitCheck.md` |
 | SECURITY | `../../SECURITY.md` |
 
 ## 미결

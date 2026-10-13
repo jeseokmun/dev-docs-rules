@@ -541,7 +541,7 @@ class Documents(unittest.TestCase):
 
     def test_demo_template_copies_match_canonical_sources(self):
         sources = list((PKG / "_templates").glob("*.md"))
-        self.assertEqual(len(sources), 34)
+        self.assertEqual(len(sources), 35)
         for path in sources:
             with self.subTest(template=path.name):
                 copy_path = PKG / "demo-docs/_templates" / path.name

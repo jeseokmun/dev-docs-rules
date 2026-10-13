@@ -27,13 +27,6 @@
 |---|---|
 | ko | 없음. 공개 제출 전이라 잠그지 않음 |
 
-## 제출 전 확인
-| 항목 | 내용 |
-|---|---|
-| 스토어 등록 | 하지 않음 |
-| 내부 APK | `dist/habitcheck-v0.1.0.apk`(DEV-10). 공유 채널은 HC-CHANNEL |
-| 서명 키 | 문서에 값이 없음(SECURITY) |
-
 ## 메타·에셋
 | 항목 | 상태 |
 |---|---|
@@ -51,6 +44,7 @@
 | DEV-10 | `DEV-10-개요서.HabitCheck.md` |
 | DEV-12 | `DEV-12-제품로드맵.HabitCheck.md` |
 | DEV-60 | `DEV-60-운영절차서-내부apk.HabitCheck.md` |
+| DEV-86 | `DEV-86-내부apk.HabitCheck.md` |
 
 ## 미결
 | ID | 내용 |

@@ -1,6 +1,6 @@
 # HabitCheck 예제 색인
 
-33개 DEV 예제와 DOC-CONFIG 샘플, 합계 34개다. 경로는 `_examples/`다. 제품 기준본이 아니고, 앱 코드·`pubspec.lock`은 이 패키지에 없다. 저장소 주소는 HC-REPO. 없는 값은 예제 안 미결로 남긴다. 문장끼리 어긋나면 예제를 고친다.
+34개 DEV 예제와 DOC-CONFIG 샘플, 합계 35개다. 경로는 `_examples/`다. 제품 기준본이 아니고, 앱 코드·`pubspec.lock`은 이 패키지에 없다. 저장소 주소는 HC-REPO. 없는 값은 예제 안 미결로 남긴다. 문장끼리 어긋나면 예제를 고친다.
 
 예제가 공유하는 제품 규칙은 다음이다. streak 계산은 `HC-STREAK` (`_examples/DEV-30-구조명세서.HabitCheck.md`), 오늘 체크의 통과는 DEV-22, 로컬 DB 상태는 `HC-DRIFT-STATE` (`_examples/DEV-50-로컬DB-drift.HabitCheck.md`), v0.1.0은 Play에 제출하지 않는다(DEV-85). `demo-docs/`의 대응 문서는 이 폴더를 고칠 때 자동으로 바뀌지 않는다.
 
@@ -39,6 +39,7 @@
 | `DEV-80-배포및장애절차서.HabitCheck.md` | `DEV-80-배포및장애절차서.md` |
 | `DEV-82-관측및알람명세서.HabitCheck.md` | `DEV-82-관측및알람명세서.md` |
 | `DEV-85-play-내부만.HabitCheck.md` | `DEV-85-스토어제출명세서.md` |
+| `DEV-86-내부apk.HabitCheck.md` | `DEV-86-출시준비목록.md` |
 | `DEV-88-오픈소스라이선스목록.HabitCheck.md` | `DEV-88-오픈소스라이선스목록.md` |
 | `DEV-90-v0.1.0.HabitCheck.md` | `DEV-90-릴리즈변경기록.md` |
 | `DOC-CONFIG.HabitCheck.md` | `DOC-CONFIG.md` |

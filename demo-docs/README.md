@@ -2,7 +2,7 @@
 
 이 폴더는 full 프로필로 배치한 가상 프로젝트다. 제품의 기준본이 아니다.
 
-앱 코드와 `pubspec.lock`은 이 패키지에 없다. HC-REPO, HC-HASH, HC-PKG, HC-LEGAL은 값이 없다. 33종 예제와 예제용 세팅은 [_examples/INDEX.md](../_examples/INDEX.md)에 있다. `_templates`와 `DEV-CONSTITUTION.md`를 제외한 `DEV-*.md`의 상태 필드는 `draft`다.
+앱 코드와 `pubspec.lock`은 이 패키지에 없다. HC-REPO, HC-HASH, HC-PKG, HC-LEGAL은 값이 없다. 34종 예제와 예제용 세팅은 [_examples/INDEX.md](../_examples/INDEX.md)에 있다. `_templates`와 `DEV-CONSTITUTION.md`를 제외한 `DEV-*.md`의 상태 필드는 `draft`다.
 
 아래 표가 이 폴더에서 읽는 문서의 전부다. full 필수 DEV는 10·20·30·50·90이고, 선택 DEV는 22·35·40·48·70·85다. `DOC-CONFIG.md`는 세팅, `DEV-CONSTITUTION.md`와 `_templates/`는 패키지 복사본이다. archive는 표 밖이며 끝난 DEV-70을 둘 자리다.
 
