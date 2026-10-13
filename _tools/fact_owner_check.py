@@ -148,6 +148,42 @@ def restates(fact_id, text, sentences):
     return fact_id == "TOOL-EXIT" and exit_restated(text)
 
 
+def distinctive_phrases(sentence):
+    phrases = []
+    for part in re.split(r"[。．.·|]", sentence):
+        part = norm(part.strip(" `*"))
+        if len(part) >= 8:
+            phrases.append(part)
+    return phrases
+
+
+def cell_restate_fails(docs, facts):
+    indexed, fails, seen = [], [], set()
+    for fact in facts:
+        if fact["id"] in OPEN_IDS:
+            continue
+        phrases = []
+        for sentence in sentence_list(fact):
+            phrases.extend(distinctive_phrases(sentence))
+        if phrases:
+            indexed.append((fact["id"], set(fact.get("owners") or []), phrases))
+    for rel, _path, _raw, text in docs:
+        for _headers, rows in tables(text):
+            for row in rows:
+                for cell in row:
+                    folded = norm(cell)
+                    for fact_id, owners, phrases in indexed:
+                        if rel in owners or fact_id not in cell:
+                            continue
+                        key = (fact_id, rel)
+                        if key in seen:
+                            continue
+                        if any(phrase in folded for phrase in phrases):
+                            seen.add(key)
+                            fails.append(f"CELL_RESTATE {fact_id} {rel}")
+    return fails
+
+
 def cell_paths(cell):
     found = []
     for target in re.findall(r"\[[^\]\n]*\]\(([^)\s]+)\)", cell):
@@ -239,6 +275,7 @@ def check(package):
                 continue
             if restates(fact_id, text, sentences):
                 fails.append(f"RESTATE {fact_id} {rel}")
+    fails.extend(cell_restate_fails(docs, facts))
     for rel, path, raw, _text in docs:
         for kind, detail in related_fails(path, raw):
             fails.append(f"{kind} {rel} {detail}")
