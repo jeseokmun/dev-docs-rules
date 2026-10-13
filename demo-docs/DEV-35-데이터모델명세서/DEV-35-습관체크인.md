@@ -10,7 +10,7 @@
 | 관련 문서 | 아래 관련 문서 표 |
 
 ## ＊ 개요
-로컬 DB에 습관(Habit)과 날짜별 체크인(CheckIn)만 저장한다. 계정 테이블은 DEV-10. 읽는 순서는 필드 표, 관계, 금지, 수명, 관계도, 미결이다. localDate는 시각이 없는 달력 날짜다. 그 날짜를 고르는 경계는 컬럼이 아니다. 값은 HC-MIDNIGHT. 주인은 `../DEV-70-구현작업명세서/DEV-70-001-오늘체크-유스케이스.md`다. 지금 숫자로 확정된 제약은 PK, name not null, weeklyGoal 1 이상, unique(habitId, localDate)뿐이다.
+로컬 DB에 습관(Habit)과 날짜별 체크인(CheckIn)만 저장한다. 계정 테이블은 DEV-10. 읽는 순서는 필드 표, 관계, 금지, 수명, 관계도, 미결이다. localDate는 달력 날짜다. HC-MIDNIGHT. 주인은 `../DEV-70-구현작업명세서/DEV-70-001-오늘체크-유스케이스.md`다. 지금 숫자로 확정된 제약은 PK, name not null, weeklyGoal 1 이상, unique(habitId, localDate)뿐이다.
 
 ## ＊ 모델
 | 엔티티 | 필드 | 형 | 제약 |
