@@ -13,7 +13,7 @@
 | 규칙 | 이유 | 예외 |
 |---|---|---|
 | `dart format`과 `flutter analyze`를 통과 | 포맷과 정적 분석을 맞춘다 | 없음 |
-| Must(DEV-20 요구 1–3)는 요구마다 검증을 남긴다. 요구 2는 DEV-22, 요구 1은 DEV-65, 요구 3의 숫자는 `HC-STREAK` (`_examples/DEV-30-구조명세서.HabitCheck.md`), 구현 검증은 DEV-70 | DEV-20 완료의 정의가 그렇게 나뉜다 | 없음 |
+| Must(DEV-20 요구 1–3)는 요구마다 검증을 남긴다 | DEV-20 완료의 정의가 그렇게 나뉜다 | 없음 |
 | presentation에서 DB를 import하지 않는다 | DEV-30이 그 방향을 금지 | 없음 |
 | 문서·예제·값 JSON에 비밀 값을 적지 않는다 | SECURITY, DEV-55 | 없음 |
 
