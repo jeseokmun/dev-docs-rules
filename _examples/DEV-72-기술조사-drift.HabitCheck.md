@@ -5,7 +5,7 @@
 | 상태 | draft |
 | 코드 | DEV-72 |
 | 마지막 갱신 | 2026-10-13 |
-| 범위 | HabitCheck 로컬 SQL 후보로 drift를 둘지. 버전은 HC-DRIFT-VER |
+| 범위 | HabitCheck 로컬 SQL 조사. 채택 상태는 `HC-DRIFT-STATE` (`_examples/DEV-50-로컬DB-drift.HabitCheck.md`). 버전은 HC-DRIFT-VER |
 | 비범위 | 테이블 정의(DEV-35), 채택 상태는 `HC-DRIFT-STATE` (`_examples/DEV-50-로컬DB-drift.HabitCheck.md`) |
 | 관련 문서 | 아래 승격 표 |
 
@@ -14,7 +14,7 @@
 ## ＊ 조사
 | 질문 | 조사결과 | 채택/기각 |
 |---|---|---|
-| 로컬 SQL 후보로 drift를 유지할 것인가 | DEV-50의 이유는 컴파일 타임 타입과 마이그레이션 경로다. 환경 하한은 `HC-PLATFORM` (`_examples/DEV-10-개요서.HabitCheck.md`). 그 하한과의 버전 궁합은 HC-DRIFT-VER | 기각하지 않음. 상태는 `HC-DRIFT-STATE` (`_examples/DEV-50-로컬DB-drift.HabitCheck.md`). 스파이크 후 DEV-50에서 정한다 |
+| 로컬 SQL 후보의 근거로 확인한 것은 무엇인가 | DEV-50의 이유는 컴파일 타임 타입과 마이그레이션 경로다. 환경 하한은 `HC-PLATFORM` (`_examples/DEV-10-개요서.HabitCheck.md`). 그 하한과의 버전 궁합은 HC-DRIFT-VER | 추가조사. 채택 상태는 `HC-DRIFT-STATE` (`_examples/DEV-50-로컬DB-drift.HabitCheck.md`). 이 칸은 그 문장을 다시 쓰지 않는다 |
 
 ## ＊ 사실 vs 추측
 | 종류 | 내용 |
