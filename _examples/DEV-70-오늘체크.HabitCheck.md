@@ -5,7 +5,7 @@
 | 상태 | draft |
 | 코드 | DEV-70 |
 | 마지막 갱신 | 2026-10-13 |
-| 범위 | application의 오늘체크와 도메인 streak 재계산을 연결하는 작업 |
+| 범위 | application의 오늘체크와 도메인 streak를 연결하는 작업. streak는 `HC-STREAK` (`_examples/DEV-30-구조명세서.HabitCheck.md`)다 |
 | 비범위 | 화면 픽셀, `HC-DRIFT-STATE` (`_examples/DEV-50-로컬DB-drift.HabitCheck.md`), `HC-PLATFORM` (`_examples/DEV-10-개요서.HabitCheck.md`) |
 | 관련 문서 | 아래 관련 표 |
 
