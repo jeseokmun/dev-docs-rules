@@ -17,7 +17,7 @@
 |---|---|---|
 | 화면 presentation | 목록·상세·체크 UI | 유스케이스만 호출 |
 | 유스케이스 application | 추가·오늘 체크·streak 조회 | 한 의도당 한 유스케이스 |
-| 도메인 domain | Habit·CheckIn, streak, 날짜 경계 | streak 정의는 실행 흐름 절. weeklyGoal은 streak에 넣지 않는다 |
+| 도메인 domain | Habit·CheckIn, streak, 날짜 경계 | streak 정의는 실행 흐름 절의 HC-STREAK 문장이다. 이 칸은 그 문장을 다시 쓰지 않는다 |
 | 인프라 infrastructure | 로컬 DB, 마이그레이션, 시계 | 저장·조회와 모델 매핑 |
 
 ## ＊ 구조도 (Mermaid)
