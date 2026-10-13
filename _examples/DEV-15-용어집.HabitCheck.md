@@ -23,7 +23,7 @@
 | 빌드 해시 | HC-HASH | `_schemas/fact-owners.json`의 그 id. 주인 파일은 없다 |
 | 패키지 이름 | HC-PKG | `_schemas/fact-owners.json`의 그 id. 주인 파일은 없다 |
 | 라이선스 식별자 | HC-LEGAL | `_schemas/fact-owners.json`의 그 id. 주인 파일은 없다 |
-| 알림 채널 | HC-CHANNEL. 이름은 비어 있다 | `_schemas/fact-owners.json`의 그 id. 주인 파일은 없다 |
+| 알림 채널 | HC-CHANNEL | `_schemas/fact-owners.json`의 그 id. 주인 파일은 없다 |
 
 ## ○ 관련 문서
 | 코드 | 경로 |
