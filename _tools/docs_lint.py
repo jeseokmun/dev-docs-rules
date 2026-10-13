@@ -40,6 +40,43 @@ def claims_still_proposed(text):
     return False
 
 
+def longest_common_end(left, right):
+    best = end_left = end_right = 0
+    prev = [0] * (len(right) + 1)
+    for i, ca in enumerate(left, 1):
+        cur = [0] * (len(right) + 1)
+        for j, cb in enumerate(right, 1):
+            if ca == cb:
+                cur[j] = prev[j - 1] + 1
+                if cur[j] > best:
+                    best, end_left, end_right = cur[j], i, j
+        prev = cur
+    return best, end_left, end_right
+
+
+def fact_guess_cue(text, end):
+    window = text[max(0, end - 2):end + 8]
+    if re.search(r"아니|없|않|못", window):
+        return "neg"
+    if re.search(r"있|이다|된다", window):
+        return "pos"
+    return None
+
+
+def fact_guess_conflict(fact, guess):
+    """Same span of 4+ characters, then opposite polarity or a different number."""
+    length, end_fact, end_guess = longest_common_end(fact, guess)
+    if length < 4:
+        return False
+    fact_num = re.match(r"\s*(\d+)", fact[end_fact:])
+    guess_num = re.match(r"\s*(\d+)", guess[end_guess:])
+    if fact_num and guess_num and fact_num.group(1) != guess_num.group(1):
+        return True
+    fact_cue = fact_guess_cue(fact, end_fact)
+    guess_cue = fact_guess_cue(guess, end_guess)
+    return bool(fact_cue and guess_cue and fact_cue != guess_cue)
+
+
 def check_file(path, schema, settings=None):
     path = Path(path)
     if not path.is_file():
@@ -123,6 +160,15 @@ def check_file(path, schema, settings=None):
             fails.append(f"STATUS_CONFLICT {path.name}")
         if state == "accepted" and claims_still_proposed(claim):
             fails.append(f"STATUS_CONFLICT {path.name}")
+    if schema.get("code") == "DEV-62":
+        found = list(tables(contents.get("＊ 사실 / 추측", "")))
+        if found:
+            headers, rows = found[0]
+            if headers[:2] == ["종류", "내용"]:
+                facts = [row[1] for row in rows if len(row) > 1 and row[0].strip() == "사실"]
+                guesses = [row[1] for row in rows if len(row) > 1 and row[0].strip() == "추측"]
+                if any(fact_guess_conflict(fact, guess) for fact in facts for guess in guesses):
+                    fails.append(f"FACT_GUESS {path.name}")
     for field in schema.get("optional", []):
         allowed = field.get("column_keys")
         if not allowed or field["label"] not in contents:

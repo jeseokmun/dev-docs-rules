@@ -453,6 +453,17 @@ class Documents(unittest.TestCase):
         rows = json.loads(r.stdout)["reports"][1]["rows"]
         self.assertEqual(rows[-1]["status"], "SKIP")
 
+    def test_fact_and_guess_cannot_oppose_the_same_span(self):
+        src = PKG / "_examples/DEV-62-장애대응-체크중복.HabitCheck.md"
+        path = self.docs / src.name
+        schema = load_object(PKG / "_schemas/DEV-62.schema.json")
+        original = src.read_text(encoding="utf-8")
+        path.write_text(original, encoding="utf-8")
+        self.assertEqual(check_file(path, schema), [])
+        opposed = original.replace("아직 그 화면 코드는 없다", "구현 코드가 있다", 1)
+        path.write_text(opposed, encoding="utf-8")
+        self.assertIn("FACT_GUESS DEV-62-장애대응-체크중복.HabitCheck.md", check_file(path, schema))
+
     def test_c4_level_rejects_a_mixed_name(self):
         src = PKG / "_examples/DEV-30-구조명세서.HabitCheck.md"
         path = self.docs / src.name
