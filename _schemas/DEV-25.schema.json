@@ -43,6 +43,16 @@
   ],
   "optional": [
     {
+      "id": "접근",
+      "label": "○ 접근",
+      "type": "table",
+      "columns": [
+        "요소",
+        "읽는 이름",
+        "확인"
+      ]
+    },
+    {
       "id": "흐름_mermaid",
       "label": "○ 흐름 (Mermaid)",
       "type": "string"
