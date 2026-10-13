@@ -24,7 +24,7 @@
 ## ＊ 롤백
 | 실패 지점 | 되돌림 | 확인 |
 |---|---|---|
-| 2단계 스키마 적용 실패 | 앱을 지우고 다시 설치한다. 저장해 둔 복사본은 없고, 원격 복구도 없다. 옛 스키마가 없어 expand·migrate·contract 중 어디인지는 적지 않는다 | 재설치 후 Habit 0행, CheckIn 0행 |
+| 2단계 스키마 적용 실패 | 앱을 지우고 다시 설치한다. DEV-10. 옛 스키마가 없어 expand·migrate·contract 중 어디인지는 적지 않는다 | 재설치 후 Habit 0행, CheckIn 0행 |
 
 ## ＊ 검증
 | # | 확인 | 기대 |
@@ -34,6 +34,7 @@
 ## ○ 관련 문서
 | 코드 | 경로 |
 |---|---|
+| DEV-10 | `DEV-10-개요서.HabitCheck.md` |
 | DEV-30 | `DEV-30-구조명세서.HabitCheck.md` |
 | DEV-35 | `DEV-35-습관체크인.HabitCheck.md` |
 | DEV-90 | `DEV-90-v0.1.0.HabitCheck.md` |

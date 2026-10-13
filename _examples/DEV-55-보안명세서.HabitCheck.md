@@ -17,7 +17,7 @@
 ## ＊ 인증·인가
 | 방식 | 역할 | 비고 |
 |---|---|---|
-| 없음 | 기기 안의 단일 사용자 | DEV-20 |
+| 없음 | 단일 사용자. DEV-10 | DEV-20 |
 
 ## ＊ 민감 데이터
 | 종류 | 취급 | 저장 |
@@ -47,6 +47,7 @@
 | DEV-45 | `DEV-45-설정명세서.HabitCheck.md` |
 | DEV-58 | `DEV-58-개인정보처리명세서.HabitCheck.md` |
 | DEV-40 | `DEV-40-없음-v1.HabitCheck.md` |
+| DEV-10 | `DEV-10-개요서.HabitCheck.md` |
 | DEV-20 | `DEV-20-요구사항.HabitCheck.md` |
 | DEV-35 | `DEV-35-습관체크인.HabitCheck.md` |
 | DEV-48 | `DEV-48-없음-v1.HabitCheck.md` |
