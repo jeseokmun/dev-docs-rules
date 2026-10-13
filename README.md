@@ -137,7 +137,7 @@ python3 -m unittest discover -s tests -v
 
 - Mermaid는 비어 있지 않은 블록이 있는지만 본다. 전체 문법, 최소 노드 수, 의미는 보지 않는다. 스키마 `min_nodes`는 사람 검토 값이다.
 - 링크 앵커, 외부 URL, 문서가 사실인지, 개인정보는 수동으로 본다.
-- 선택(○) 절의 열 이름과 미결 표의 열 이름은 lint가 보지 않는다. 그 열의 기준은 [_schemas/README.md](_schemas/README.md)다.
+- 선택(○) 절의 열 이름은 스키마에 `column_keys`가 있는 표만 lint가 본다. 미결 표의 열 이름은 보지 않는다. 그 기준은 [_schemas/README.md](_schemas/README.md)다.
 - 동시 수정 감지는 모든 외부 편집기를 잠그지 않는다.
 
 기여 순서는 [CONTRIBUTING.md](CONTRIBUTING.md), 확인한 범위는 [QUALITY-REVIEW.md](QUALITY-REVIEW.md), 패키지 경계는 [PACKAGE-NOTES.md](PACKAGE-NOTES.md)다.

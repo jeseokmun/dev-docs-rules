@@ -67,7 +67,7 @@ python _tools/docs_refresh_cli.py --docs-root work/my-docs --type DEV-10 --patch
 
 ## 검증 한계
 
-Mermaid는 비어 있지 않은 블록의 존재만 검사한다. 전체 문법, 최소 노드 수, 의미, 링크 앵커, 외부 URL, 문서 사실성, 개인정보는 수동 검토한다. 선택(○) 절과 미결 표의 열 이름은 lint가 검사하지 않는다. 그 열의 기준은 [_schemas/README.md](../_schemas/README.md)다.
+Mermaid는 비어 있지 않은 블록의 존재만 검사한다. 전체 문법, 최소 노드 수, 의미, 링크 앵커, 외부 URL, 문서 사실성, 개인정보는 수동 검토한다. 선택(○) 절의 열 이름은 스키마 `column_keys`가 있는 표만 lint가 본다. 미결 표의 열 이름은 lint가 검사하지 않는다. 그 열의 기준은 [_schemas/README.md](../_schemas/README.md)다.
 
 비밀 탐지는 [SECURITY](../SECURITY.md)의 네 패턴이다. 대입은 8자 이상이다. 접두는 `sk-` 뒤 10자다. 인증 헤더는 `Bearer` 뒤 12자다. 개인키 블록은 `BEGIN`과 `PRIVATE KEY`다. 식은 `docs_lint.py`의 `re.I`라 대소문자를 가리지 않는다. 걸리면 `SECRET_LIKE`와 파일 이름만 내고 값은 내지 않는다.
 

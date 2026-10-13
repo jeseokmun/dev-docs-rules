@@ -83,6 +83,7 @@ DEV-50은 기록이 없을 수 있다. 폴더의 `INDEX.md`에 다음 중 한 �
 | `MISSING_MERMAID` | 비어 있지 않은 mermaid 펜스가 없음 |
 | `MISSING_TABLE` | 필요한 표가 없음 |
 | `TABLE_COLUMNS` | 열 이름이나 순서가 다름 |
+| `COLUMN_VALUE` | 스키마 `column_keys`가 있는 선택 표의 칸이 허용 단어 밖 |
 | `MIN_ROWS` | 행이 부족 |
 | `TABLE_WIDTH` | 칸 개수가 헤더와 다름 |
 | `FAKEFILL` | 칸 전체가 자리표시 |
@@ -99,7 +100,7 @@ DEV-50은 기록이 없을 수 있다. 폴더의 `INDEX.md`에 다음 중 한 �
 
 ## lint가 보지 않는 것
 
-선택(○) 절의 열 이름은 검사하지 않는다. 그래도 복사용 본문은 스키마 columns를 쓴다. 생성·추출과 예제가 그 열을 기준으로 한다.
+선택(○) 절의 열 이름은, 그 필드에 `column_keys`가 있을 때만 lint가 본다. 열 순서가 다르면 `TABLE_COLUMNS`, 허용 단어 밖이면 `COLUMN_VALUE`다. `column_keys`가 없는 선택 절의 열 이름은 보지 않는다. 그래도 복사용 본문은 스키마 columns를 쓴다. 생성·추출과 예제가 그 열을 기준으로 한다.
 
 미결 표의 열 이름도 검사하지 않는다. DEV-10·30 생성기가 만드는 열은 `ID`, `내용`이다. 다른 유형의 스키마 `open_items.columns`가 `ID`, `미결`, `다음에 할 일`이면 복사용 본문도 그 세 열이다.
 

@@ -453,6 +453,15 @@ class Documents(unittest.TestCase):
         rows = json.loads(r.stdout)["reports"][1]["rows"]
         self.assertEqual(rows[-1]["status"], "SKIP")
 
+    def test_stride_class_rejects_names_outside_the_six(self):
+        src = PKG / "_examples/DEV-55-보안명세서.HabitCheck.md"
+        path = self.docs / src.name
+        schema = load_object(PKG / "_schemas/DEV-55.schema.json")
+        path.write_text(src.read_text(encoding="utf-8"), encoding="utf-8")
+        self.assertEqual(check_file(path, schema), [])
+        path.write_text(path.read_text(encoding="utf-8").replace("| 정보 노출 |", "| 기타 |", 1), encoding="utf-8")
+        self.assertIn("COLUMN_VALUE DEV-55-보안명세서.HabitCheck.md: ○ 위협과 대응", check_file(path, schema))
+
     def test_demo_template_copies_match_canonical_sources(self):
         sources = list((PKG / "_templates").glob("*.md"))
         self.assertEqual(len(sources), 31)

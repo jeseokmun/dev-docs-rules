@@ -90,6 +90,27 @@ def check_file(path, schema, settings=None):
                 if field.get("min_rows", 1) >= len(field.get("keys", [])):
                     if not set(field.get("keys", [])) <= keys:
                         fails.append(f"MISSING_KEYS {path.name}: {label}")
+    for field in schema.get("optional", []):
+        allowed = field.get("column_keys")
+        if not allowed or field["label"] not in contents:
+            continue
+        found = list(tables(contents[field["label"]]))
+        if not found:
+            fails.append(f"MISSING_TABLE {path.name}: {field['label']}")
+            continue
+        headers, rows = found[0]
+        expected = field.get("columns", [])
+        if headers != expected:
+            fails.append(f"TABLE_COLUMNS {path.name}: {field['label']}")
+            continue
+        for name, words in allowed.items():
+            if name not in headers:
+                fails.append(f"TABLE_COLUMNS {path.name}: {field['label']}")
+                continue
+            index = headers.index(name)
+            for row in rows:
+                if index >= len(row) or row[index] not in words:
+                    fails.append(f"COLUMN_VALUE {path.name}: {field['label']}")
     for headers, rows in tables(text):
         for row in rows:
             if len(row) != len(headers):
