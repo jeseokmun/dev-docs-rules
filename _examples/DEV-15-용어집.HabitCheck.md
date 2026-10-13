@@ -20,7 +20,7 @@
 | 구조도 배율 | 문장은 HC-C4. 이 칸은 그 문장을 다시 쓰지 않는다 | `DEV-30-구조명세서.HabitCheck.md` |
 | 제품 저장소 | HC-REPO. 주소는 비어 있다 | `_schemas/fact-owners.json`의 그 id. 주인 파일은 없다 |
 | drift 버전 | HC-DRIFT-VER. 번호는 비어 있다 | `_schemas/fact-owners.json`의 그 id. 주인 파일은 없다 |
-| 빌드 해시 | HC-HASH. 값은 비어 있다 | `_schemas/fact-owners.json`의 그 id. 주인 파일은 없다 |
+| 빌드 해시 | HC-HASH | `_schemas/fact-owners.json`의 그 id. 주인 파일은 없다 |
 | 패키지 이름 | HC-PKG. 이름은 비어 있다 | `_schemas/fact-owners.json`의 그 id. 주인 파일은 없다 |
 | 라이선스 식별자 | HC-LEGAL. 식별자는 비어 있다 | `_schemas/fact-owners.json`의 그 id. 주인 파일은 없다 |
 | 알림 채널 | HC-CHANNEL. 이름은 비어 있다 | `_schemas/fact-owners.json`의 그 id. 주인 파일은 없다 |
