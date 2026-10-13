@@ -28,13 +28,13 @@ AI와 함께 개발할 때 쓰는 문서 헌법, 템플릿, 문서 명세, 검�
 - 특정 앱의 설치 로그, 계정, 승인 명단, 리뷰 도구, 채널 이름. 에이전트 연동으로 들어 있는 것은 CLI 레시피뿐이다.
 - 측정하지 않은 완성도 점수.
 
-## light, full, 서른세 유형과 DOC-CONFIG
+## light, full, 서른네 유형과 DOC-CONFIG
 
 `required_profile`의 기본은 `light`다. light에서 파일이 없으면 실패하는 문서는 DEV-10 개요서와 DEV-30 구조명세서다. `full`은 그 둘에 DEV-20 요구사항명세서, DEV-50 기술결정기록, DEV-90 릴리즈변경기록을 더한다. DEV-50은 폴더 안 기록이 하나 이상이거나, 「결정 없음」이 적힌 인덱스다. 인덱스로 통과하는 줄은 [_schemas/README.md](_schemas/README.md)에 있다.
 
 나머지 유형은 필요할 때 고른다. 없어도 프로필 검사는 통과한다. 헌법 §3.3은 API가 있으면 DEV-40, 외부 SaaS면 DEV-48, 스토어면 DEV-85를 상황 권장으로 적는다. 카탈로그에 없는 `DEV-숫자`는 만들지 않는다.
 
-DEV 유형은 34개다. 코드와 유형명 표는 [DEV-CONSTITUTION.md](DEV-CONSTITUTION.md) §3.1(단건, 루트 파일)과 §3.2(다건, 항상 폴더)다. 이 페이지는 그 표를 다시 적지 않는다. 유형명 문자열은 그 표와 같아야 한다. 용도 한 줄은 같은 문서 §5다.
+DEV 유형은 34개다. 1.4.0의 lint가 적던 30종 뒤에 넣은 유형은 DEV-15 용어집, DEV-64 위험및기술부채목록, DEV-66 장애공지, DEV-86 출시준비목록이다. 코드와 유형명 표는 [DEV-CONSTITUTION.md](DEV-CONSTITUTION.md) §3.1(단건, 루트 파일)과 §3.2(다건, 항상 폴더)다. 이 페이지는 그 표를 다시 적지 않는다. 유형명 문자열은 그 표와 같아야 한다. 용도 한 줄은 같은 문서 §5다.
 
 DOC-CONFIG는 DEV 유형이 아니다. 양식은 [`_templates/DOC-CONFIG.md`](_templates/DOC-CONFIG.md)이고, 채운 파일은 `{docs_root}/DOC-CONFIG.md` 한 장이다. `_tools/docs_common.py`의 `config()`는 `- **키:** 값` 줄만 읽는다. 키를 표나 YAML로만 두면 읽히지 않고, 그때 `language`는 `ko`, `required_profile`은 `light`, `statuses`는 `draft, active, deprecated`다. 키의 의미와 기본값은 헌법 §2다.
 
