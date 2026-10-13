@@ -18,7 +18,7 @@
 | 화면 presentation | 목록·상세·체크 UI | 유스케이스만 호출 |
 | 유스케이스 application | 추가·오늘 체크·streak 조회 | 한 의도당 한 유스케이스. 오늘 체크의 이름은 CheckInToday(habitId)다(DEV-32) |
 | 도메인 domain | Habit·CheckIn, streak, 날짜 경계 | 규칙만 적용. 날짜 경계의 값은 HC-MIDNIGHT. 주인은 `DEV-70-구현작업명세서/DEV-70-001-오늘체크-유스케이스.md`다 |
-| 인프라 infrastructure | 로컬 DB, 마이그레이션, 시계 | 저장·조회와 모델 매핑. 제품명은 적지 않는다. 결정 상태는 HC-DRIFT-STATE. 주인은 `DEV-50-기술결정기록/DEV-50-로컬DB-drift.md`다 |
+| 인프라 infrastructure | 로컬 DB, 마이그레이션, 시계 | 저장·조회와 모델 매핑. 제품명을 적을지는 HC-DRIFT-STATE. 주인은 `DEV-50-기술결정기록/DEV-50-로컬DB-drift.md`다. 이 칸은 그 문장을 다시 쓰지 않는다 |
 
 ## ＊ 구조도 (Mermaid)
 ```mermaid
