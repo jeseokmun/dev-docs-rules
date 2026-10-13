@@ -36,7 +36,7 @@
 ## ○ 수명·삭제
 | 엔티티 | 보관 | 삭제 |
 |---|---|---|
-| Habit | 앱을 지울 때까지 기기 로컬 | 습관 삭제 시 CheckIn을 같이 지울지, soft delete인지는 미결 |
+| Habit | 앱을 지울 때까지. DEV-10 | 습관 삭제 시 CheckIn을 같이 지울지, soft delete인지는 미결 |
 | CheckIn | Habit과 같음 | 해제(DEV-22 AC-3)는 그 날짜 행을 지운다. 습관 삭제 시 동작은 위 미결 |
 
 ## 관계도 (Mermaid)
