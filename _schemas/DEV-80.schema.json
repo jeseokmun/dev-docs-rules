@@ -41,6 +41,16 @@
   ],
   "optional": [
     {
+      "id": "승인",
+      "label": "○ 승인",
+      "type": "table",
+      "columns": [
+        "무엇",
+        "역할",
+        "사람"
+      ]
+    },
+    {
       "id": "장애시",
       "label": "○ 장애시",
       "type": "table",
