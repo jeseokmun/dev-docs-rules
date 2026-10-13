@@ -198,14 +198,29 @@ def check_file(path, schema, settings=None):
         if state == "accepted" and claims_still_proposed(claim):
             fails.append(f"STATUS_CONFLICT {path.name}")
     if schema.get("code") == "DEV-62":
+        facts, guesses = [], []
         found = list(tables(contents.get("＊ 사실 / 추측", "")))
-        if found:
-            headers, rows = found[0]
-            if headers[:2] == ["종류", "내용"]:
-                facts = [row[1] for row in rows if len(row) > 1 and row[0].strip() == "사실"]
-                guesses = [row[1] for row in rows if len(row) > 1 and row[0].strip() == "추측"]
-                if any(fact_guess_conflict(fact, guess) for fact in facts for guess in guesses):
-                    fails.append(f"FACT_GUESS {path.name}")
+        if found and found[0][0][:2] == ["종류", "내용"]:
+            for row in found[0][1]:
+                if len(row) < 2:
+                    continue
+                if row[0].strip() == "사실":
+                    facts.append(row[1])
+                elif row[0].strip() == "추측":
+                    guesses.append(row[1])
+        case = list(tables(contents.get("＊ 사례", "")))
+        if case and "원인" in case[0][0]:
+            index = case[0][0].index("원인")
+            for row in case[0][1]:
+                if index >= len(row):
+                    continue
+                cause = row[index].strip()
+                if cause.startswith("추측:") or cause.startswith("추측："):
+                    guesses.append(cause)
+                else:
+                    facts.append(cause)
+        if any(fact_guess_conflict(fact, guess) for fact in facts for guess in guesses):
+            fails.append(f"FACT_GUESS {path.name}")
     if schema.get("code") == "DEV-68" and goal_copy(contents.get("＊ 목표 지표", ""), contents.get("○ 품질 시나리오", "")):
         fails.append(f"GOAL_COPY {path.name}")
     for field in schema.get("optional", []):

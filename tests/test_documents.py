@@ -487,6 +487,13 @@ class Documents(unittest.TestCase):
         opposed = original.replace("아직 그 화면 코드는 없다", "구현 코드가 있다", 1)
         path.write_text(opposed, encoding="utf-8")
         self.assertIn("FACT_GUESS DEV-62-장애대응-체크중복.HabitCheck.md", check_file(path, schema))
+        cause = original.replace(
+            "추측: 화면이 낙관적 갱신을 겹친다. 저장 건수는 1이어야 한다(DEV-22 AC-2)",
+            "추측: 구현 코드가 있다",
+            1,
+        )
+        path.write_text(cause, encoding="utf-8")
+        self.assertIn("FACT_GUESS DEV-62-장애대응-체크중복.HabitCheck.md", check_file(path, schema))
 
     def test_c4_level_rejects_a_mixed_name(self):
         src = PKG / "_examples/DEV-30-구조명세서.HabitCheck.md"
