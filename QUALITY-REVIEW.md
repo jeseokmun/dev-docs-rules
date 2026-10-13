@@ -8,7 +8,7 @@
 
 | 항목 | 판단 | 근거·남은 일 |
 |---|---|---|
-| 규칙·예제 정합 | 명령으로 확인 | `schema_sync_check.py`, `sample_schema_check.py`, `docs_lint.py`(대상 `demo-docs`), `check_links.py`, `fact_owner_check.py`. 진입은 `python3 _tools/regress_docs_pipeline.py --summary-only` |
+| 규칙·예제 정합 | 명령으로 확인 | `schema_sync_check.py`, `sample_schema_check.py`, `docs_lint.py`(대상 `demo-docs`), `check_links.py`, `fact_owner_check.py`, `template_unknown_check.py`. 진입은 `python3 _tools/regress_docs_pipeline.py --summary-only` |
 | 핵심 도구 | 테스트로 확인 | `tests/test_documents.py`의 네 함수. 이름과 보는 것은 표 아래 |
 | 유지보수성 | 코드에서 확인 | `quality_regress_check.py`는 `regress_docs_pipeline.main`을 호출한다. CI 조합은 `.github/workflows/quality.yml` include 3행 |
 | 실제 사용 | 이 저장소 밖 | 외부 프로젝트의 편집 로그 경로는 비어 있다. 로그가 생기면 그 경로를 이 칸에 적는다. 그 전에는 위 명령이 본 범위만 확인된 것이다 |
@@ -25,7 +25,7 @@
 | 변경 | 이유 |
 |---|---|
 | 소수점 배점·목표 달성 선언 삭제 | 객관적인 측정 근거가 없음 |
-| 통합 검사 8개 → 5개, 이후 사실 주인 | 그때 남긴 다섯은 스키마 정합, HabitCheck 예제, full 데모 lint, 상대 파일 링크, 행동 테스트다. 사전 검사·IDEAL은 행동 테스트에서도 실행하며 schema_sync 중복 실행은 제거했다. 지금 회귀는 사실 주인을 더해 여섯이다 |
+| 통합 검사 8개 → 5개, 이후 사실 주인과 미지 절 | 그때 남긴 다섯은 스키마 정합, HabitCheck 예제, full 데모 lint, 상대 파일 링크, 행동 테스트다. 사전 검사·IDEAL은 행동 테스트에서도 실행하며 schema_sync 중복 실행은 제거했다. 그 뒤에 사실 주인이 더해져 여섯이었다. 지금 회귀는 양식의 미지 절 지시를 더해 일곱이다 |
 | CI 5개 → 3개 조합 | `.github/workflows/quality.yml`의 include 3행: ubuntu + Python 3.10, windows + Python 3.14, macos + Python 3.14. 3.14를 최신 파이썬이라고 부르지는 않는다 |
 | 품질 CLI를 회귀 CLI의 호환 진입점으로 통합 | 같은 실행·JSON·요약 구현을 두 번 관리할 필요가 없음 |
 | 자체 Mermaid 노드 수·링크 앵커 판정 제거 | 일부 문법만 해석하면서 정상 문서를 실패시키는 문제 방지 |
@@ -38,6 +38,6 @@
 python3 _tools/regress_docs_pipeline.py --summary-only
 ```
 
-CI의 같은 스크립트는 `.github/workflows/quality.yml`에서 `python _tools/regress_docs_pipeline.py`로 실행된다. 명령 이름의 구분은 `TOOL-PY`([README](README.md))가 맡는다. 여섯 검사가 끝나면 종료 코드는 `TOOL-EXIT`([_tools/README.md](_tools/README.md))이다. 기본 실행은 저장소 파일을 수정하지 않는다. 원격 작업 목록은 [GitHub Actions](https://github.com/jeseokmun/dev-docs-rules/actions)에서 해당 커밋으로 연다. 이 페이지는 그 실행이 성공했는지를 대신 적지 않는다.
+CI의 같은 스크립트는 `.github/workflows/quality.yml`에서 `python _tools/regress_docs_pipeline.py`로 실행된다. 명령 이름의 구분은 `TOOL-PY`([README](README.md))가 맡는다. 일곱 검사가 끝나면 종료 코드는 `TOOL-EXIT`([_tools/README.md](_tools/README.md))이다. 기본 실행은 저장소 파일을 수정하지 않는다. 원격 작업 목록은 [GitHub Actions](https://github.com/jeseokmun/dev-docs-rules/actions)에서 해당 커밋으로 연다. 이 페이지는 그 실행이 성공했는지를 대신 적지 않는다.
 
 Mermaid 전체 문법·최소 노드 수·의미, 링크 앵커·외부 URL, 문서 사실성·개인정보 탐지는 수동 검토 범위다. 원본 변경 감지는 모든 외부 편집기를 잠그지 않는다. 실전 적용 검증 전에는 높은 완성도를 확정하지 않는다.

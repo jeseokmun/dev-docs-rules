@@ -14,11 +14,12 @@
 
 종료 코드는 `TOOL-EXIT`([_tools/README.md](../_tools/README.md))이다. IDEAL의 기본과 `--strict` 차이도 그 문장이다. 설명은 [docs-ideal-min.md](docs-ideal-min.md)가 그 문장을 가리킨다.
 
-회귀 `regress_docs_pipeline.py`의 `collect()`가 부르는 여섯은 이 순서다.
+회귀 `regress_docs_pipeline.py`의 `collect()`가 부르는 일곱은 이 순서다.
 
 1. `schema_sync_check.py`
 2. `sample_schema_check.py` — HabitCheck 예제 33종
 3. `docs_lint.py` — 대상은 `demo-docs`
 4. `check_links.py`
 5. `fact_owner_check.py`
-6. `tests/`의 unittest
+6. `template_unknown_check.py`
+7. `tests/`의 unittest

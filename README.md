@@ -100,10 +100,11 @@ python3 _tools/sample_schema_check.py --package . --summary-only
 python3 _tools/docs_lint.py demo-docs --package . --skip-schema-sync --summary-only
 python3 _tools/check_links.py --package .
 python3 _tools/fact_owner_check.py --package . --summary-only
+python3 _tools/template_unknown_check.py --package . --summary-only
 python3 -m unittest discover -s tests -v
 ```
 
-첫 줄이 패키지 회귀다. 파이프라인은 해석기의 실행 파일과 패키지 디렉터리의 절대 경로를 `--package`로 넘겨, 나머지 여섯을 위에서 아래로 한 번씩 실행한다. 기본 `--package`는 `_tools`의 부모, 곧 이 저장소다. 저장소 파일은 고치지 않는다. `--json`과 `--summary-only`는 함께 쓰지 않는다. 아래가 전체 검증 표다.
+첫 줄이 패키지 회귀다. 파이프라인은 해석기의 실행 파일과 패키지 디렉터리의 절대 경로를 `--package`로 넘겨, 나머지 일곱을 위에서 아래로 한 번씩 실행한다. 기본 `--package`는 `_tools`의 부모, 곧 이 저장소다. 저장소 파일은 고치지 않는다. `--json`과 `--summary-only`는 함께 쓰지 않는다. 아래가 전체 검증 표다.
 
 | 순서 | 이름 | 보는 것 |
 |---|---|---|
@@ -112,11 +113,12 @@ python3 -m unittest discover -s tests -v
 | 3 | `docs_lint.py` | `demo-docs`. 그 `DOC-CONFIG`의 `required_profile`은 `full`. 스키마 정합은 1번이 이미 하므로 `--skip-schema-sync` |
 | 4 | `check_links.py` | 상대 링크의 대상 파일. 앵커와 외부 주소는 보지 않는다 |
 | 5 | `fact_owner_check.py` | 사실 문장의 주인, 주인끼리의 불일치, 비어 있어야 하는 값, 관련 문서의 코드와 경로 |
-| 6 | `unittest discover -s tests -v` | `tests/`의 행동 테스트 |
+| 6 | `template_unknown_check.py` | 양식이 모르는 값 때문에 절을 지우거나 빼라고 하는지. 자리표시를 빼고 `없는 사실:`과 `다음 행동:`을 남기는 문장은 통과한다 |
+| 7 | `unittest discover -s tests -v` | `tests/`의 행동 테스트 |
 
 `ideal_check_min.py`와 `plant_light_preflight.py`는 이 표의 행이 아니다. 행동 테스트가 그 도구를 부른다. 같은 회귀 스크립트를 `.github/workflows/quality.yml`도 `--summary-only` 없이 실행한다.
 
-여섯이 끝나면 반환 숫자의 뜻은 `TOOL-EXIT`([_tools/README.md](_tools/README.md))다. 이 문장은 그 문장을 다시 쓰지 않는다.
+일곱이 끝나면 반환 숫자의 뜻은 `TOOL-EXIT`([_tools/README.md](_tools/README.md))다. 이 문장은 그 문장을 다시 쓰지 않는다.
 
 ## 예제와 데모
 

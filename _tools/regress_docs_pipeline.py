@@ -18,6 +18,7 @@ def collect(package):
         ("demo_full", [sys.executable, str(tool / "docs_lint.py"), str(package / "demo-docs"), "--package", str(package), "--skip-schema-sync", "--summary-only"]),
         ("links", [sys.executable, str(tool / "check_links.py"), "--package", str(package)]),
         ("fact_owners", [sys.executable, str(tool / "fact_owner_check.py"), "--package", str(package), "--summary-only"]),
+        ("template_unknown", [sys.executable, str(tool / "template_unknown_check.py"), "--package", str(package), "--summary-only"]),
         ("tests", [sys.executable, "-m", "unittest", "discover", "-s", str(package / "tests"), "-v"]),
     ]
     rows = []
