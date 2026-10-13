@@ -61,7 +61,7 @@ streak는 한 습관의 CheckIn.localDate만 센다. 가장 최근 체크인 날
 | 단계 | 행위자 | 행동 |
 |---|---|---|
 | 1 | 사용자 | 목록에서 오늘을 체크하거나 해제한다 |
-| 2 | 화면 | CheckInToday(habitId)를 유스케이스에 넘긴다. 화면이 DB를 열지 않는다 |
+| 2 | 화면 | CheckInToday(habitId)를 유스케이스에 넘긴다 |
 | 3 | 유스케이스 | 오늘 localDate 행이 없으면 하나 만들고, 위 streak 정의로 계산해 화면에 돌려준다 |
 | 4 | 유스케이스 | 같은 localDate 행이 있으면 새 행을 만들지 않고 그 건으로 streak를 돌려준다(DEV-22 AC-2). 3과 4는 순서가 아니라 갈림이다 |
 
