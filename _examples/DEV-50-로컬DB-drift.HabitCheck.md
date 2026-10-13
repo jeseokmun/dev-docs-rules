@@ -14,7 +14,7 @@
 로컬 DB 후보로 drift(또는 동등한 typed SQL)를 둔다. 이 기록은 accepted가 아니다.
 
 ## ＊ 맥락
-저장은 DEV-10. 화면이 DB를 직접 열지 않는 구조는 DEV-30에 있다. 그래서 마이그레이션과 타입을 가진 로컬 SQL 계층이 필요하다. 이 저장소에는 HabitCheck 앱 코드가 없다.
+저장은 DEV-10. 구조는 DEV-30. 그래서 마이그레이션과 타입을 가진 로컬 SQL 계층이 필요하다. 이 저장소에는 HabitCheck 앱 코드가 없다.
 
 ## ＊ 결정
 `infrastructure`의 기본 후보는 drift다. accepted는 아래 되돌리는 조건의 스파이크가 끝난 뒤에만 올린다.

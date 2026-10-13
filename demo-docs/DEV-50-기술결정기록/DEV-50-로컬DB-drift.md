@@ -14,7 +14,7 @@
 로컬 DB 후보로 drift를 둔다. 이 기록의 결정 상태는 proposed이며 accepted가 아니다. 필드 정의는 DEV-35, 첫 설치는 DEV-38이다. 날짜 경계 값은 HC-MIDNIGHT. 주인은 `../DEV-70-구현작업명세서/DEV-70-001-오늘체크-유스케이스.md`다. 이 기록은 라이브러리 후보만 다룬다.
 
 ## ＊ 맥락
-저장은 DEV-10. 화면이 DB를 직접 열지 않는 구조는 DEV-30에 있다. 그래서 마이그레이션과 타입을 가진 로컬 SQL 계층이 필요하다. 이 패키지에는 HabitCheck 앱 코드와 `pubspec.lock`이 없다(DEV-72).
+저장은 DEV-10. 구조는 DEV-30. 그래서 마이그레이션과 타입을 가진 로컬 SQL 계층이 필요하다. 이 패키지에는 HabitCheck 앱 코드와 `pubspec.lock`이 없다(DEV-72).
 
 ## ＊ 결정
 `infrastructure`의 기본 후보는 drift다. accepted는 아래 되돌리는 조건의 스파이크가 끝난 뒤에만 올린다. 스파이크 전에는 DEV-30 인프라 행에 제품명을 적지 않는다.
