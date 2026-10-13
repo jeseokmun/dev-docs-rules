@@ -29,13 +29,13 @@
 |---|---|
 | 1 | 습관 이름·주당 목표를 추가·수정·삭제 |
 | 2 | 오늘 날짜에 체크/해제 |
-| 3 | 습관별 연속 일수(streak) 확인. 계산은 DEV-30이고, 주당 목표와 더하지 않는다 |
+| 3 | 습관별 연속 일수(streak) 확인. 계산은 `HC-STREAK` (`_examples/DEV-30-구조명세서.HabitCheck.md`) |
 | 4 | 이번 주 체크 횟수 요약 보기. 순위는 Should(DEV-20). 화면 자리는 DEV-25 미결 |
 
 ## ＊ 실행·설치
 | 구분 | 내용 |
 |---|---|
-| 개발 | `git clone <repo-url> && cd HabitCheck && flutter pub get && flutter run -d android` |
+| 개발 | `git clone HC-REPO && cd HabitCheck && flutter pub get && flutter run -d android` |
 | 사용자 | 내부 APK `dist/habitcheck-v0.1.0.apk` 를 사이드로드. Play 제출은 하지 않는다(DEV-85) |
 | 환경 | Android 8.0+ · Flutter 3.22+ · Dart 3.4+. 이 숫자는 예제가 적은 하한이다. `pubspec.lock`으로 맞춘 핀은 없다(DEV-88) |
 
@@ -51,7 +51,7 @@
 ## ○ 성공·검증
 | 성공 모습 | 검증 방법 |
 |---|---|
-| 빈 날 없이 이어진 7일이면 상세 streak가 7이고, 그중 오늘만 해제하면 6이다 | 1) 개발 행으로 실행 2) 습관 하나 추가 3) DEV-70의 Clock 포트로 localDate를 바꿔 CheckInToday를 7번 호출 4) streak 7, CheckIn 7건 5) 오늘만 해제해 streak 6. 휴대폰 시계로 7일을 기다리는 절차는 아니다 |
+| 상세 streak가 `HC-STREAK` (`_examples/DEV-30-구조명세서.HabitCheck.md`)와 같다 | 1) 개발 행으로 실행한다. 2) 습관 하나를 추가한다. 3) DEV-70의 Clock 포트로 localDate를 바꿔 CheckInToday를 호출한다. 4) 상세 streak와 CheckIn 건수를 그 정의와 비교한다. 휴대폰 시계로 날짜를 기다리는 절차는 아니다 |
 
 ## ○ 관련 문서
 | 코드 | 경로 |
@@ -71,5 +71,5 @@
 ## 미결
 | ID | 내용 |
 |---|---|
-| 1 | `<repo-url>`이 없다. 주소가 정해지면 개발 행의 clone 명령을 그 주소로 바꾼다. |
-| 2 | 로컬 DB는 drift proposed이지 accepted가 아니다. 버전 핀과 스파이크 일정은 DEV-50 미결을 닫은 뒤 이 환경 행에 반영한다. |
+| 1 | HC-REPO |
+| 2 | 로컬 DB 결정 상태는 `HC-DRIFT-STATE` (`_examples/DEV-50-로컬DB-drift.HabitCheck.md`). drift 버전은 HC-DRIFT-VER. 그 기록이 닫히면 환경 행에 반영한다. |

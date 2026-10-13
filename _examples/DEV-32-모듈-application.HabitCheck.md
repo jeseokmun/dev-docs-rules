@@ -6,18 +6,18 @@
 | 코드 | DEV-32 |
 | 마지막 갱신 | 2026-10-13 |
 | 범위 | application 레이어의 책임, 공개 함수 둘, DEV-30이 허용한 의존 |
-| 비범위 | 화면 위젯, SQL 문장, drift 채택 여부(DEV-50) |
+| 비범위 | 화면 위젯, SQL 문장, `HC-DRIFT-STATE` (`_examples/DEV-50-로컬DB-drift.HabitCheck.md`) |
 | 관련 문서 | 아래 관련 문서 표 |
 
 ## ＊ 모듈
 | 모듈 | 책임 | 입력 | 출력 |
 |---|---|---|---|
-| application | 하는 일: 유스케이스 순서 조율. 하지 않는 일: UI, SQL 직접 작성 | habitId, 또는 name과 weeklyGoal | CheckInToday는 DEV-30 정의의 streak(DEV-70). 타입 이름은 미정 |
+| application | 하는 일: 유스케이스 순서 조율. 하지 않는 일: UI, SQL 직접 작성 | habitId, 또는 name과 weeklyGoal | CheckInToday의 streak는 `HC-STREAK` (`_examples/DEV-30-구조명세서.HabitCheck.md`). 타입 이름은 미정 |
 
 ## ＊ 공개 인터페이스
 | 이름 | 종류 | 입력 | 출력 |
 |---|---|---|---|
-| CheckInToday | 함수 | habitId | DEV-30 정의로 다시 센 streak(DEV-70 완료 조건 2). 시그니처 타입은 미정 |
+| CheckInToday | 함수 | habitId | `HC-STREAK` (`_examples/DEV-30-구조명세서.HabitCheck.md`)로 다시 센 streak. 시그니처 타입은 미정 |
 | AddHabit | 함수 | name, weeklyGoal | 저장되는 필드는 DEV-35의 Habit. 반환 타입 이름은 미정 |
 
 ## ＊ 의존
@@ -29,7 +29,7 @@
 ## ＊ 건드리기 위험
 | 구역 | 영향 | 경로(□) |
 |---|---|---|
-| 날짜 경계를 유스케이스에 하드코딩 | streak가 자정·타임존 규칙과 어긋남(DEV-30 위험 구역) | 파일 없음. DEV-30도 경로 후보를 정하지 않았다 |
+| 날짜 경계를 유스케이스에 하드코딩 | `HC-MIDNIGHT` (`_examples/DEV-70-오늘체크.HabitCheck.md`)와 어긋날 수 있다(DEV-30 위험 구역) | 파일 없음. DEV-30도 경로 후보를 정하지 않았다 |
 
 ## ○ 불변조건·실패 시
 | 조건 | 실패 시 |

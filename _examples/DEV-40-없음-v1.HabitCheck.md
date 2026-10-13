@@ -12,7 +12,7 @@
 v1은 기기 안에서만 동작한다. 클라이언트가 호출할 공개 HTTP API는 없다(DEV-10 경계, DEV-20 비범위).
 
 ## ＊ 개요
-공개 HTTP API를 정의하지 않는다. 체크와 추가는 HTTP가 아니라 CheckInToday·AddHabit 호출이다(DEV-32). streak 계산은 DEV-30이다.
+공개 HTTP API를 정의하지 않는다. 체크와 추가는 HTTP가 아니라 CheckInToday·AddHabit 호출이다(DEV-32). streak 계산은 `HC-STREAK` (`_examples/DEV-30-구조명세서.HabitCheck.md`).
 
 ## ＊ 엔드포인트
 | 메서드 | 경로 | 설명 |

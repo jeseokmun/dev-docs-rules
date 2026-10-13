@@ -47,6 +47,8 @@
 | ＊ 짧은 설명 | 열 `언어`·`문구`·`잠금?`, 최소 1행. 언어는 그 문구의 언어, 문구는 제출할 문장, 잠금?은 그 문장을 더 고칠지다. 헤더 `잠금?`에는 `□`가 없으므로 `…`는 `FAKEFILL`이다. 잠금을 정하지 않았으면 `잠금 여부 미정`이라고 적는다. |
 | ○ 긴 설명 | 열 `언어`·`상태`. 상태는 문구를 확정했는지다. `미결` 한 단어는 기계가 통과시키는 假채움이므로, 언어와 확정 여부를 문장으로 적는다. 확정된 문구 전문을 이 열에 다 넣지 못할 때는 상태 칸에 문구가 있는 경로를 적는다. |
 
+헌법 §1 원칙 2대로 같은 사실을 복붙하지 않는다. 반복되는 사실은 `_schemas/fact-owners.json`의 id를 쓴다. 주인 문서가 그 사실을 한 번 적고, 다른 문서는 id와 경로만 인용한다. 값이 없는 id `HC-REPO`, `HC-DRIFT-VER`, `HC-HASH`, `HC-PKG`, `HC-LEGAL`, `HC-CHANNEL`은 비워 둔다. `HC-STREAK`의 주인은 DEV-30, `HC-DRIFT-STATE`의 주인은 DEV-50, `HC-FLAG`의 주인은 DEV-52, `HC-MIDNIGHT`의 주인은 DEV-70, `HC-PLATFORM`의 주인은 DEV-10, `TOOL-PY`의 주인은 `README`, `TOOL-EXIT`의 주인은 `_tools/README.md`이다.
+
 ## 기계 검사
 
 기준 파일은 `_schemas/DEV-85.schema.json`과 `_tools/docs_lint.py`다.

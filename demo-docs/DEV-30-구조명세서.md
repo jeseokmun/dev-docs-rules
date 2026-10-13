@@ -17,8 +17,8 @@
 |---|---|---|
 | 화면 presentation | 목록·상세·체크 UI | 유스케이스만 호출 |
 | 유스케이스 application | 추가·오늘 체크·streak 조회 | 한 의도당 한 유스케이스. 오늘 체크의 이름은 CheckInToday(habitId)다(DEV-32) |
-| 도메인 domain | Habit·CheckIn, streak, 날짜 경계 | 규칙만 적용. 자정 기준은 DEV-70의 추측이다 |
-| 인프라 infrastructure | 로컬 DB, 마이그레이션, 시계 | 저장·조회와 모델 매핑. 제품명은 적지 않는다. drift는 proposed다(DEV-50) |
+| 도메인 domain | Habit·CheckIn, streak, 날짜 경계 | 규칙만 적용. 날짜 경계의 값은 HC-MIDNIGHT. 주인은 `DEV-70-구현작업명세서/DEV-70-001-오늘체크-유스케이스.md`다 |
+| 인프라 infrastructure | 로컬 DB, 마이그레이션, 시계 | 저장·조회와 모델 매핑. 제품명은 적지 않는다. 결정 상태는 HC-DRIFT-STATE. 주인은 `DEV-50-기술결정기록/DEV-50-로컬DB-drift.md`다 |
 
 ## ＊ 구조도 (Mermaid)
 ```mermaid
@@ -46,10 +46,13 @@ flowchart TD
 ## ＊ 건드리기 위험 구역
 | 모듈 | 이유 | 경로(□) |
 |---|---|---|
-| 도메인 streak·날짜 | 자정과 타임존이 연속 일수를 바꾼다. 자정 기준은 DEV-70의 추측이다. DEV-50은 라이브러리 후보만 다룬다 | 계획 경로 `lib/domain/streak.dart`. DEV-50과 DEV-72는 이 패키지에 HabitCheck 앱 코드가 없다고 적는다 |
+| 도메인 streak·날짜 | 날짜 경계와 타임존이 연속 일수를 바꾼다. 날짜 경계의 값은 HC-MIDNIGHT. 주인은 `DEV-70-구현작업명세서/DEV-70-001-오늘체크-유스케이스.md`다. DEV-50은 라이브러리 후보만 다룬다 | 계획 경로 `lib/domain/streak.dart`. DEV-50과 DEV-72는 이 패키지에 HabitCheck 앱 코드가 없다고 적는다 |
 | 인프라 마이그레이션 | 실패하면 기기 안 데이터만 잃는다. 원격 복구는 없다(DEV-38 롤백) | 계획 경로 `lib/infrastructure/db/migrations/`. 이 패키지에 그 디렉터리가 없다 |
 
 ## ○ 핵심 실행 흐름
+
+streak는 한 습관의 CheckIn.localDate만 센다. 가장 최근 체크인 날짜에서 하루씩 과거로 이어진 개수이고, 하루가 비면 그 앞에서 끊긴다. weeklyGoal은 세지 않는다. 오늘을 해제하면 그 localDate가 빠진다. 남은 체크인이 없으면 0이다. 남아 있으면 가장 최근 남은 날짜에서 다시 센다. 빈 날 없이 이어진 7일 뒤 오늘만 해제하면 가장 최근 날이 어제이므로 6이다.
+
 | 단계 | 행위자 | 행동 |
 |---|---|---|
 | 1 | 사용자 | 습관을 체크 |
@@ -110,5 +113,5 @@ sequenceDiagram
 ## 미결
 | ID | 내용 |
 |---|---|
-| 1 | 로컬 DB 구현체는 drift proposed다(DEV-50). accepted가 되면 인프라 행의 비고에 제품명을 적는다. 버전 번호는 DEV-50 미결 1이 닫히기 전에 적지 않는다. |
+| 1 | 로컬 DB 결정 상태는 HC-DRIFT-STATE. 주인은 `DEV-50-기술결정기록/DEV-50-로컬DB-drift.md`다. 제품명을 비고에 적는 시점은 그 문장을 본다. HC-DRIFT-VER는 값이 없다. |
 | 2 | 로컬 DB 오류를 유스케이스가 어떤 값으로 돌려주고 DEV-25 에러 상태가 어떻게 받는지는 없다. 정하면 흐름 표에 실패 단계를 추가한다. |

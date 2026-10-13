@@ -48,6 +48,8 @@
 | ＊ 사용자 영향 | 열 `누가`·`무엇이 달라지나`, 최소 1행. 누가에는 역할, 무엇이 달라지나에는 그 사람이 보는 차이. 보이는 변화가 없으면 두 칸 모두 그 사실을 적는다. |
 | ○ 마이그레이션·호환 | 열 `항목`·`내용`. 이전이 없으면 항목 `필요?`에 `없음`, 절차 행에 `해당 없음`이라고 적는다. 있으면 절차 칸에 DEV-38 경로를 적는다. 절차를 이 표에 복붙하지 않는다. |
 
+헌법 §1 원칙 2대로 같은 사실을 복붙하지 않는다. 반복되는 사실은 `_schemas/fact-owners.json`의 id를 쓴다. 주인 문서가 그 사실을 한 번 적고, 다른 문서는 id와 경로만 인용한다. 값이 없는 id `HC-REPO`, `HC-DRIFT-VER`, `HC-HASH`, `HC-PKG`, `HC-LEGAL`, `HC-CHANNEL`은 비워 둔다. `HC-STREAK`의 주인은 DEV-30, `HC-DRIFT-STATE`의 주인은 DEV-50, `HC-FLAG`의 주인은 DEV-52, `HC-MIDNIGHT`의 주인은 DEV-70, `HC-PLATFORM`의 주인은 DEV-10, `TOOL-PY`의 주인은 `README`, `TOOL-EXIT`의 주인은 `_tools/README.md`이다.
+
 ## 기계 검사
 
 기준 파일은 `_schemas/DEV-90.schema.json`과 `_tools/docs_lint.py`다.

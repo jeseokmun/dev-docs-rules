@@ -6,7 +6,7 @@
 | 코드 | DEV-70 |
 | 마지막 갱신 | 2026-10-13 |
 | 범위 | application의 오늘체크와 도메인 streak 재계산을 연결하는 작업 |
-| 비범위 | 화면 픽셀, DB 엔진의 accepted(DEV-50), iOS |
+| 비범위 | 화면 픽셀, `HC-DRIFT-STATE` (`_examples/DEV-50-로컬DB-drift.HabitCheck.md`), `HC-PLATFORM` (`_examples/DEV-10-개요서.HabitCheck.md`) |
 | 관련 문서 | 아래 관련 표 |
 
 ## ＊ 목표 / 비범위
@@ -23,20 +23,20 @@
 | 사실 | DEV-30: 화면 → 유스케이스 → 도메인/인프라 |
 | 사실 | DEV-20: 오늘 체크와 streak는 Must(요구 2·3) |
 | 추측 | 날짜를 자르는 시각은 기기 로컬 자정으로 둔다. DEV-30 streak 정의는 이 시각을 확정하지 않았다. DEV-50의 결정도 아니다 |
-| 미결 | DB는 drift proposed. 인터페이스만 두고 어댑터는 스텁이어도 되는지는 스파이크 전이라 정하지 않았다 |
+| 미결 | DB 상태는 `HC-DRIFT-STATE` (`_examples/DEV-50-로컬DB-drift.HabitCheck.md`). 인터페이스만 두고 어댑터는 스텁이어도 되는지는 스파이크 전이라 정하지 않았다 |
 
 ## ＊ 완료 조건
 | # | 조건 |
 |---|---|
 | 1 | `CheckInToday(habitId)`는 같은 날 두 번에도 체크인 1건(DEV-22 AC-2) |
-| 2 | 반환 streak는 DEV-30 정의와 같다. 빈 날 없는 3일이면 3(DEV-65). 7일 뒤 오늘만 해제하면 6(DEV-10) |
+| 2 | 반환 streak는 `HC-STREAK` (`_examples/DEV-30-구조명세서.HabitCheck.md`)와 같다 |
 | 3 | presentation이 DB를 import하지 않아도 컴파일되는 구조(DEV-30) |
 
 ## ＊ 검증
 | # | 방법 |
 |---|---|
 | 1 | 단위 테스트: 같은 날 두 번 호출 → CheckIn 1건 |
-| 2 | 단위 테스트: 연속 3일 → streak 3(DEV-65) |
+| 2 | 단위 테스트: 연속 체크의 streak는 `HC-STREAK` (`_examples/DEV-30-구조명세서.HabitCheck.md`). 시나리오 위치는 DEV-65 |
 | 3 | `flutter test`로 그 파일이 통과. 파일 경로는 DEV-22 미결 |
 
 ## ＊ 금지

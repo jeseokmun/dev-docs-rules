@@ -47,6 +47,8 @@
 | ＊ 고지 위치 | 열 `위치`·`내용`, 최소 1행. 위치는 사용자가 고지를 보는 경로, 내용은 그 화면에 무엇이 있다. 화면이 없으면 위치에 `고지 화면 없음`, 내용에 아직 없는지 만들지 않기로 했는지를 적는다. |
 | ○ 생성·갱신 | 열 `방법`·`주기`·`산출 경로`. 방법은 다시 만드는 명령, 주기는 언제 다시 도나, 산출 경로는 나오는 파일이다. 명령을 정하지 않았으면 절을 뺀다. |
 
+헌법 §1 원칙 2대로 같은 사실을 복붙하지 않는다. 반복되는 사실은 `_schemas/fact-owners.json`의 id를 쓴다. 주인 문서가 그 사실을 한 번 적고, 다른 문서는 id와 경로만 인용한다. 값이 없는 id `HC-REPO`, `HC-DRIFT-VER`, `HC-HASH`, `HC-PKG`, `HC-LEGAL`, `HC-CHANNEL`은 비워 둔다. `HC-STREAK`의 주인은 DEV-30, `HC-DRIFT-STATE`의 주인은 DEV-50, `HC-FLAG`의 주인은 DEV-52, `HC-MIDNIGHT`의 주인은 DEV-70, `HC-PLATFORM`의 주인은 DEV-10, `TOOL-PY`의 주인은 `README`, `TOOL-EXIT`의 주인은 `_tools/README.md`이다.
+
 ## 기계 검사
 
 기준 파일은 `_schemas/DEV-88.schema.json`과 `_tools/docs_lint.py`다.

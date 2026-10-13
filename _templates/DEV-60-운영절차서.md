@@ -50,6 +50,8 @@
 | ＊ 실패 시 | 열 `증상`·`로그`·`롤백`, 최소 1행. 로그는 볼 위치다. 로그 원문 안의 비밀은 붙이지 않는다. 되돌릴 수 없으면 롤백 칸에 되돌리지 못하는 범위를 적는다. |
 | ○ 필요 권한 | 열 `권한`·`용도`. 권한 이름과 그 절차에서 쓰는 이유다. 사전 조건의 권한 행과 같은 사실이면 한쪽에 적고 다른 칸은 그 행을 가리킨다. 값을 적지 않는다. |
 
+헌법 §1 원칙 2대로 같은 사실을 복붙하지 않는다. 반복되는 사실은 `_schemas/fact-owners.json`의 id를 쓴다. 주인 문서가 그 사실을 한 번 적고, 다른 문서는 id와 경로만 인용한다. 값이 없는 id `HC-REPO`, `HC-DRIFT-VER`, `HC-HASH`, `HC-PKG`, `HC-LEGAL`, `HC-CHANNEL`은 비워 둔다. `HC-STREAK`의 주인은 DEV-30, `HC-DRIFT-STATE`의 주인은 DEV-50, `HC-FLAG`의 주인은 DEV-52, `HC-MIDNIGHT`의 주인은 DEV-70, `HC-PLATFORM`의 주인은 DEV-10, `TOOL-PY`의 주인은 `README`, `TOOL-EXIT`의 주인은 `_tools/README.md`이다.
+
 ## 기계 검사
 
 기준 파일은 `_schemas/DEV-60.schema.json`과 `_tools/docs_lint.py`다.

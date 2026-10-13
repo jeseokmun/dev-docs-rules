@@ -23,7 +23,7 @@
 |---|---|
 | 습관 행(이름, 오늘 체크) | 오늘을 체크하거나 해제한다(DEV-22). 문구는 DEV-28의 `list.pending`, `list.check`, `list.uncheck` |
 | 추가 버튼 | 습관 추가 화면으로 간다 |
-| 주간 요약 | 노출은 플래그 기본 on(DEV-52). 목록 하단 카드라는 자리는 추측(DEV-20)이라 화면 전환은 확정하지 않았다 |
+| 주간 요약 | 노출은 `HC-FLAG` (`_examples/DEV-52-기능플래그-주간요약.HabitCheck.md`). 목록 하단 카드라는 자리는 추측(DEV-20)이라 화면 전환은 확정하지 않았다 |
 
 ## ＊ 상태
 | 상태 | 사용자에게 보이는 것 |
@@ -54,6 +54,7 @@ flowchart LR
 | DEV-28 | `DEV-28-UI문구-목록.HabitCheck.md` |
 | DEV-52 | `DEV-52-기능플래그-주간요약.HabitCheck.md` |
 | DEV-85 | `DEV-85-play-내부만.HabitCheck.md` |
+| DEV-40 | `DEV-40-없음-v1.HabitCheck.md` |
 ## 미결
 | ID | 내용 |
 |---|---|

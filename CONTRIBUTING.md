@@ -18,11 +18,11 @@ git diff --check
 
 CI 단계는 `--summary-only` 없이 같은 스크립트를 실행한다.
 
-로컬에 `python`이 없으면 [README](README.md)의 `python3`로 실행한다.
+명령 이름의 구분은 `TOOL-PY`([README](README.md))가 맡는다.
 
-회귀가 한 번씩 부르는 것은 `schema_sync_check.py`, `sample_schema_check.py`, `docs_lint.py`(대상은 `demo-docs`), `check_links.py`, `python -m unittest discover -s tests`다. 저장소 파일은 수정하지 않는다.
+회귀가 한 번씩 부르는 것은 `schema_sync_check.py`, `sample_schema_check.py`, `docs_lint.py`(대상은 `demo-docs`), `check_links.py`, `fact_owner_check.py`, `python -m unittest discover -s tests`다. 저장소 파일은 수정하지 않는다.
 
-다섯이 모두 끝나면 종료 코드 0이다. 하나라도 실패하면 1이다. 입력 오류면 2다.
+여섯이 모두 끝나면 종료 코드는 `TOOL-EXIT`([_tools/README.md](_tools/README.md))이다.
 
 `git diff --check`는 변경에 들어온 충돌 표시와 공백 오류를 경고한다. 이 저장소는 `core.whitespace`를 두지 않아 Git 기본을 쓴다. 기본으로 잡히는 것은 줄 끝 공백, 들여쓰기에서 스페이스 바로 뒤의 탭, `<<<<<<<` 같은 충돌 표시다.
 

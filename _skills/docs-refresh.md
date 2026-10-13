@@ -5,7 +5,7 @@
 python _tools/docs_refresh_cli.py --docs-root "{docs_root}" --type DEV-30 --patch "{temporary-patch.json}" --package .
 ```
 
-이 블록의 `python`은 CI가 쓰는 이름이다. 그 이름이 없으면 [README](../README.md)의 `python3`로 같은 스크립트를 실행한다.
+명령 이름의 구분은 `TOOL-PY`([README](../README.md))가 맡는다.
 
 패치 JSON은 값 객체의 일부다. 객체 키는 그 섹션만 합치고, 배열 키는 그 섹션을 통째로 바꾼다.
 
@@ -34,6 +34,6 @@ python _tools/docs_refresh_cli.py --docs-root "{docs_root}" --type DEV-30 --patc
 
 수동 extract에서 render로 사용자 문서를 덮어쓰지 않는다.
 
-종료 코드 0은 lint까지 성공한 것이다. 1은 검사 실패라 원본을 유지한다. 2는 입력 오류이거나 충돌을 감지한 것이다.
+종료 코드는 `TOOL-EXIT`([_tools/README.md](../_tools/README.md))이다. 검사에 실패하거나 충돌을 감지하면 원본을 유지한다.
 
 세부 동작은 [CLI 설명](../_tools/README.md)이 맡는다.

@@ -5,16 +5,16 @@
 | 상태 | draft |
 | 코드 | DEV-72 |
 | 마지막 갱신 | 2026-10-13 |
-| 범위 | HabitCheck 로컬 SQL 후보로 drift를 둘지. 버전은 핀하지 않음 |
-| 비범위 | 테이블 정의(DEV-35), 채택 선언(DEV-50은 아직 proposed) |
+| 범위 | HabitCheck 로컬 SQL 후보로 drift를 둘지. 버전은 HC-DRIFT-VER |
+| 비범위 | 테이블 정의(DEV-35), 채택 상태는 `HC-DRIFT-STATE` (`_examples/DEV-50-로컬DB-drift.HabitCheck.md`) |
 | 관련 문서 | 아래 승격 표 |
 
-이 저장소에는 앱 코드와 `pubspec.lock`이 없다. 호환 사례 개수나 특정 drift 버전은 확인하지 않았으므로 사실로 적지 않는다.
+이 저장소에는 앱 코드와 `pubspec.lock`이 없다. 호환 사례 개수는 확인하지 않았다. drift 버전은 HC-DRIFT-VER.
 
 ## ＊ 조사
 | 질문 | 조사결과 | 채택/기각 |
 |---|---|---|
-| 로컬 SQL 후보로 drift를 유지할 것인가 | DEV-50의 이유는 컴파일 타임 타입과 마이그레이션 경로다. Flutter 3.22와의 버전 궁합은 미확인 | 기각하지 않음. accepted는 아님. 스파이크 후 DEV-50에서 정한다 |
+| 로컬 SQL 후보로 drift를 유지할 것인가 | DEV-50의 이유는 컴파일 타임 타입과 마이그레이션 경로다. 환경 하한은 `HC-PLATFORM` (`_examples/DEV-10-개요서.HabitCheck.md`). 그 하한과의 버전 궁합은 HC-DRIFT-VER | 기각하지 않음. 상태는 `HC-DRIFT-STATE` (`_examples/DEV-50-로컬DB-drift.HabitCheck.md`). 스파이크 후 DEV-50에서 정한다 |
 
 ## ＊ 사실 vs 추측
 | 종류 | 내용 |
@@ -26,7 +26,7 @@
 ## 승격
 | 대상 | 내용 |
 |---|---|
-| DEV-50 | `DEV-50-로컬DB-drift.HabitCheck.md` 가 proposed인 동안 이 조사는 그 기록의 입력이다 |
+| DEV-50 | 상태는 `HC-DRIFT-STATE` (`_examples/DEV-50-로컬DB-drift.HabitCheck.md`). 이 조사는 그 기록의 입력이다 |
 
 ## 종료
 | 항목 | 내용 |
@@ -38,8 +38,9 @@
 |---|---|
 | DEV-35 | `DEV-35-습관체크인.HabitCheck.md` |
 | DEV-50 | `DEV-50-로컬DB-drift.HabitCheck.md` |
+| DEV-10 | `DEV-10-개요서.HabitCheck.md` |
 
 ## 미결
 | ID | 미결 | 다음에 할 일 |
 |---|---|---|
-| 1 | 스파이크 날짜와 drift 버전 핀이 없다 | DEV-50 미결 1·2가 닫히면 조사결과에서 미확인이라는 문장을 그 버전으로 바꾼다 |
+| 1 | 스파이크 날짜는 아직 없다. drift 버전은 HC-DRIFT-VER | DEV-50 미결이 닫히면 조사결과의 버전 칸을 그 기록에 맞춘다 |

@@ -103,7 +103,7 @@ python3 _tools/schema_sync_check.py --summary-only
 python3 _tools/regress_docs_pipeline.py --summary-only
 ```
 
-이 명령은 아래 다섯을 한 번씩 실행한다. 저장소 파일은 고치지 않는다.
+이 명령은 아래 여섯을 한 번씩 실행한다. 저장소 파일은 고치지 않는다.
 
 | 순서 | 스크립트 | 보는 것 |
 |---|---|---|
@@ -111,9 +111,10 @@ python3 _tools/regress_docs_pipeline.py --summary-only
 | 2 | `_tools/sample_schema_check.py` | HabitCheck 예제 30종 |
 | 3 | `_tools/docs_lint.py demo-docs` | full 프로필 본문 |
 | 4 | `_tools/check_links.py` | 상대 링크의 파일 |
-| 5 | `python -m unittest discover -s tests` | 행동 테스트 |
+| 5 | `_tools/fact_owner_check.py` | 사실 문장의 주인, 비어 있는 값, 관련 문서 경로 |
+| 6 | `python -m unittest discover -s tests` | 행동 테스트 |
 
-다섯이 모두 끝나면 종료 코드 0이다. 하나라도 실패하면 1이다. 경로나 JSON이 잘못되면 2다.
+여섯이 모두 끝나면 종료 코드는 `TOOL-EXIT`([_tools/README.md](_tools/README.md))이다.
 
 lint가 보지 않는 선택 열, 미결 열, Mermaid 노드 수는 [_tools/README.md](_tools/README.md)와 [_schemas/README.md](_schemas/README.md)가 맡는다. [기여 절차](CONTRIBUTING.md), [보안 안내](SECURITY.md), [평가 근거](QUALITY-REVIEW.md)를 함께 확인한다.
 

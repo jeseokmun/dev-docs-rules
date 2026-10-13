@@ -33,6 +33,7 @@
 | DEV-82 | `DEV-82-관측및알람명세서.HabitCheck.md` |
 | DEV-10 | `DEV-10-개요서.HabitCheck.md` |
 | DEV-45 | `DEV-45-설정명세서.HabitCheck.md` |
+| DEV-40 | `DEV-40-없음-v1.HabitCheck.md` |
 ## 미결
 | ID | 미결 | 다음에 할 일 |
 |---|---|---|

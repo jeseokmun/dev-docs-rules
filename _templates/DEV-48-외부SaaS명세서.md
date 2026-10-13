@@ -49,6 +49,8 @@
 | ○ 한도·요금 | 열은 `항목`·`한도`·`비고`. 계정이 있으면 계정에서 읽은 한도와 요금을 적는다. 계정이 없으면 항목에 `계정`, 한도에 `없음`, 비고에 아직 조회하지 않았다는 사실을 적고, 조회할 곳을 미결의 다음 행동에 적는다. |
 | ○ 관련 문서 | 열은 `코드`·`경로`. 경로에 있는 파일만 적는다. 아직 없는 문서는 이 표 대신 미결에 둔다. |
 
+헌법 §1 원칙 2대로 같은 사실을 복붙하지 않는다. 반복되는 사실은 `_schemas/fact-owners.json`의 id를 쓴다. 주인 문서가 그 사실을 한 번 적고, 다른 문서는 id와 경로만 인용한다. 값이 없는 id `HC-REPO`, `HC-DRIFT-VER`, `HC-HASH`, `HC-PKG`, `HC-LEGAL`, `HC-CHANNEL`은 비워 둔다. `HC-STREAK`의 주인은 DEV-30, `HC-DRIFT-STATE`의 주인은 DEV-50, `HC-FLAG`의 주인은 DEV-52, `HC-MIDNIGHT`의 주인은 DEV-70, `HC-PLATFORM`의 주인은 DEV-10, `TOOL-PY`의 주인은 `README`, `TOOL-EXIT`의 주인은 `_tools/README.md`이다.
+
 ## 기계 검사
 
 기준 파일은 `_schemas/DEV-48.schema.json`과 `_tools/docs_lint.py`의 `check_file`이다.

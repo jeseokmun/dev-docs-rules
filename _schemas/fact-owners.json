@@ -1,0 +1,90 @@
+{
+  "facts": [
+    {
+      "id": "HC-STREAK",
+      "owners": [
+        "_examples/DEV-30-구조명세서.HabitCheck.md",
+        "demo-docs/DEV-30-구조명세서.md"
+      ],
+      "sentence": "streak는 한 습관의 CheckIn.localDate만 센다. 가장 최근 체크인 날짜에서 하루씩 과거로 이어진 개수이고, 하루가 비면 그 앞에서 끊긴다. weeklyGoal은 세지 않는다. 오늘을 해제하면 그 localDate가 빠진다. 남은 체크인이 없으면 0이다. 남아 있으면 가장 최근 남은 날짜에서 다시 센다. 빈 날 없이 이어진 7일 뒤 오늘만 해제하면 가장 최근 날이 어제이므로 6이다."
+    },
+    {
+      "id": "HC-DRIFT-STATE",
+      "owners": [
+        "_examples/DEV-50-로컬DB-drift.HabitCheck.md",
+        "demo-docs/DEV-50-기술결정기록/DEV-50-로컬DB-drift.md"
+      ],
+      "sentence": [
+        "| 결정 상태 | proposed |",
+        "`infrastructure`의 기본 후보는 drift다. accepted는 아래 되돌리는 조건의 스파이크가 끝난 뒤에만 올린다."
+      ]
+    },
+    {
+      "id": "HC-FLAG",
+      "owners": [
+        "_examples/DEV-52-기능플래그-주간요약.HabitCheck.md"
+      ],
+      "sentence": "| weekly_summary | on | 전체 사용자 | 요구 4가 Must가 되면 플래그를 없애고 항상 켠다. 요구 4를 빼면 플래그와 DEV-25의 주간 요약 요소를 함께 없앤다. 어느 쪽인지는 DEV-20 미결 1 |"
+    },
+    {
+      "id": "HC-MIDNIGHT",
+      "owners": [
+        "_examples/DEV-70-오늘체크.HabitCheck.md",
+        "demo-docs/DEV-70-구현작업명세서/DEV-70-001-오늘체크-유스케이스.md"
+      ],
+      "sentence": "날짜를 자르는 시각은 기기 로컬 자정으로 둔다. DEV-30 streak 정의는 이 시각을 확정하지 않았다. DEV-50의 결정도 아니다"
+    },
+    {
+      "id": "HC-PLATFORM",
+      "owners": [
+        "_examples/DEV-10-개요서.HabitCheck.md",
+        "demo-docs/DEV-10-개요서.md"
+      ],
+      "sentence": "Android 8.0+ · Flutter 3.22+ · Dart 3.4+"
+    },
+    {
+      "id": "HC-REPO",
+      "owners": [],
+      "sentence": null
+    },
+    {
+      "id": "HC-DRIFT-VER",
+      "owners": [],
+      "sentence": null
+    },
+    {
+      "id": "HC-HASH",
+      "owners": [],
+      "sentence": null
+    },
+    {
+      "id": "HC-PKG",
+      "owners": [],
+      "sentence": null
+    },
+    {
+      "id": "HC-LEGAL",
+      "owners": [],
+      "sentence": null
+    },
+    {
+      "id": "HC-CHANNEL",
+      "owners": [],
+      "sentence": null
+    },
+    {
+      "id": "TOOL-PY",
+      "owners": [
+        "README.md"
+      ],
+      "sentence": "Python 3.10 이상이면 된다. 추가 패키지 설치는 필요 없다. 아래 블록은 `python3`로 적는다. Windows에서 `python3`가 없으면 그 자리만 `python`으로 바꾼다. 저장소 루트에서 실행한다."
+    },
+    {
+      "id": "TOOL-EXIT",
+      "owners": [
+        "_tools/README.md"
+      ],
+      "sentence": "종료 코드: **0** 성공, **1** 검사 실패, **2** 입력·I/O 오류. IDEAL은 기본 FAIL도 0이며 `--strict`일 때 FAIL·파일 누락을 1로 반환한다."
+    }
+  ]
+}

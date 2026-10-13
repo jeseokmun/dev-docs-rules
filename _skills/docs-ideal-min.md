@@ -7,7 +7,7 @@ python _tools/ideal_check_min.py "{docs_root}" --json
 python _tools/ideal_check_min.py --print-boundary
 ```
 
-이 블록의 `python`은 CI가 쓰는 이름이다. 그 이름이 없으면 [README](../README.md)의 `python3`로 같은 스크립트를 실행한다.
+명령 이름의 구분은 `TOOL-PY`([README](../README.md))가 맡는다.
 
 | 결과 | 의미 |
 |---|---|
@@ -16,7 +16,7 @@ python _tools/ideal_check_min.py --print-boundary
 | SKIP | 사실성·제품 범위·자동 테스트 연결 등 수동 판단 |
 | missing | DEV-10·30 파일 누락 |
 
-기본 exit 0은 실행 완료를 뜻한다. `--strict`는 FAIL 또는 파일 누락이면 1이다. 사용법/I/O 오류는 2다. DOC-CONFIG가 ko 외 언어면 한국어 라벨 검사는 SKIP한다. 한글 유무는 언어 품질이나 전체 Mermaid 문법을 보증하지 않는다.
+종료 코드는 `TOOL-EXIT`([_tools/README.md](../_tools/README.md))이다. 그 문장에 IDEAL의 기본과 `--strict`가 있다. DOC-CONFIG가 ko 외 언어면 한국어 라벨 검사는 SKIP한다. 한글 유무는 언어 품질이나 전체 Mermaid 문법을 보증하지 않는다.
 
 `--print-boundary`는 docs_root 없이, 기계가 보는 항목과 SKIP인 항목의 목록만 출력하고 0으로 끝난다. `--json`과 `--summary-only`를 같이 주면 2다.
 

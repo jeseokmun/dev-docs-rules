@@ -11,7 +11,7 @@
 python _tools/docs_draft_cli.py --docs-root "{docs_root}" --type DEV-10 --values "{temporary-values.json}" --package .
 ```
 
-이 블록의 `python`은 CI가 쓰는 이름이다. 그 이름이 없으면 [README](../README.md)의 `python3`로 같은 스크립트를 실행한다. 값 파일의 예는 [_tools/_fixtures/habitcheck-dev10.values.json](../_tools/_fixtures/habitcheck-dev10.values.json)이다. 그 파일의 제품 문장을 다른 제품에 복사하지 않는다.
+명령 이름의 구분은 `TOOL-PY`([README](../README.md))가 맡는다. 값 파일의 예는 [_tools/_fixtures/habitcheck-dev10.values.json](../_tools/_fixtures/habitcheck-dev10.values.json)이다. 그 파일의 제품 문장을 다른 제품에 복사하지 않는다.
 
 CLI가 받는 값 객체 키는 `_tools/document_edit.py`의 `FIELDS`와 같다. `product`와 `meta`는 두 유형이 모두 받는다.
 
@@ -33,4 +33,4 @@ CLI가 받는 값 객체 키는 `_tools/document_edit.py`의 `FIELDS`와 같다.
 | 임시 파일 | 내부 중간 파일 자동 제거; docs_root에 JSON을 만들지 않음 |
 | 완료 | md 저장과 lint 성공을 확인하고 실제 결과만 보고 |
 
-코드·제품 사실을 추정하거나 카탈로그 밖 유형을 만들지 않는다. 종료 코드 0은 저장과 lint 성공, 1은 검사 실패(대상 미변경), 2는 입력 오류다. 세부 동작은 [CLI 설명](../_tools/README.md)을 따른다.
+코드·제품 사실을 추정하거나 카탈로그 밖 유형을 만들지 않는다. 종료 코드는 `TOOL-EXIT`([_tools/README.md](../_tools/README.md))이다. 세부 동작은 [CLI 설명](../_tools/README.md)을 따른다.

@@ -32,14 +32,14 @@
 | 1 | 습관 이름·주당 목표를 추가·수정·삭제 |
 | 2 | 오늘 날짜에 체크/해제 |
 | 3 | 습관별 연속 일수(streak) 확인 |
-| 4 | 이번 주 체크 횟수 요약을 본다. 순위는 DEV-20의 Should이고, 플래그 weekly_summary의 기본은 on이다(DEV-52) |
+| 4 | 이번 주 체크 횟수 요약을 본다. 순위는 DEV-20의 Should이다. 플래그 기본값은 HC-FLAG. 주인은 `../_examples/DEV-52-기능플래그-주간요약.HabitCheck.md`다 |
 
 ## ＊ 실행·설치
 | 구분 | 내용 |
 |---|---|
-| 개발 | `git clone <repo-url> && cd HabitCheck && flutter pub get && flutter run -d android`. `<repo-url>`은 저장소 주소가 아니다. 미결 1 |
-| 사용자 | 사이드로드할 파일 이름은 `dist/habitcheck-v0.1.0.apk`다. 해시가 생기기 전에는 이 패키지에 그 파일이 없다(DEV-90 미결 1). 만드는 절차는 예제 DEV-60 |
-| 환경 | 하한은 Android 8.0+, Flutter 3.22+, Dart 3.4+다. DEV-20은 이 하한으로 iOS를 빼고, DEV-50은 Flutter 3.22+와 drift의 궁합을 미결로 둔다. 기기별 측정표는 없다. drift 버전 번호는 DEV-50 미결 1 |
+| 개발 | `git clone <repo-url> && cd HabitCheck && flutter pub get && flutter run -d android`. `<repo-url>`은 저장소 주소가 아니다. HC-REPO는 값이 없다. 미결 1 |
+| 사용자 | 사이드로드할 파일 이름은 `dist/habitcheck-v0.1.0.apk`다. HC-HASH는 값이 없다(DEV-90 미결 1). 만드는 절차는 예제 DEV-60 |
+| 환경 | 하한은 Android 8.0+ · Flutter 3.22+ · Dart 3.4+다. DEV-20은 이 하한으로 iOS를 빼고, DEV-50은 Flutter 3.22+와 drift의 궁합을 미결로 둔다. 기기별 측정표는 없다. drift 버전 번호는 DEV-50 미결 1 |
 
 ## ＊ 시스템 경계
 | 하지 않는 것 | 이유 |
@@ -52,7 +52,7 @@
 ## ○ 성공·검증
 | 성공 모습 | 검증 방법 |
 |---|---|
-| 연속 7일을 체크하면 상세의 streak가 7이고 체크인이 7건이다. weeklyGoal은 이 숫자에 넣지 않는다 | 1) 미결 1의 주소로 개발 행을 실행한다. 2) 습관을 하나 추가한다. 3) DEV-70의 Clock으로 localDate를 하루씩 옮겨 7회 체크한다. 4) streak 7과 체크인 7건을 본다. 3)의 CLOCK_MODE 기본값은 DEV-45에서 미정이고, 그 재현 조건은 미결 3이다. |
+| 상세 streak는 HC-STREAK. 주인은 `DEV-30-구조명세서.md`다 | 1) 미결 1의 주소로 개발 행을 실행한다. 2) 습관을 하나 추가한다. 3) DEV-70의 Clock으로 localDate를 옮겨 체크한다. 4) 기대 숫자는 그 주인 문장을 본다. 3)의 CLOCK_MODE 기본값은 DEV-45에서 미정이고, 그 재현 조건은 미결 3이다. |
 
 ## ○ 관련 문서
 | 코드 | 경로 |
@@ -70,11 +70,10 @@
 | DEV-52 | `../_examples/DEV-52-기능플래그-주간요약.HabitCheck.md` |
 | DEV-55 | `../_examples/DEV-55-보안명세서.HabitCheck.md` |
 | DEV-60 | `../_examples/DEV-60-운영절차서-내부apk.HabitCheck.md` |
-| DEV-65 | `../_examples/DEV-65-테스트명세서.HabitCheck.md` |
 
 ## 미결
 | ID | 내용 |
 |---|---|
-| 1 | 저장소 주소가 없다. 개발 행의 `<repo-url>`은 그 자리이다. 주소가 정해지면 clone 명령의 그 칸만 바꾼다. |
-| 2 | 로컬 DB는 drift proposed이지 accepted가 아니다. 버전 핀과 스파이크 시작일은 DEV-50 미결을 닫은 뒤 환경 행에 반영한다. 그 전에 버전 번호를 적지 않는다. |
-| 3 | DEV-45에서 CLOCK_MODE 기본값은 미정이다. 미정인 동안 성공 절차 3)은 테스트가 fake를 지정할 때만 재현한다. 기대의 형태는 DEV-65의 연속 3일 행과 같다. 기본값이 정해지면 그 값으로 3)을 실행한다. |
+| 1 | HC-REPO는 값이 없다. 개발 행의 `<repo-url>`은 그 자리이다. 주소가 정해지면 clone 명령의 그 칸만 바꾼다. |
+| 2 | 로컬 DB 결정 상태는 HC-DRIFT-STATE. 주인은 `DEV-50-기술결정기록/DEV-50-로컬DB-drift.md`다. 버전 핀과 스파이크 시작일은 그 파일 미결을 닫은 뒤 환경 행에 반영한다. HC-DRIFT-VER는 값이 없다. |
+| 3 | DEV-45에서 CLOCK_MODE 기본값은 미정이다. 미정인 동안 성공 절차 3)은 테스트가 fake를 지정할 때만 재현한다. 기대 숫자는 HC-STREAK. 주인은 `DEV-30-구조명세서.md`다. 기본값이 정해지면 그 값으로 3)을 실행한다. |

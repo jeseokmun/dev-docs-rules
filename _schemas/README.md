@@ -41,7 +41,7 @@ DEV-50은 기록이 없을 수 있다. 폴더의 `INDEX.md`에 다음 중 한 �
 
 명령은 저장소 루트에서 `python3 _tools/docs_lint.py {docs_root} --summary-only`이다.
 
-통과하면 종료 코드 0이다. 검사 실패면 1이다. 입력 오류면 2다.
+종료 코드는 `TOOL-EXIT`([_tools/README.md](../_tools/README.md))이다.
 
 요약 한 줄은 `SUMMARY docs_lint status=PASS` 또는 `FAIL`로 시작한다. 그 뒤에 `docs_root`, `profile`, `types`, `fail_n`이 온다.
 
@@ -114,3 +114,7 @@ Mermaid의 문법, 노드 수, 한글 라벨, 링크 앵커, 외부 URL, 본문�
 예제 30종은 `python _tools/sample_schema_check.py --summary-only`로 같은 `check_file`을 적용한다.
 
 새 DEV 코드는 헌법 §0의 개정 절차로 카탈로그에 넣은 뒤에만 스키마와 템플릿을 추가한다.
+
+## 사실 주인
+
+`fact-owners.json`은 반복해서 적으면 안 되는 문장과, 값을 비워 두는 id다. `sentence`는 주인 문서에 있는 문장을 복사한 것이다. 열린 id의 `sentence`는 null이고 `owners`는 빈 배열이다. 읽기 전용 검사는 `python3 _tools/fact_owner_check.py --summary-only`이다. 코드 펜스 안은 보지 않는다. `_tools/_fixtures`와 `_history`는 생성 표본과 과거 기록이라 검사하지 않는다.

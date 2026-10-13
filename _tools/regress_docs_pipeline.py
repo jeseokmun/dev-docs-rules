@@ -17,6 +17,7 @@ def collect(package):
         ("sample_schema", [sys.executable, str(tool / "sample_schema_check.py"), "--package", str(package), "--summary-only"]),
         ("demo_full", [sys.executable, str(tool / "docs_lint.py"), str(package / "demo-docs"), "--package", str(package), "--skip-schema-sync", "--summary-only"]),
         ("links", [sys.executable, str(tool / "check_links.py"), "--package", str(package)]),
+        ("fact_owners", [sys.executable, str(tool / "fact_owner_check.py"), "--package", str(package), "--summary-only"]),
         ("tests", [sys.executable, "-m", "unittest", "discover", "-s", str(package / "tests"), "-v"]),
     ]
     rows = []

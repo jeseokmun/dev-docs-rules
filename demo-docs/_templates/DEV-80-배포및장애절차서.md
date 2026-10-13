@@ -48,6 +48,8 @@
 | ＊ 롤백 | 열 `조건`·`방법`·`확인`, 최소 1행. 조건은 되돌리는 계기, 방법은 하는 일, 확인은 돌아온 뒤 보는 결과다. 데이터를 되돌리지 못하면 확인 칸에 그 범위를 적는다. 보장하지 않는 복구를 보장한다고 쓰지 않는다. |
 | ○ 장애시 | 열 `징후`·`초기 대응`·`에스컬레이션`. 수신자를 모르면 에스컬레이션에 `수신자 미정`이라고 적고 미결에 정할 행동을 적는다. 호출 제품 이름을 지어 넣지 않는다. |
 
+헌법 §1 원칙 2대로 같은 사실을 복붙하지 않는다. 반복되는 사실은 `_schemas/fact-owners.json`의 id를 쓴다. 주인 문서가 그 사실을 한 번 적고, 다른 문서는 id와 경로만 인용한다. 값이 없는 id `HC-REPO`, `HC-DRIFT-VER`, `HC-HASH`, `HC-PKG`, `HC-LEGAL`, `HC-CHANNEL`은 비워 둔다. `HC-STREAK`의 주인은 DEV-30, `HC-DRIFT-STATE`의 주인은 DEV-50, `HC-FLAG`의 주인은 DEV-52, `HC-MIDNIGHT`의 주인은 DEV-70, `HC-PLATFORM`의 주인은 DEV-10, `TOOL-PY`의 주인은 `README`, `TOOL-EXIT`의 주인은 `_tools/README.md`이다.
+
 ## 기계 검사
 
 기준 파일은 `_schemas/DEV-80.schema.json`과 `_tools/docs_lint.py`다.

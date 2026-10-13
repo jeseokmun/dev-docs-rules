@@ -10,14 +10,14 @@
 | 관련 문서 | 아래 관련 문서 표 |
 
 ## ＊ 개요
-로컬 DB에 습관(Habit)과 날짜별 체크인(CheckIn)만 저장한다. 계정 테이블은 없다. 읽는 순서는 필드 표, 관계, 금지, 수명, 관계도, 미결이다. localDate는 시각이 없는 달력 날짜다. 그 날짜를 고르는 자정은 컬럼이 아니고, DEV-70이 기기 로컬 자정으로 추측해 두었다. 지금 숫자로 확정된 제약은 PK, name not null, weeklyGoal 1 이상, unique(habitId, localDate)뿐이다.
+로컬 DB에 습관(Habit)과 날짜별 체크인(CheckIn)만 저장한다. 계정 테이블은 없다. 읽는 순서는 필드 표, 관계, 금지, 수명, 관계도, 미결이다. localDate는 시각이 없는 달력 날짜다. 그 날짜를 고르는 경계는 컬럼이 아니다. 값은 HC-MIDNIGHT. 주인은 `../DEV-70-구현작업명세서/DEV-70-001-오늘체크-유스케이스.md`다. 지금 숫자로 확정된 제약은 PK, name not null, weeklyGoal 1 이상, unique(habitId, localDate)뿐이다.
 
 ## ＊ 모델
 | 엔티티 | 필드 | 형 | 제약 |
 |---|---|---|---|
 | Habit | id | UUID | PK. UUID를 누가 만드는지는 미결 4 |
 | Habit | name | text | not null. 빈 문자열과 최대 길이는 미결 2 |
-| Habit | weeklyGoal | int | 1 이상. 상한은 미결 3. DEV-10의 7일 예시는 weeklyGoal을 세지 않고, 그 예외는 DEV-20 미결 2와 이 칸이 같이 열려 있다 |
+| Habit | weeklyGoal | int | 1 이상. 상한은 미결 3. weeklyGoal이 streak에 들어가는지는 DEV-20 미결 2다 |
 | CheckIn | id | UUID | PK. 생성 주체는 미결 4 |
 | CheckIn | habitId | UUID | FK → Habit.id. ON DELETE는 미결 1이 닫힌 뒤에 적는다 |
 | CheckIn | localDate | date | unique(habitId, localDate). DEV-22 AC-2의 같은 날 1건 |
@@ -37,7 +37,7 @@
 | 엔티티 | 보관 | 삭제 |
 |---|---|---|
 | Habit | 앱을 지울 때까지 기기 로컬 | 습관 삭제 시 CheckIn을 같이 지울지, soft delete인지는 미결 1 |
-| CheckIn | Habit과 같음 | 오늘 체크인만 있을 때의 해제(DEV-22 AC-3)는 그 날짜 행을 지우고 streak를 0으로 둔다. 습관 삭제 시 동작은 미결 1 |
+| CheckIn | Habit과 같음 | 오늘 체크인만 있을 때의 해제(DEV-22 AC-3)는 그 날짜 행을 지운다. streak 값은 HC-STREAK. 주인은 `../DEV-30-구조명세서.md`다. 습관 삭제 시 동작은 미결 1 |
 
 ## 관계도 (Mermaid)
 ```mermaid

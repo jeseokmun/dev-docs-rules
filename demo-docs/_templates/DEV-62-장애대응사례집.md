@@ -46,6 +46,8 @@
 | ＊ 영향 | 열 `누가`·`무엇`·`범위`, 최소 1행. 누가에는 영향받은 역할, 무엇에는 깨진 행동, 범위에는 환경이나 기간이다. |
 | ＊ 사실 / 추측 | 열 `종류`·`내용`, 최소 1행. 종류 칸은 `사실` 또는 `추측`이다. 내용이 사례 표의 원인과 다른 결론이면 사람 검토에서 맞춘다. |
 
+헌법 §1 원칙 2대로 같은 사실을 복붙하지 않는다. 반복되는 사실은 `_schemas/fact-owners.json`의 id를 쓴다. 주인 문서가 그 사실을 한 번 적고, 다른 문서는 id와 경로만 인용한다. 값이 없는 id `HC-REPO`, `HC-DRIFT-VER`, `HC-HASH`, `HC-PKG`, `HC-LEGAL`, `HC-CHANNEL`은 비워 둔다. `HC-STREAK`의 주인은 DEV-30, `HC-DRIFT-STATE`의 주인은 DEV-50, `HC-FLAG`의 주인은 DEV-52, `HC-MIDNIGHT`의 주인은 DEV-70, `HC-PLATFORM`의 주인은 DEV-10, `TOOL-PY`의 주인은 `README`, `TOOL-EXIT`의 주인은 `_tools/README.md`이다.
+
 ## 기계 검사
 
 기준 파일은 `_schemas/DEV-62.schema.json`과 `_tools/docs_lint.py`다.

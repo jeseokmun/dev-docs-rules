@@ -12,7 +12,7 @@
 ## ＊ 환경
 | 환경 | 대상 | 비고 |
 |---|---|---|
-| 내부 테스터 Android | Android 8.0+ 기기(DEV-10) | Play 미제출(DEV-85). 사이드로드 |
+| 내부 테스터 Android | `HC-PLATFORM` (`_examples/DEV-10-개요서.HabitCheck.md`) | Play 미제출(DEV-85). 사이드로드 |
 
 ## ＊ 배포 단계
 | 순서 | 행위자 | 행동 | 검증 |

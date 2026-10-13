@@ -46,6 +46,8 @@ light·full의 필수 집합(DEV-10·DEV-30, full은 추가 DEV-20·DEV-50·DEV-
 | ＊ 플래그 | 열 `플래그`·`기본`·`대상`·`제거조건`, 최소 1행. 플래그 칸은 코드에 있는 키와, 켜졌을 때 사용자에게 보이는 일이다. 키가 아직 없으면 후보라는 문장을 넣고 미결에 키를 넣을 경로를 적는다. 기본은 `on` 또는 `off`처럼 실제 기본값이다. 대상은 사용자 또는 환경이다. 제거조건은 빼는 날짜나 마일스톤이다. 날짜를 모르면 날짜를 지어 넣지 않고, 모르는 사실과 정할 사람을 미결에 적는다. |
 | ○ 관련 코드 | 열 `종류`·`경로`. 트리에 있는 경로만 적는다. 선언이 없으면 절을 빼거나, 종류에 `플래그 키`, 경로에 아직 없다는 문장을 적는다. |
 
+헌법 §1 원칙 2대로 같은 사실을 복붙하지 않는다. 반복되는 사실은 `_schemas/fact-owners.json`의 id를 쓴다. 주인 문서가 그 사실을 한 번 적고, 다른 문서는 id와 경로만 인용한다. 값이 없는 id `HC-REPO`, `HC-DRIFT-VER`, `HC-HASH`, `HC-PKG`, `HC-LEGAL`, `HC-CHANNEL`은 비워 둔다. `HC-STREAK`의 주인은 DEV-30, `HC-DRIFT-STATE`의 주인은 DEV-50, `HC-FLAG`의 주인은 DEV-52, `HC-MIDNIGHT`의 주인은 DEV-70, `HC-PLATFORM`의 주인은 DEV-10, `TOOL-PY`의 주인은 `README`, `TOOL-EXIT`의 주인은 `_tools/README.md`이다.
+
 ## 기계 검사
 
 기준 파일은 `_schemas/DEV-52.schema.json`과 `_tools/docs_lint.py`다.

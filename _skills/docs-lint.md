@@ -6,7 +6,7 @@ python _tools/docs_lint.py "{docs_root}" --package . --summary-only
 python _tools/docs_lint.py "{docs_root}" --package . --json
 ```
 
-이 블록의 `python`은 CI가 쓰는 이름이다. 그 이름이 없으면 [README](../README.md)의 `python3`로 같은 스크립트를 실행한다. `--json`과 `--summary-only`는 함께 쓰지 않는다.
+명령 이름의 구분은 `TOOL-PY`([README](../README.md))가 맡는다. `--json`과 `--summary-only`는 함께 쓰지 않는다.
 
 | 검사 | 범위 |
 |---|---|
@@ -18,7 +18,7 @@ python _tools/docs_lint.py "{docs_root}" --package . --json
 | 보안 | 흔한 비밀 패턴; 실제 값 미출력 |
 | 패키지 | 템플릿↔스키마 양방향 정합 |
 
-exit 0은 통과, 1은 검사 실패, 2는 입력이나 실행 오류다. 미결 표만으로 필수 내용을 대신하지 않는다. 실패 항목은 보강 과제로 보고한다.
+종료 코드는 `TOOL-EXIT`([_tools/README.md](../_tools/README.md))이다. 미결 표만으로 필수 내용을 대신하지 않는다. 실패 항목은 보강 과제로 보고한다.
 
 `--summary-only`를 빼면 실패마다 한 줄이 더 나온다.
 
