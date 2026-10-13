@@ -11,8 +11,8 @@ AI와 함께 개발할 때 쓰는 문서 헌법, 템플릿, 문서 명세, 검�
 | 경로 | 하는 일 |
 |---|---|
 | `DEV-CONSTITUTION.md` | 문서 헌법 |
-| `_templates/` | DEV 30종과 `DOC-CONFIG` 양식 |
-| `_schemas/` | 문서 명세 30종과 `fact-owners.json` |
+| `_templates/` | DEV 31종과 `DOC-CONFIG` 양식 |
+| `_schemas/` | 문서 명세 31종과 `fact-owners.json` |
 | `_tools/` | 초안·검사 Python CLI |
 | `_skills/` | CLI를 부르는 에이전트 레시피 |
 | `_examples/` | 가상 HabitCheck 예제. 제품 기준본이 아님 |
@@ -28,13 +28,13 @@ AI와 함께 개발할 때 쓰는 문서 헌법, 템플릿, 문서 명세, 검�
 - 특정 앱의 설치 로그, 계정, 승인 명단, 리뷰 도구, 채널 이름. 에이전트 연동으로 들어 있는 것은 CLI 레시피뿐이다.
 - 측정하지 않은 완성도 점수.
 
-## light, full, 서른 유형과 DOC-CONFIG
+## light, full, 서른한 유형과 DOC-CONFIG
 
 `required_profile`의 기본은 `light`다. light에서 파일이 없으면 실패하는 문서는 DEV-10 개요서와 DEV-30 구조명세서다. `full`은 그 둘에 DEV-20 요구사항명세서, DEV-50 기술결정기록, DEV-90 릴리즈변경기록을 더한다. DEV-50은 폴더 안 기록이 하나 이상이거나, 「결정 없음」이 적힌 인덱스다. 인덱스로 통과하는 줄은 [_schemas/README.md](_schemas/README.md)에 있다.
 
 나머지 유형은 필요할 때 고른다. 없어도 프로필 검사는 통과한다. 헌법 §3.3은 API가 있으면 DEV-40, 외부 SaaS면 DEV-48, 스토어면 DEV-85를 상황 권장으로 적는다. 카탈로그에 없는 `DEV-숫자`는 만들지 않는다.
 
-DEV 유형은 30개다. 코드와 유형명 표는 [DEV-CONSTITUTION.md](DEV-CONSTITUTION.md) §3.1(단건, 루트 파일)과 §3.2(다건, 항상 폴더)다. 이 페이지는 그 표를 다시 적지 않는다. 유형명 문자열은 그 표와 같아야 한다. 용도 한 줄은 같은 문서 §5다.
+DEV 유형은 31개다. 코드와 유형명 표는 [DEV-CONSTITUTION.md](DEV-CONSTITUTION.md) §3.1(단건, 루트 파일)과 §3.2(다건, 항상 폴더)다. 이 페이지는 그 표를 다시 적지 않는다. 유형명 문자열은 그 표와 같아야 한다. 용도 한 줄은 같은 문서 §5다.
 
 DOC-CONFIG는 DEV 유형이 아니다. 양식은 [`_templates/DOC-CONFIG.md`](_templates/DOC-CONFIG.md)이고, 채운 파일은 `{docs_root}/DOC-CONFIG.md` 한 장이다. `_tools/docs_common.py`의 `config()`는 `- **키:** 값` 줄만 읽는다. 키를 표나 YAML로만 두면 읽히지 않고, 그때 `language`는 `ko`, `required_profile`은 `light`, `statuses`는 `draft, active, deprecated`다. 키의 의미와 기본값은 헌법 §2다.
 
@@ -107,7 +107,7 @@ python3 -m unittest discover -s tests -v
 | 순서 | 이름 | 보는 것 |
 |---|---|---|
 | 1 | `schema_sync_check.py` | 헌법 §3 표, `_templates`, `_schemas`의 양방향 정합 |
-| 2 | `sample_schema_check.py` | `_examples`의 HabitCheck 예제 30종 |
+| 2 | `sample_schema_check.py` | `_examples`의 HabitCheck 예제 31종 |
 | 3 | `docs_lint.py` | `demo-docs`. 그 `DOC-CONFIG`의 `required_profile`은 `full`. 스키마 정합은 1번이 이미 하므로 `--skip-schema-sync` |
 | 4 | `check_links.py` | 상대 링크의 대상 파일. 앵커와 외부 주소는 보지 않는다 |
 | 5 | `fact_owner_check.py` | 사실 문장의 주인, 주인끼리의 불일치, 비어 있어야 하는 값, 관련 문서의 코드와 경로 |
@@ -124,12 +124,12 @@ python3 -m unittest discover -s tests -v
 | | `_examples` | `demo-docs` |
 |---|---|---|
 | 배치 | 평탄한 파일. 이름은 `*.HabitCheck.md`이고 템플릿 파일명과 같지 않다 | full 프로젝트. `docs_root`는 `demo-docs`, `required_profile`은 `full` |
-| 범위 | DEV 30종과 DOC-CONFIG 샘플. 색인은 [_examples/INDEX.md](_examples/INDEX.md) | full 필수인 DEV-10, DEV-20, DEV-30, DEV-50, DEV-90과 선택인 DEV-22, DEV-35, DEV-40, DEV-48, DEV-70, DEV-85. 30종을 모두 채워 두지는 않았다. 목록은 [demo-docs/README.md](demo-docs/README.md) |
+| 범위 | DEV 31종과 DOC-CONFIG 샘플. 색인은 [_examples/INDEX.md](_examples/INDEX.md) | full 필수인 DEV-10, DEV-20, DEV-30, DEV-50, DEV-90과 선택인 DEV-22, DEV-35, DEV-40, DEV-48, DEV-70, DEV-85. 31종을 모두 채워 두지는 않았다. 목록은 [demo-docs/README.md](demo-docs/README.md) |
 | 비어 있는 유형 | 예제 파일로 있다 | 그 예제 경로를 인용한다 |
 | 검사 | `sample_schema_check.py` | 회귀의 `docs_lint.py` |
 | 따라감 | 예제를 고쳐도 데모 본문이 자동으로 바뀌지 않는다 | 데모 본문을 고쳐도 예제가 자동으로 바뀌지 않는다 |
 
-`demo-docs/_templates`의 각 파일은 패키지 `_templates`의 같은 이름과 바이트가 같아야 한다. `demo-docs/DEV-CONSTITUTION.md`도 루트 `DEV-CONSTITUTION.md`와 같아야 한다. `tests/test_documents.py`의 `test_demo_template_copies_match_canonical_sources`가 `_templates/*.md` 31개와 헌법 두 파일을 비교한다. 루트에서 `diff -rq _templates demo-docs/_templates`의 출력이 없으면 두 디렉터리가 같다. 출력이 생기면 패키지 `_templates`를 기준으로 데모 복사본을 맞춘다. 데모 안에 채워 둔 제품 문서는 템플릿과 같을 필요가 없다.
+`demo-docs/_templates`의 각 파일은 패키지 `_templates`의 같은 이름과 바이트가 같아야 한다. `demo-docs/DEV-CONSTITUTION.md`도 루트 `DEV-CONSTITUTION.md`와 같아야 한다. `tests/test_documents.py`의 `test_demo_template_copies_match_canonical_sources`가 `_templates/*.md` 32개와 헌법 두 파일을 비교한다. 루트에서 `diff -rq _templates demo-docs/_templates`의 출력이 없으면 두 디렉터리가 같다. 출력이 생기면 패키지 `_templates`를 기준으로 데모 복사본을 맞춘다. 데모 안에 채워 둔 제품 문서는 템플릿과 같을 필요가 없다.
 
 ## 도구가 보지 않는 것
 

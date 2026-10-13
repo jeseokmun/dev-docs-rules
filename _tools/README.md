@@ -47,7 +47,7 @@ python _tools/docs_refresh_cli.py --docs-root work/my-docs --type DEV-10 --patch
 | 도구 | 용도 |
 |---|---|
 | [schema_sync_check.py](schema_sync_check.py) | 카탈로그·템플릿·명세 양방향 정합 |
-| [sample_schema_check.py](sample_schema_check.py) | 30종 HabitCheck 예제 본문 |
+| [sample_schema_check.py](sample_schema_check.py) | 31종 HabitCheck 예제 본문 |
 | [check_links.py](check_links.py) | 상대 링크의 대상 파일 존재 |
 | [fact_owner_check.py](fact_owner_check.py) | 사실 문장은 주인 파일만. 비주인 재서술, 주인끼리 불일치, 빈 id의 값, 관련 문서에서 빠진 `DEV-NN`·없는 경로를 실패로 본다. `--package`, `--summary-only`, `--json` |
 | [ideal_check_min.py](ideal_check_min.py) | DEV-10·30 보강 힌트; 기본 advisory |

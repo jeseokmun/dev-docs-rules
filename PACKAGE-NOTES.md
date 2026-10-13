@@ -3,11 +3,11 @@
 
 | 포함 | 범위 |
 |---|---|
-| 규칙 | 헌법의 30개 DEV 유형과 프로젝트별 DOC-CONFIG. 템플릿 파일명은 아래 목록과 같다 |
-| 템플릿 | DEV 30종 + DOC-CONFIG 1종 |
-| 문서 명세 | DEV 30종. 파일은 `_schemas/DEV-*.schema.json`이다. 범용 JSON Schema가 아니다 |
+| 규칙 | 헌법의 31개 DEV 유형과 프로젝트별 DOC-CONFIG. 템플릿 파일명은 아래 목록과 같다 |
+| 템플릿 | DEV 31종 + DOC-CONFIG 1종 |
+| 문서 명세 | DEV 31종. 파일은 `_schemas/DEV-*.schema.json`이다. 범용 JSON Schema가 아니다 |
 | 생성·갱신 | DEV-10·30만 지원 |
-| lint | 30종 작성 문서와 light/full 필수 존재 |
+| lint | 31종 작성 문서와 light/full 필수 존재 |
 | 예제 | 가상 HabitCheck; 실제 제품의 사실·코드 검증 근거가 아님 |
 | 에이전트 연동 | CLI 호출 레시피만 이 저장소에 있다. 특정 앱의 설치 로그와 설정 값은 비어 있다. 확인은 그 앱에서 하고, 그 결과를 이 표에 옮겨 적지 않는다 |
 
@@ -17,6 +17,7 @@
 
 - `DEV-10-개요서.md`
 - `DEV-12-제품로드맵.md`
+- `DEV-15-용어집.md`
 - `DEV-20-요구사항명세서.md`
 - `DEV-22-인수조건명세서.md`
 - `DEV-25-화면정의서.md`
