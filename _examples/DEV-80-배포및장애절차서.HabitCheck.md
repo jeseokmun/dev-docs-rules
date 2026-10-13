@@ -24,7 +24,7 @@
 |---|---|---|---|
 | 1 | 미정(서명 권한자) | `flutter build apk --release`. 키 저장소 경로는 이 칸에 적지 않는다(DEV-60) | release APK가 생성된다 |
 | 2 | 같은 사람 | `dist/habitcheck-v0.1.0.apk`로 둔다 | 그 경로에 파일이 있다(DEV-10, DEV-60) |
-| 3 | 같은 사람 | 테스터에게 파일 위치만 알린다 | 테스터가 파일 위치를 안다. 목록과 체크의 통과는 DEV-22 |
+| 3 | 같은 사람 | 테스터에게 파일 위치만 알린다 | 테스터가 파일 위치를 안다 |
 
 ## ＊ 롤백
 | 조건 | 방법 | 확인 |
@@ -43,7 +43,6 @@
 | DEV-38 | `DEV-38-데이터이전-없음.HabitCheck.md` |
 | DEV-60 | `DEV-60-운영절차서-내부apk.HabitCheck.md` |
 | DEV-10 | `DEV-10-개요서.HabitCheck.md` |
-| DEV-22 | `DEV-22-오늘체크.HabitCheck.md` |
 | DEV-48 | `DEV-48-없음-v1.HabitCheck.md` |
 | DEV-58 | `DEV-58-개인정보처리명세서.HabitCheck.md` |
 
