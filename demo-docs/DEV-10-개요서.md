@@ -37,7 +37,7 @@
 ## ＊ 실행·설치
 | 구분 | 내용 |
 |---|---|
-| 개발 | `git clone <repo-url> && cd HabitCheck && flutter pub get && flutter run -d android`. `<repo-url>`은 저장소 주소가 아니다. HC-REPO는 값이 없다. 미결 1 |
+| 개발 | `git clone HC-REPO && cd HabitCheck && flutter pub get && flutter run -d android` |
 | 사용자 | 사이드로드할 파일 이름은 `dist/habitcheck-v0.1.0.apk`다 |
 | 환경 | Android 8.0+ · Flutter 3.22+ · Dart 3.4+. 이 하한은 HC-PLATFORM이다. DEV-20은 이 하한으로 iOS를 뺀다. 기기별 측정표는 없다 |
 
@@ -74,6 +74,6 @@
 ## 미결
 | ID | 내용 |
 |---|---|
-| 1 | 없는 사실: HC-REPO는 값이 없다. 개발 행의 `<repo-url>`은 그 자리이다. 다음 행동: 주소가 정해지면 clone 명령의 그 칸만 바꾼다. |
+| 1 | 없는 사실: HC-REPO는 값이 없다. 다음 행동: 주소가 정해지면 clone 명령의 그 칸만 바꾼다. |
 | 2 | 없는 사실: 로컬 DB 결정 상태는 HC-DRIFT-STATE. 주인은 `DEV-50-기술결정기록/DEV-50-로컬DB-drift.md`다. 버전 번호는 HC-DRIFT-VER이고 값이 없다. 다음 행동: 그 번호를 환경 행에 적지 않는다. |
 | 3 | 없는 사실: DEV-45에서 CLOCK_MODE 기본값은 미정이다. 기대 숫자는 HC-STREAK. 주인은 `DEV-30-구조명세서.md`다. 다음 행동: 미정인 동안 성공 절차 3)은 테스트가 fake를 지정할 때만 재현한다. 기본값이 정해지면 그 값으로 3)을 실행한다. |
