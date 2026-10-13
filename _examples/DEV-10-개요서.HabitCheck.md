@@ -72,4 +72,4 @@
 | ID | 내용 |
 |---|---|
 | 1 | 없는 사실: HC-REPO. 다음 행동: 주소를 이 칸에 적지 않는다. |
-| 2 | 없는 사실: 로컬 DB 결정 상태는 `HC-DRIFT-STATE` (`_examples/DEV-50-로컬DB-drift.HabitCheck.md`). 버전 번호는 HC-DRIFT-VER이고 값이 없다. 다음 행동: 그 번호를 환경 행에 적지 않는다. |
+| 2 | 없는 사실: HC-DRIFT-VER. 다음 행동: 그 번호를 환경 행에 적지 않는다. |
