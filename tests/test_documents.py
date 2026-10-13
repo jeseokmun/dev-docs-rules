@@ -453,6 +453,15 @@ class Documents(unittest.TestCase):
         rows = json.loads(r.stdout)["reports"][1]["rows"]
         self.assertEqual(rows[-1]["status"], "SKIP")
 
+    def test_outage_notice_status_is_one_of_five(self):
+        src = PKG / "_examples/DEV-66-공지없음.HabitCheck.md"
+        path = self.docs / src.name
+        schema = load_object(PKG / "_schemas/DEV-66.schema.json")
+        path.write_text(src.read_text(encoding="utf-8"), encoding="utf-8")
+        self.assertEqual(check_file(path, schema), [])
+        path.write_text(path.read_text(encoding="utf-8").replace("| 공지 없음 |", "| 기타 |", 1), encoding="utf-8")
+        self.assertIn("COLUMN_VALUE DEV-66-공지없음.HabitCheck.md: ＊ 상태", check_file(path, schema))
+
     def test_scenario_measure_cannot_repeat_the_goal_number(self):
         src = PKG / "_examples/DEV-68-성능목표명세서.HabitCheck.md"
         path = self.docs / src.name
@@ -532,7 +541,7 @@ class Documents(unittest.TestCase):
 
     def test_demo_template_copies_match_canonical_sources(self):
         sources = list((PKG / "_templates").glob("*.md"))
-        self.assertEqual(len(sources), 33)
+        self.assertEqual(len(sources), 34)
         for path in sources:
             with self.subTest(template=path.name):
                 copy_path = PKG / "demo-docs/_templates" / path.name

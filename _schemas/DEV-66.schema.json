@@ -1,0 +1,86 @@
+{
+  "code": "DEV-66",
+  "title": "장애공지",
+  "path_pattern": "{docs_root}/DEV-66-장애공지/DEV-66-{슬러그}.md",
+  "single_file": false,
+  "required": [
+    {
+      "id": "상태",
+      "label": "＊ 상태",
+      "type": "table",
+      "columns": [
+        "상태",
+        "누구에게",
+        "다음에 알릴 때"
+      ],
+      "column_keys": {
+        "상태": [
+          "조사 중",
+          "원인 확인",
+          "지켜보는 중",
+          "해결",
+          "공지 없음"
+        ]
+      },
+      "min_rows": 1
+    },
+    {
+      "id": "본문",
+      "label": "＊ 본문",
+      "type": "string",
+      "min": 1
+    },
+    {
+      "id": "말하지_않음",
+      "label": "＊ 말하지 않음",
+      "type": "table",
+      "columns": [
+        "내용",
+        "이유"
+      ],
+      "min_rows": 1
+    }
+  ],
+  "optional": [
+    {
+      "id": "우회",
+      "label": "○ 우회",
+      "type": "table",
+      "columns": [
+        "방법",
+        "한계"
+      ]
+    },
+    {
+      "id": "관련_문서",
+      "label": "○ 관련 문서",
+      "type": "table",
+      "columns": [
+        "코드",
+        "경로"
+      ]
+    }
+  ],
+  "meta": [
+    "상태",
+    "코드",
+    "마지막 갱신",
+    "범위",
+    "비범위"
+  ],
+  "open_items": {
+    "id": "open",
+    "label": "미결",
+    "type": "table",
+    "columns": [
+      "ID",
+      "미결",
+      "다음에 할 일"
+    ]
+  },
+  "rules": [
+    "empty_required_becomes_open_item",
+    "no_fake_fill",
+    "json_ephemeral_md_ssot"
+  ]
+}
