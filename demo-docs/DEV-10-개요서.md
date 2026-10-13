@@ -39,7 +39,7 @@
 |---|---|
 | 개발 | `git clone <repo-url> && cd HabitCheck && flutter pub get && flutter run -d android`. `<repo-url>`은 저장소 주소가 아니다. HC-REPO는 값이 없다. 미결 1 |
 | 사용자 | 사이드로드할 파일 이름은 `dist/habitcheck-v0.1.0.apk`다. HC-HASH는 값이 없다(DEV-90 미결 1). 만드는 절차는 예제 DEV-60 |
-| 환경 | 하한은 Android 8.0+ · Flutter 3.22+ · Dart 3.4+다. DEV-20은 이 하한으로 iOS를 빼고, DEV-50은 Flutter 3.22+와 drift의 궁합을 미결로 둔다. 기기별 측정표는 없다. drift 버전 번호는 DEV-50 미결 1 |
+| 환경 | Android 8.0+ · Flutter 3.22+ · Dart 3.4+. 이 하한은 HC-PLATFORM이다. DEV-20은 이 하한으로 iOS를 뺀다. 기기별 측정표는 없다 |
 
 ## ＊ 시스템 경계
 | 하지 않는 것 | 이유 |
@@ -75,5 +75,5 @@
 | ID | 내용 |
 |---|---|
 | 1 | HC-REPO는 값이 없다. 개발 행의 `<repo-url>`은 그 자리이다. 주소가 정해지면 clone 명령의 그 칸만 바꾼다. |
-| 2 | 로컬 DB 결정 상태는 HC-DRIFT-STATE. 주인은 `DEV-50-기술결정기록/DEV-50-로컬DB-drift.md`다. 버전 핀과 스파이크 시작일은 그 파일 미결을 닫은 뒤 환경 행에 반영한다. HC-DRIFT-VER는 값이 없다. |
+| 2 | 로컬 DB 결정 상태는 HC-DRIFT-STATE. 주인은 `DEV-50-기술결정기록/DEV-50-로컬DB-drift.md`다. 버전 번호는 HC-DRIFT-VER이고 값이 없다. 그 번호를 환경 행에 적지 않는다. |
 | 3 | DEV-45에서 CLOCK_MODE 기본값은 미정이다. 미정인 동안 성공 절차 3)은 테스트가 fake를 지정할 때만 재현한다. 기대 숫자는 HC-STREAK. 주인은 `DEV-30-구조명세서.md`다. 기본값이 정해지면 그 값으로 3)을 실행한다. |

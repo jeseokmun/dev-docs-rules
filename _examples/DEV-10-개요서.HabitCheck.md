@@ -72,4 +72,4 @@
 | ID | 내용 |
 |---|---|
 | 1 | HC-REPO |
-| 2 | 로컬 DB 결정 상태는 `HC-DRIFT-STATE` (`_examples/DEV-50-로컬DB-drift.HabitCheck.md`). drift 버전은 HC-DRIFT-VER. 그 기록이 닫히면 환경 행에 반영한다. |
+| 2 | 로컬 DB 결정 상태는 `HC-DRIFT-STATE` (`_examples/DEV-50-로컬DB-drift.HabitCheck.md`). 버전 번호는 HC-DRIFT-VER이고 값이 없다. 그 번호를 환경 행에 적지 않는다. |
