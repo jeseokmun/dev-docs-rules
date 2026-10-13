@@ -453,6 +453,23 @@ class Documents(unittest.TestCase):
         rows = json.loads(r.stdout)["reports"][1]["rows"]
         self.assertEqual(rows[-1]["status"], "SKIP")
 
+    def test_proposed_adr_cannot_claim_acceptance(self):
+        src = PKG / "_examples/DEV-50-로컬DB-drift.HabitCheck.md"
+        path = self.docs / src.name
+        schema = load_object(PKG / "_schemas/DEV-50.schema.json")
+        original = src.read_text(encoding="utf-8")
+        path.write_text(original, encoding="utf-8")
+        self.assertEqual(check_file(path, schema), [])
+        path.write_text(original.replace("| 결정 상태 | proposed |", "| 결정 상태 | accepted |", 1), encoding="utf-8")
+        self.assertIn("STATUS_CONFLICT DEV-50-로컬DB-drift.HabitCheck.md", check_file(path, schema))
+        claimed = original.replace(
+            "accepted는 아래 되돌리는 조건의 스파이크가 끝난 뒤에만 올린다.",
+            "이 결정은 accepted다.",
+            1,
+        )
+        path.write_text(claimed, encoding="utf-8")
+        self.assertIn("STATUS_CONFLICT DEV-50-로컬DB-drift.HabitCheck.md", check_file(path, schema))
+
     def test_stride_class_rejects_names_outside_the_six(self):
         src = PKG / "_examples/DEV-55-보안명세서.HabitCheck.md"
         path = self.docs / src.name

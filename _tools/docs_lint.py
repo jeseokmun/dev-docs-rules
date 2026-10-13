@@ -12,6 +12,32 @@ from docs_common import body, cli, config, load_object, placeholder, read_text, 
 
 SECRET = re.compile(r"""(?:api[_-]?key|password|secret|token)\s*[:=]\s*["']?[^\s"'|]{8,}|sk-[A-Za-z0-9_-]{10,}|Bearer\s+[A-Za-z0-9._-]{12,}|-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----""", re.I)
 PKG = Path(__file__).resolve().parents[1]
+# A proposed ADR may mention acceptance only as something still in the future.
+NOT_YET_ACCEPTED = re.compile(r"아니다|아님|아직|뒤에만|올린다|올리기|두지\s*않|후보")
+
+
+def decision_sentences(text):
+    return [part.strip() for part in re.split(r"[.\n]+", text) if part.strip()]
+
+
+def claims_accepted_now(text):
+    for sent in decision_sentences(text):
+        if re.search(r"(?<![A-Za-z])accepted(?![A-Za-z])", sent, re.I) or "채택" in sent:
+            if NOT_YET_ACCEPTED.search(sent):
+                continue
+            return True
+    return False
+
+
+def claims_still_proposed(text):
+    for sent in decision_sentences(text):
+        if re.search(r"accepted(?:가|는)\s*아니다", sent):
+            return True
+        if re.search(r"결정 상태는 proposed", sent):
+            return True
+        if re.search(r"아직\s*proposed|proposed로\s*둔다", sent):
+            return True
+    return False
 
 
 def check_file(path, schema, settings=None):
@@ -90,6 +116,13 @@ def check_file(path, schema, settings=None):
                 if field.get("min_rows", 1) >= len(field.get("keys", [])):
                     if not set(field.get("keys", [])) <= keys:
                         fails.append(f"MISSING_KEYS {path.name}: {label}")
+    if schema.get("code") == "DEV-50":
+        claim = "\n".join(contents.get(label, "") for label in ("＊ 제목", "＊ 결정"))
+        state = meta.get("결정 상태", "").strip()
+        if state == "proposed" and claims_accepted_now(claim):
+            fails.append(f"STATUS_CONFLICT {path.name}")
+        if state == "accepted" and claims_still_proposed(claim):
+            fails.append(f"STATUS_CONFLICT {path.name}")
     for field in schema.get("optional", []):
         allowed = field.get("column_keys")
         if not allowed or field["label"] not in contents:
