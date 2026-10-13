@@ -453,6 +453,15 @@ class Documents(unittest.TestCase):
         rows = json.loads(r.stdout)["reports"][1]["rows"]
         self.assertEqual(rows[-1]["status"], "SKIP")
 
+    def test_c4_level_rejects_a_mixed_name(self):
+        src = PKG / "_examples/DEV-30-구조명세서.HabitCheck.md"
+        path = self.docs / src.name
+        schema = load_object(PKG / "_schemas/DEV-30.schema.json")
+        path.write_text(src.read_text(encoding="utf-8"), encoding="utf-8")
+        self.assertEqual(check_file(path, schema), [])
+        path.write_text(path.read_text(encoding="utf-8").replace("| 컴포넌트 |", "| 전체 |", 1), encoding="utf-8")
+        self.assertIn("COLUMN_VALUE DEV-30-구조명세서.HabitCheck.md: ○ C4 수준", check_file(path, schema))
+
     def test_proposed_adr_cannot_claim_acceptance(self):
         src = PKG / "_examples/DEV-50-로컬DB-drift.HabitCheck.md"
         path = self.docs / src.name
