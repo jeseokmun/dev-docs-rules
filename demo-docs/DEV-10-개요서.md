@@ -39,7 +39,7 @@
 |---|---|
 | 개발 | `git clone HC-REPO && cd HabitCheck && flutter pub get && flutter run -d android` |
 | 사용자 | 사이드로드할 파일 이름은 `dist/habitcheck-v0.1.0.apk`다 |
-| 환경 | Android 8.0+ · Flutter 3.22+ · Dart 3.4+. 이 하한은 HC-PLATFORM이다. DEV-20은 이 하한으로 iOS를 뺀다. 기기별 측정표는 없다 |
+| 환경 | Android 8.0+ · Flutter 3.22+ · Dart 3.4+. 이 하한은 HC-PLATFORM이다 |
 
 ## ＊ 시스템 경계
 | 하지 않는 것 | 이유 |

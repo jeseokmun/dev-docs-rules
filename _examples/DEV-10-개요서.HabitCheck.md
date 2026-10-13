@@ -37,7 +37,7 @@
 |---|---|
 | 개발 | `git clone HC-REPO && cd HabitCheck && flutter pub get && flutter run -d android` |
 | 사용자 | 내부 APK `dist/habitcheck-v0.1.0.apk` 를 사이드로드 |
-| 환경 | Android 8.0+ · Flutter 3.22+ · Dart 3.4+. 이 숫자는 예제가 적은 하한이다. `pubspec.lock`으로 맞춘 핀은 없다(DEV-88) |
+| 환경 | Android 8.0+ · Flutter 3.22+ · Dart 3.4+. 이 숫자는 예제가 적은 하한이다 |
 
 ## ＊ 시스템 경계
 | 하지 않는 것 | 이유 |
