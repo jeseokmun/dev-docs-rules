@@ -52,6 +52,16 @@
   ],
   "optional": [
     {
+      "id": "분류",
+      "label": "○ 분류",
+      "type": "table",
+      "columns": [
+        "데이터",
+        "등급",
+        "보호"
+      ]
+    },
+    {
       "id": "관련_문서",
       "label": "○ 관련 문서",
       "type": "table",
