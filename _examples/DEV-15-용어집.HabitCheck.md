@@ -18,8 +18,8 @@
 | 날짜 경계 | 문장은 HC-MIDNIGHT | `DEV-70-오늘체크.HabitCheck.md` |
 | 실행 환경 | 문장은 HC-PLATFORM | `DEV-10-개요서.HabitCheck.md` |
 | 구조도 배율 | 문장은 HC-C4. 이 칸은 그 문장을 다시 쓰지 않는다 | `DEV-30-구조명세서.HabitCheck.md` |
-| 제품 저장소 | HC-REPO. 주소는 비어 있다 | `_schemas/fact-owners.json`의 그 id. 주인 파일은 없다 |
-| drift 버전 | HC-DRIFT-VER. 번호는 비어 있다 | `_schemas/fact-owners.json`의 그 id. 주인 파일은 없다 |
+| 제품 저장소 | HC-REPO | `_schemas/fact-owners.json`의 그 id. 주인 파일은 없다 |
+| drift 버전 | HC-DRIFT-VER | `_schemas/fact-owners.json`의 그 id. 주인 파일은 없다 |
 | 빌드 해시 | HC-HASH | `_schemas/fact-owners.json`의 그 id. 주인 파일은 없다 |
 | 패키지 이름 | HC-PKG | `_schemas/fact-owners.json`의 그 id. 주인 파일은 없다 |
 | 라이선스 식별자 | HC-LEGAL | `_schemas/fact-owners.json`의 그 id. 주인 파일은 없다 |
