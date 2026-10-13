@@ -21,8 +21,8 @@
 | 제품 저장소 | HC-REPO. 주소는 비어 있다 | `_schemas/fact-owners.json`의 그 id. 주인 파일은 없다 |
 | drift 버전 | HC-DRIFT-VER. 번호는 비어 있다 | `_schemas/fact-owners.json`의 그 id. 주인 파일은 없다 |
 | 빌드 해시 | HC-HASH | `_schemas/fact-owners.json`의 그 id. 주인 파일은 없다 |
-| 패키지 이름 | HC-PKG. 이름은 비어 있다 | `_schemas/fact-owners.json`의 그 id. 주인 파일은 없다 |
-| 라이선스 식별자 | HC-LEGAL. 식별자는 비어 있다 | `_schemas/fact-owners.json`의 그 id. 주인 파일은 없다 |
+| 패키지 이름 | HC-PKG | `_schemas/fact-owners.json`의 그 id. 주인 파일은 없다 |
+| 라이선스 식별자 | HC-LEGAL | `_schemas/fact-owners.json`의 그 id. 주인 파일은 없다 |
 | 알림 채널 | HC-CHANNEL. 이름은 비어 있다 | `_schemas/fact-owners.json`의 그 id. 주인 파일은 없다 |
 
 ## ○ 관련 문서
