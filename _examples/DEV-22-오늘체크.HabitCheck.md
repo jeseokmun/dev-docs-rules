@@ -20,7 +20,7 @@
 |---|---|---|
 | AC-1 | 체크하면 그 습관·오늘 localDate의 체크인이 1건 생긴다 | CheckIn에 그 habitId와 오늘 localDate 행이 1건 있다. 목록 문구는 DEV-28 `list.check` |
 | AC-2 | 같은 날 다시 체크해도 체크인 건수는 1이다 | 같은 localDate로 CheckInToday를 두 번 호출해 건수 1을 확인(DEV-70 검증 1) |
-| AC-3 | 해제하면 오늘 localDate 행이 없어지고 streak는 `HC-STREAK` (`_examples/DEV-30-구조명세서.HabitCheck.md`)로 다시 센다 | 목록 문구는 `list.pending`. 기대 숫자는 그 정의를 따른다 |
+| AC-3 | 해제하면 오늘 localDate 행이 없어진다. streak는 `HC-STREAK` (`_examples/DEV-30-구조명세서.HabitCheck.md`). 이 칸은 그 문장을 다시 쓰지 않는다 | 목록 문구는 `list.pending`. 기대 숫자는 그 주인 문장을 본다 |
 
 ## ＊ 통과 / 실패
 | 결과 | 기준 |

@@ -17,7 +17,7 @@
 ## ＊ 공개 인터페이스
 | 이름 | 종류 | 입력 | 출력 |
 |---|---|---|---|
-| CheckInToday | 함수 | habitId | `HC-STREAK` (`_examples/DEV-30-구조명세서.HabitCheck.md`)로 다시 센 streak. 시그니처 타입은 미정 |
+| CheckInToday | 함수 | habitId | streak는 `HC-STREAK` (`_examples/DEV-30-구조명세서.HabitCheck.md`). 이 칸은 그 문장을 다시 쓰지 않는다. 시그니처 타입은 미정 |
 | AddHabit | 함수 | name, weeklyGoal | 저장되는 필드는 DEV-35의 Habit. 반환 타입 이름은 미정 |
 
 ## ＊ 의존
