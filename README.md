@@ -116,7 +116,7 @@ python3 -m unittest discover -s tests -v
 
 `ideal_check_min.py`와 `plant_light_preflight.py`는 이 표의 행이 아니다. 행동 테스트가 그 도구를 부른다. 같은 회귀 스크립트를 `.github/workflows/quality.yml`도 `--summary-only` 없이 실행한다.
 
-여섯이 끝나면 숫자는 0, 1, 2 가운데 하나다. 0은 성공, 1은 검사 실패, 2는 입력·I/O 오류다. IDEAL의 기본 FAIL과 `--strict`는 그 문장의 예외라 여기 다시 풀지 않는다. 문장은 [_tools/README.md](_tools/README.md)에 있다.
+여섯이 끝나면 반환 숫자의 뜻은 `TOOL-EXIT`([_tools/README.md](_tools/README.md))다. 이 문장은 그 문장을 다시 쓰지 않는다.
 
 ## 예제와 데모
 
