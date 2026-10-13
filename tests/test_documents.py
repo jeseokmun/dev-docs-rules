@@ -453,6 +453,21 @@ class Documents(unittest.TestCase):
         rows = json.loads(r.stdout)["reports"][1]["rows"]
         self.assertEqual(rows[-1]["status"], "SKIP")
 
+    def test_scenario_measure_cannot_repeat_the_goal_number(self):
+        src = PKG / "_examples/DEV-68-성능목표명세서.HabitCheck.md"
+        path = self.docs / src.name
+        schema = load_object(PKG / "_schemas/DEV-68.schema.json")
+        original = src.read_text(encoding="utf-8")
+        path.write_text(original, encoding="utf-8")
+        self.assertEqual(check_file(path, schema), [])
+        echoed = original.replace(
+            "＊ 목표 지표의 체크 반영 행. 숫자를 이 칸에 다시 적지 않는다",
+            "1초 이내",
+            1,
+        )
+        path.write_text(echoed, encoding="utf-8")
+        self.assertIn("GOAL_COPY DEV-68-성능목표명세서.HabitCheck.md", check_file(path, schema))
+
     def test_debt_kind_is_only_risk_or_debt(self):
         src = PKG / "_examples/DEV-64-위험및기술부채.HabitCheck.md"
         path = self.docs / src.name

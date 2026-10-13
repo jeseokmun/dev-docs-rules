@@ -63,6 +63,35 @@ def fact_guess_cue(text, end):
     return None
 
 
+QUANTITY = re.compile(r"\d+(?:\.\d+)?\s*(?:초|ms|밀리초|%|건|MB|KB)")
+
+
+def quantity_tokens(text):
+    return {re.sub(r"\s+", "", token) for token in QUANTITY.findall(text)}
+
+
+def goal_copy(goal_text, scenario_text):
+    """A scenario measure must not repeat a number from the goal column."""
+    found = list(tables(goal_text))
+    if not found or "목표" not in found[0][0]:
+        return False
+    index = found[0][0].index("목표")
+    goals = set()
+    for row in found[0][1]:
+        if index < len(row):
+            goals.update(quantity_tokens(row[index]))
+    if not goals:
+        return False
+    scenario = list(tables(scenario_text))
+    if not scenario or "측정" not in scenario[0][0]:
+        return False
+    measure = scenario[0][0].index("측정")
+    for row in scenario[0][1]:
+        if measure < len(row) and quantity_tokens(row[measure]) & goals:
+            return True
+    return False
+
+
 def fact_guess_conflict(fact, guess):
     """Same span of 4+ characters, then opposite polarity or a different number."""
     length, end_fact, end_guess = longest_common_end(fact, guess)
@@ -177,6 +206,8 @@ def check_file(path, schema, settings=None):
                 guesses = [row[1] for row in rows if len(row) > 1 and row[0].strip() == "추측"]
                 if any(fact_guess_conflict(fact, guess) for fact in facts for guess in guesses):
                     fails.append(f"FACT_GUESS {path.name}")
+    if schema.get("code") == "DEV-68" and goal_copy(contents.get("＊ 목표 지표", ""), contents.get("○ 품질 시나리오", "")):
+        fails.append(f"GOAL_COPY {path.name}")
     for field in schema.get("optional", []):
         allowed = field.get("column_keys")
         if not allowed or field["label"] not in contents:

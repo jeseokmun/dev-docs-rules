@@ -86,6 +86,7 @@ DEV-50은 기록이 없을 수 있다. 폴더의 `INDEX.md`에 다음 중 한 �
 | `COLUMN_VALUE` | 스키마 `column_keys`가 있는 선택 표의 칸이 허용 단어 밖 |
 | `STATUS_CONFLICT` | DEV-50 헤더 `결정 상태`가 ＊ 제목·＊ 결정의 채택 단계와 다름 |
 | `FACT_GUESS` | DEV-62 사실 행과 추측 행이 같은 구절 뒤에서 반대이거나 숫자가 다름 |
+| `GOAL_COPY` | DEV-68 시나리오 측정 칸이 ＊ 목표 지표의 목표 숫자를 다시 적음 |
 | `MIN_ROWS` | 행이 부족 |
 | `TABLE_WIDTH` | 칸 개수가 헤더와 다름 |
 | `FAKEFILL` | 칸 전체가 자리표시 |
