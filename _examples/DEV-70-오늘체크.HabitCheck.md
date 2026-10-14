@@ -28,7 +28,7 @@
 ## ＊ 완료 조건
 | # | 조건 |
 |---|---|
-| 1 | `CheckInToday(habitId)`는 같은 날 두 번에도 체크인 1건(DEV-22 AC-2) |
+| 1 | CheckInToday는 같은 날 두 번에도 체크인 1건(DEV-22 AC-2). DEV-35 |
 | 2 | 반환 streak는 `HC-STREAK` (`_examples/DEV-30-구조명세서.HabitCheck.md`)와 같다 |
 | 3 | DEV-30 |
 
@@ -56,10 +56,11 @@
 | DEV-65 | `DEV-65-테스트명세서.HabitCheck.md` |
 | DEV-10 | `DEV-10-개요서.HabitCheck.md` |
 | DEV-45 | `DEV-45-설정명세서.HabitCheck.md` |
+| DEV-35 | `DEV-35-습관체크인.HabitCheck.md` |
 ## 구현 메모
 | 항목 | 내용 |
 |---|---|
-| Clock 포트 | 테스트에서 localDate를 고정한다(DEV-45 `CLOCK_MODE`, DEV-65) |
+| Clock 포트 | 테스트에서 날짜를 고정한다. DEV-35. DEV-45 `CLOCK_MODE`, DEV-65 |
 
 ## 승격
 | 대상 | 내용 |

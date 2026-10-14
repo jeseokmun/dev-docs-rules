@@ -28,7 +28,7 @@
 ## ＊ 버린 대안
 | 대안 | 버린 이유 |
 |---|---|
-| SharedPreferences만 사용 | 날짜별 행과 unique(habitId, localDate)를 키 하나에 넣으면 DEV-35의 제약을 저장소가 지키지 못한다 |
+| SharedPreferences만 사용 | 날짜별 행을 키 하나에 넣으면 DEV-35의 제약을 저장소가 지키지 못한다 |
 | sqflite를 직접 사용 | 동작은 가능하나 타입과 마이그레이션 규율이 약하다 |
 
 ## ○ 결과·리스크
