@@ -51,7 +51,7 @@ flowchart TD
 ## ＊ 건드리기 위험 구역
 | 모듈 | 이유 | 경로(□) |
 |---|---|---|
-| 도메인 streak·날짜 | 날짜 경계의 값은 HC-MIDNIGHT. 주인은 `DEV-70-구현작업명세서/DEV-70-001-오늘체크-유스케이스.md`다. 이 칸은 그 문장을 다시 쓰지 않는다. DEV-50의 범위는 HC-DRIFT-STATE. 주인은 `DEV-50-기술결정기록/DEV-50-로컬DB-drift.md`다 | 계획 경로 `lib/domain/streak.dart`. DEV-50과 DEV-72는 이 패키지에 HabitCheck 앱 코드가 없다고 적는다 |
+| 도메인 streak·날짜 | 날짜 경계의 값은 HC-MIDNIGHT. 주인은 `DEV-70-구현작업명세서/DEV-70-001-오늘체크-유스케이스.md`다. 이 칸은 그 문장을 다시 쓰지 않는다 | 계획 경로 `lib/domain/streak.dart`. DEV-50과 DEV-72는 이 패키지에 HabitCheck 앱 코드가 없다고 적는다 |
 | 인프라 마이그레이션 | 실패하면 데이터를 잃는다. DEV-10, DEV-38 | 계획 경로 `lib/infrastructure/db/migrations/`. 이 패키지에 그 디렉터리가 없다 |
 
 ## ○ 핵심 실행 흐름
