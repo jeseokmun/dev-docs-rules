@@ -12,13 +12,12 @@
 ## ＊ 항목
 | 항목 | 종류 | 영향 | 갚는 조건 |
 |---|---|---|---|
-| 로컬 DB 기록 | 기술부채 | 문장은 HC-DRIFT-STATE. 주인은 `DEV-50-로컬DB-drift.HabitCheck.md`다. 이 칸은 그 문장을 다시 쓰지 않는다. 구현 파일 경로는 DEV-30 미결을 본다 | 그 기록이 닫히거나 대체 기록이 생기면 이 행을 닫는다 |
+| 로컬 DB 기록 | 기술부채 | 문장은 HC-DRIFT-STATE. 주인은 `DEV-50-로컬DB-drift.HabitCheck.md`다. 이 칸은 그 문장을 다시 쓰지 않는다 | 그 기록이 닫히거나 대체 기록이 생기면 이 행을 닫는다 |
 | 버전 번호 공백 | 위험 | HC-DRIFT-VER | 등록부가 문장을 가지기 전에는 이 칸에 번호를 쓰지 않는다 |
 
 ## ○ 관련 문서
 | 코드 | 경로 |
 |---|---|
-| DEV-30 | `DEV-30-구조명세서.HabitCheck.md` |
 | DEV-50 | `DEV-50-로컬DB-drift.HabitCheck.md` |
 | DEV-55 | `DEV-55-보안명세서.HabitCheck.md` |
 | DEV-62 | `DEV-62-장애대응-체크중복.HabitCheck.md` |
