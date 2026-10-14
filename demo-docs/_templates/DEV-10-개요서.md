@@ -78,7 +78,9 @@
 | 경로 | `{docs_root}/DEV-10-개요서.md` |
 | 위치 | 단건. 다른 경로면 DOC_PATH |
 | 제목 | `#`으로 시작하는 줄에 `DEV-10`이 단어로 있다 |
-| 헤더 | 첫 H2 앞에 상태·코드·마지막 갱신·범위·비범위. 두 열 표 또는 `- **키:** 값`. 코드는 DEV-10. lint가 보는 날짜는 달력의 YYYY-MM-DD이다. DOC-CONFIG `timezone`은 사람이 그 날짜를 고를 때 쓰는 기준이다 |
+| 헤더 | 첫 H2 앞에 상태·코드·마지막 갱신·범위·비범위. 두 열 표 또는 `- **키:** 값`. 코드는 DEV-10 |
+| 헤더 | lint가 보는 날짜는 달력의 YYYY-MM-DD이다. RFC 6838(N. Freed, J. Klensin, T. Hansen, 2013) 4.2는 위 이름과 아래 이름을 나눈다. 날짜 칸에 timezone을 붙이지 않는다 |
+| 헤더 | DOC-CONFIG `timezone`은 사람이 그 날짜를 고를 때 쓰는 기준이다 |
 | 상태 | 기본은 draft, active, deprecated. DOC-CONFIG `statuses`가 있으면 그 목록. `config()`는 `- **키:** 값`만 읽는다 |
 | 중복 | 같은 H2가 두 번이면 DUPLICATE_SECTION |
 | 자리표시 | 칸 전체가 빈 문자열, `—`, `–`, `-`, `…`, `...`, `TBD`, `TODO`, `tbd tbd`, `lorem ipsum`, `YYYY-MM-DD`, `{중괄호 한 조각}`이면 필수 절과 헤더에서 실패한다. 앞뒤 공백과 `` `_* ``를 벗긴 뒤 비교한다. `없음`과 `미결`은 그 목록에 없다 |
