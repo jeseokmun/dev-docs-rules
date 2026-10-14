@@ -12,7 +12,7 @@
 ## ＊ 용어
 | 용어 | 뜻 | 주인 |
 |---|---|---|
-| streak | 문장은 HC-STREAK. 이 칸은 그 문장을 다시 쓰지 않는다 | `DEV-30-구조명세서.HabitCheck.md` |
+| streak | 문장은 HC-STREAK | `DEV-30-구조명세서.HabitCheck.md` |
 | 로컬 DB 후보 | 문장은 HC-DRIFT-STATE | `DEV-50-로컬DB-drift.HabitCheck.md` |
 | 주간 요약 플래그 | 문장은 HC-FLAG | `DEV-52-기능플래그-주간요약.HabitCheck.md` |
 | 날짜 경계 | 문장은 HC-MIDNIGHT | `DEV-70-오늘체크.HabitCheck.md` |
