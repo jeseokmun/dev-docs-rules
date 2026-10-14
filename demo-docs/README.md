@@ -19,7 +19,7 @@
 | `DEV-40-API명세서/DEV-40-없음-v1.md` | 선택. v1 공개 HTTP API 없음 |
 | `DEV-48-외부SaaS명세서/DEV-48-없음-v1.md` | 선택. v1 외부 SaaS 없음 |
 | `DEV-70-구현작업명세서/DEV-70-001-오늘체크-유스케이스.md` | 선택. 오늘 체크 작업. 끝나면 archive로 옮긴다 |
-| `DEV-85-스토어제출명세서/DEV-85-play-내부만.md` | 선택. Play에 제출하지 않음 |
+| `DEV-85-스토어제출명세서/DEV-85-play-내부만.md` | 선택. 제출 결정은 그 파일 |
 | `DEV-CONSTITUTION.md`, `_templates/` | 패키지 원본의 복사본 |
 
 `_templates`와 패키지 `_templates`가 같은지는 저장소 루트의 `diff -rq _templates demo-docs/_templates`로 본다. 2026-10-13에 그 명령을 실행했을 때 출력이 없어, 그날은 두 트리가 같았다. 그 다음부터의 일치는 같은 명령을 다시 실행해 본다. 출력이 생기면 패키지 `_templates`를 기준으로 `demo-docs/_templates`를 맞춘다.
