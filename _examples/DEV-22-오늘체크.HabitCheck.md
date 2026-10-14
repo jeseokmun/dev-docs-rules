@@ -20,7 +20,7 @@
 |---|---|---|
 | AC-1 | 체크하면 그 습관·오늘의 체크인이 1건 생긴다 | DEV-35 |
 | AC-2 | 같은 날 다시 체크해도 체크인 건수는 1이다 | DEV-35. DEV-70 검증 1 |
-| AC-3 | 해제하면 오늘의 행이 없어진다. DEV-35. streak는 `HC-STREAK` (`_examples/DEV-30-구조명세서.HabitCheck.md`). 이 칸은 그 문장을 다시 쓰지 않는다 | 기대 숫자는 그 주인 문장을 본다 |
+| AC-3 | 해제하면 오늘의 행이 없어진다. DEV-35. streak는 `HC-STREAK` (`_examples/DEV-30-구조명세서.HabitCheck.md`). 이 칸은 그 문장을 다시 쓰지 않는다 | 기대 숫자는 `HC-STREAK` (`_examples/DEV-30-구조명세서.HabitCheck.md`). 이 칸은 그 문장을 다시 쓰지 않는다 |
 
 ## ＊ 통과 / 실패
 | 결과 | 기준 |
