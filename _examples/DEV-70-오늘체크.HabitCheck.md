@@ -12,7 +12,7 @@
 ## ＊ 목표 / 비범위
 | 구분 | 내용 |
 |---|---|
-| 목표 | 체크하면 체크인이 저장된다. DEV-10. 상세에 쓸 streak는 `HC-STREAK` (`_examples/DEV-30-구조명세서.HabitCheck.md`). 이 칸은 그 문장을 다시 쓰지 않는다 |
+| 목표 | 체크하면 체크인이 저장된다. DEV-10. DEV-25에 쓸 streak는 `HC-STREAK` (`_examples/DEV-30-구조명세서.HabitCheck.md`). 이 칸은 그 문장을 다시 쓰지 않는다 |
 | 비범위 | 화면 위젯 |
 | 비범위 | 마이그레이션 파일 작성(DEV-38) |
 | 비범위 | 주간 요약 집계(DEV-20 요구 4) |
@@ -55,6 +55,7 @@
 | DEV-38 | `DEV-38-데이터이전-없음.HabitCheck.md` |
 | DEV-65 | `DEV-65-테스트명세서.HabitCheck.md` |
 | DEV-10 | `DEV-10-개요서.HabitCheck.md` |
+| DEV-25 | `DEV-25-화면정의서-목록.HabitCheck.md` |
 | DEV-45 | `DEV-45-설정명세서.HabitCheck.md` |
 | DEV-35 | `DEV-35-습관체크인.HabitCheck.md` |
 ## 구현 메모
