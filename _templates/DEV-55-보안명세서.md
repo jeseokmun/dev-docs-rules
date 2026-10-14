@@ -53,7 +53,10 @@
 | ＊ 하지 않는 것 | 열 `하지 않음`·`이유`, 최소 1행. 이유는 그 통제를 뺀 결정이다. '범위 밖'만 반복하지 않는다. 이유가 다른 DEV를 가리키면 그 문서의 결정을 다시 쓰지 않는다. Martin Fowler의 Bounded Context(2014-01-15)는 한 맥락의 모델을 다른 맥락에 베끼지 말고 경계만 둔다고 한다 |
 | ＊ 비밀 금지 | 금지는 문서와 로그에 두지 않을 종류다. 열 `금지`·`확인`, 최소 1행 |
 | ＊ 비밀 금지 | 확인은 이번 파일에서 그 종류를 어떻게 봤는지다 |
-| ○ 위협과 대응 | 열 `분류`·`위협`·`대응`·`잔여`. `분류`는 Microsoft STRIDE 여섯 이름만 쓴다. 위장(Spoofing), 변조(Tampering), 부인(Repudiation), 정보 노출(Information disclosure), 서비스 거부(Denial of service), 권한 상승(Elevation of privilege). 그 제품에서 확인한 위협만 행으로 둔다. 여섯을 채우려고 빈 위협을 만들지 않는다. 위협을 아직 쓰지 않았으면 그 절의 자리표시 행은 두지 않는다. 미결 칸은 `없는 사실:`으로 시작하고, 다음에 할 일 칸은 `다음 행동:`으로 시작한다. |
+| ○ 위협과 대응 | 분류는 Microsoft STRIDE 여섯 이름만 쓴다. 열 `분류`·`위협`·`대응`·`잔여`. 위장(Spoofing), 변조(Tampering), 부인(Repudiation), 정보 노출(Information disclosure), 서비스 거부(Denial of service), 권한 상승(Elevation of privilege). 여섯을 채우려고 빈 위협을 만들지 않는다. 위협을 아직 쓰지 않았으면 그 절의 자리표시 행은 두지 않는다. 미결 칸은 `없는 사실:`으로 시작하고, 다음에 할 일 칸은 `다음 행동:`으로 시작한다 |
+| ○ 위협과 대응 | 위협은 그 제품에서 확인한 것만 적는다 |
+| ○ 위협과 대응 | 대응은 그 위협에 하는 일만 적는다 |
+| ○ 위협과 대응 | 잔여만 적는다 |
 | ○ 관련 문서 | 열 `코드`·`경로`. 있는 파일만. DEV-58이 없으면 미결에 다음에 쓸 사람이 적힌다. |
 
 헌법 §1 원칙 2대로 같은 사실을 복붙하지 않는다. 반복되는 사실은 `_schemas/fact-owners.json`의 id를 쓴다. 주인 문서가 그 사실을 한 번 적고, 다른 문서는 id와 경로만 인용한다. 값이 없는 id `HC-REPO`, `HC-DRIFT-VER`, `HC-HASH`, `HC-PKG`, `HC-LEGAL`, `HC-CHANNEL`은 비워 둔다. `HC-STREAK`의 주인은 DEV-30, `HC-DRIFT-STATE`의 주인은 DEV-50, `HC-FLAG`의 주인은 DEV-52, `HC-MIDNIGHT`의 주인은 DEV-70, `HC-PLATFORM`의 주인은 DEV-10, `TOOL-PY`의 주인은 `README`, `TOOL-EXIT`의 주인은 `_tools/README.md`이다.
