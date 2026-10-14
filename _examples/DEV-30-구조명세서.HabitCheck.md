@@ -16,7 +16,7 @@
 | 모듈 | 책임 | 비고 |
 |---|---|---|
 | 화면 presentation | 목록·상세·체크 UI | 유스케이스만 호출 |
-| 유스케이스 application | 추가·오늘 체크·streak 조회 | 한 의도당 한 유스케이스 |
+| 유스케이스 application | DEV-20 요구 1·2·3 | 한 의도당 한 유스케이스 |
 | 도메인 domain | Habit·CheckIn, streak, 날짜 경계 | streak 정의는 실행 흐름 절의 HC-STREAK 문장이다. 이 칸은 그 문장을 다시 쓰지 않는다 |
 | 인프라 infrastructure | 로컬 DB, 마이그레이션, 시계 | 저장·조회와 모델 매핑 |
 
@@ -99,6 +99,7 @@ sequenceDiagram
 | 코드 | 경로 |
 |---|---|
 | DEV-10 | `DEV-10-개요서.HabitCheck.md` |
+| DEV-20 | `DEV-20-요구사항.HabitCheck.md` |
 | DEV-32 | `DEV-32-모듈-application.HabitCheck.md` |
 | DEV-35 | `DEV-35-습관체크인.HabitCheck.md` |
 | DEV-50 | `DEV-50-로컬DB-drift.HabitCheck.md` |
