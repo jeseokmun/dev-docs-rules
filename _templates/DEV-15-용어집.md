@@ -52,7 +52,8 @@
 | ＊ 용어 | 주인은 문장이 있는 파일의 상대 경로다. 경로 칸에는 경로만 적는다. 없는 경로는 짓지 않는다 |
 | ＊ 용어 | 등록된 사실은 뜻에 id만 둔다 |
 | ＊ 용어 | 그 문장을 다시 쓰지 않는다 |
-| ○ 관련 문서 | 열 `코드`·`경로`. 본문이 가리키는 `DEV-숫자`마다 있는 파일만 적는다. |
+| ○ 관련 문서 | 코드는 그 문서의 코드만 적는다. 열 `코드`·`경로` |
+| ○ 관련 문서 | 경로는 있는 파일만 적는다. RFC 8288(M. Nottingham, 2017) 2는 링크의 관계와 대상을 나눈다. 경로 칸에는 경로만 적는다. 없는 경로는 짓지 않는다 |
 
 헌법 §1 원칙 2대로 같은 사실을 복붙하지 않는다. 반복되는 사실은 `_schemas/fact-owners.json`의 id를 쓴다. 주인 문서가 그 사실을 한 번 적고, 다른 문서는 id와 경로만 인용한다. 값이 없는 id `HC-REPO`, `HC-DRIFT-VER`, `HC-HASH`, `HC-PKG`, `HC-LEGAL`, `HC-CHANNEL`은 비워 둔다. `HC-STREAK`의 주인은 DEV-30, `HC-DRIFT-STATE`의 주인은 DEV-50, `HC-FLAG`의 주인은 DEV-52, `HC-MIDNIGHT`의 주인은 DEV-70, `HC-PLATFORM`의 주인은 DEV-10, `TOOL-PY`의 주인은 `README`, `TOOL-EXIT`의 주인은 `_tools/README.md`이다.
 
