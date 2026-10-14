@@ -55,7 +55,9 @@
 | ○ 흐름 (Mermaid) | 화면 이동을 적을 때 mermaid 펜스를 넣는다. 스키마 type은 string이다. 표 열이 없다. lint는 이 선택 절의 펜스와 문법을 보지 않는다 |
 | ○ 흐름 (Mermaid) | 표시 라벨은 그 일의 목적만 말한다. DOC-CONFIG language를 따른다 (헌법 §1.8). W3C WCAG 2.2 Understanding 2.4.6 Headings and Labels는 라벨이 그 일의 목적을 말하라고 한다. 한 라벨에 목적을 둘 적지 않는다 |
 | □ 시안 | 종류와 링크. 헌법 §5의 시안은 링크이다. 제품 문서에 이 제목이 없어도 lint는 통과한다 |
-| ○ 관련 문서 | 코드와 실제 경로. 문구는 DEV-28일 수 있다. 없는 파일은 행으로 두지 않는다 |
+| ○ 관련 문서 | 코드는 그 문서의 코드만 적는다. 문구는 DEV-28일 수 있다 |
+| ○ 관련 문서 | 경로는 있는 파일만 적는다. 경로 칸에는 경로만 적는다. 없는 경로는 짓지 않는다 |
+| ○ 관련 문서 | 파일이 없으면 행으로 두지 않는다 |
 
 헌법 §1 원칙 2대로 같은 사실을 복붙하지 않는다. 반복되는 사실은 `_schemas/fact-owners.json`의 id를 쓴다. 주인 문서가 그 사실을 한 번 적고, 다른 문서는 id와 경로만 인용한다. 값이 없는 id `HC-REPO`, `HC-DRIFT-VER`, `HC-HASH`, `HC-PKG`, `HC-LEGAL`, `HC-CHANNEL`은 비워 둔다. `HC-STREAK`의 주인은 DEV-30, `HC-DRIFT-STATE`의 주인은 DEV-50, `HC-FLAG`의 주인은 DEV-52, `HC-MIDNIGHT`의 주인은 DEV-70, `HC-PLATFORM`의 주인은 DEV-10, `TOOL-PY`의 주인은 `README`, `TOOL-EXIT`의 주인은 `_tools/README.md`이다.
 
