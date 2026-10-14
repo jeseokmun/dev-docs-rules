@@ -5,7 +5,7 @@
 | 상태 | draft |
 | 코드 | DEV-72 |
 | 마지막 갱신 | 2026-10-13 |
-| 범위 | HabitCheck 로컬 SQL 조사. 채택 상태는 `HC-DRIFT-STATE` (`_examples/DEV-50-로컬DB-drift.HabitCheck.md`). 버전은 HC-DRIFT-VER |
+| 범위 | HabitCheck 로컬 SQL 조사. 채택 상태는 `HC-DRIFT-STATE` (`_examples/DEV-50-로컬DB-drift.HabitCheck.md`). HC-DRIFT-VER |
 | 비범위 | 테이블 정의(DEV-35), 채택 상태는 `HC-DRIFT-STATE` (`_examples/DEV-50-로컬DB-drift.HabitCheck.md`) |
 | 관련 문서 | 아래 승격 표 |
 
