@@ -31,7 +31,7 @@
 |---|---|
 | ＊ 화면 목적 | 그 화면에서 사용자가 끝내는 일이 한 문장이다. Page Laubheimer의 Preventing User Errors: Avoiding Unconscious Slips(2015-08-23, Nielsen heuristic 5)는 비슷한 동작을 하나로 뭉개면 다른 동작을 하게 된다고 한다. 체크와 해제가 같은 화면이면 목적 문장은 체크만 적지 않고 그 요구를 가리킨다 |
 | ＊ 진입·이탈 | 어디서 들어오고 어디로 나가는지. 열은 구분·경로인 table이다. 행 키 목록은 없다. 복사용 `진입`·`이탈`은 제안 행이고, 경로가 더 있으면 행을 더한다. W3C WCAG 2.2 Understanding 2.4.4 Link Purpose (In Context)는 가는 곳의 목적을 그 칸에서 알 수 있어야 한다고 한다. 이탈이 둘이면 행을 나누고, 한 행에 목적지를 둘 적지 않는다 |
-| ＊ 주요 UI 요소 | 보이는 요소와 그 요소의 동작이 한 행이다. 카피 전문은 쓰지 않는다. 체크 동작과 문구 키는 다른 행이다. Martin Fowler의 Presentation Domain Data Layering(2015-08-26)은 화면 작업에서 도메인 호출과 문구를 한 칸에 두지 말라고 한다 |
+| ＊ 주요 UI 요소 | 보이는 요소와 그 요소의 동작이 한 행이다. 카피 전문은 쓰지 않는다. 체크 동작과 문구 키는 다른 행이다. Martin Fowler의 Presentation Domain Data Layering(2015-08-26)은 화면 작업에서 도메인 호출과 문구를 한 칸에 두지 말라고 한다. W3C WCAG 2.2 Understanding 4.1.3 Status Messages는 상태 알림과 화면이 바뀌는 일을 같은 메시지로 두지 말라고 한다. 노출과 화면 전환은 서로 다른 행이다 |
 | ＊ 상태 | 상태가 다를 때 사용자에게 보이는 것. 복사용 `로딩`·`빈 화면`·`오류`는 빠지기 쉬운 예시이다. 제품에 없는 상태는 행을 지우고, 있는 상태는 행을 더한다. W3C WCAG 2.2 Understanding 3.3.1 Error Identification은 오류를 텍스트로 설명하라고 한다. 그 문장이 미결이면 상태 칸은 메시지 이름을 적지 않고 그 미결만 가리킨다 |
 | ○ 접근 | Android 접근성 안내의 content label이다. 누르는 요소마다 읽는 이름이 있다. 문구 전문은 DEV-28 키로 가리킨다. 대비 비율이나 점수는 만들지 않는다. 열은 `요소`·`읽는 이름`·`확인`. 아직 키가 없으면 그 사실을 적고 이름을 짓지 않는다. W3C WCAG 2.2의 4.1.2 Name, Role, Value는 이름과 역할을 나눈다. 읽는 이름 칸은 그 이름만 적고, 동작은 ＊ 주요 UI 요소에 둔다 |
 | ○ 흐름 (Mermaid) | 스키마 type은 string이다. 표 열이 없다. 화면 이동을 적을 때 mermaid 펜스를 넣는다. 표시 라벨은 DOC-CONFIG language를 따른다 (헌법 §1.8). lint는 이 선택 절의 펜스와 문법을 보지 않는다. W3C WCAG 2.2 Understanding 2.4.6 Headings and Labels는 라벨이 그 일의 목적을 말하라고 한다. 한 라벨에 목적을 둘 적지 않는다 |
