@@ -14,7 +14,7 @@
 ## ＊ 조사
 | 질문 | 조사결과 | 채택/기각 |
 |---|---|---|
-| 로컬 SQL 후보의 근거로 확인한 것은 무엇인가 | DEV-50의 이유는 컴파일 타임 타입과 마이그레이션 경로다. 환경 하한은 `HC-PLATFORM` (`_examples/DEV-10-개요서.HabitCheck.md`). 그 하한과의 버전 궁합은 HC-DRIFT-VER | 추가조사. 채택 상태는 `HC-DRIFT-STATE` (`_examples/DEV-50-로컬DB-drift.HabitCheck.md`). 이 칸은 그 문장을 다시 쓰지 않는다 |
+| 로컬 SQL 후보의 근거로 확인한 것은 무엇인가 | DEV-50의 이유는 컴파일 타임 타입과 마이그레이션 경로다. 환경 하한은 `HC-PLATFORM` (`_examples/DEV-10-개요서.HabitCheck.md`). HC-DRIFT-VER | 추가조사. 채택 상태는 `HC-DRIFT-STATE` (`_examples/DEV-50-로컬DB-drift.HabitCheck.md`). 이 칸은 그 문장을 다시 쓰지 않는다 |
 
 ## ＊ 사실 vs 추측
 | 종류 | 내용 |
