@@ -30,7 +30,7 @@
 |---|---|
 | 1 | `CheckInToday(habitId)`는 같은 날 두 번에도 체크인 1건(DEV-22 AC-2) |
 | 2 | 반환 streak는 `HC-STREAK` (`_examples/DEV-30-구조명세서.HabitCheck.md`)와 같다 |
-| 3 | presentation이 DB를 import하지 않아도 컴파일되는 구조(DEV-30) |
+| 3 | DEV-30 |
 
 ## ＊ 검증
 | # | 방법 |
