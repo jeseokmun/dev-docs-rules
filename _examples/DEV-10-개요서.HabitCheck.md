@@ -35,7 +35,7 @@
 ## ＊ 실행·설치
 | 구분 | 내용 |
 |---|---|
-| 개발 | `git clone HC-REPO && cd HabitCheck && flutter pub get && flutter run -d android` |
+| 개발 | HC-REPO |
 | 사용자 | 내부 APK `dist/habitcheck-v0.1.0.apk` 를 사이드로드 |
 | 환경 | Android 8.0+ · Flutter 3.22+ · Dart 3.4+. 이 숫자는 예제가 적은 하한이다 |
 
