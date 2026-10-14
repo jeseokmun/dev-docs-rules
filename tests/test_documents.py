@@ -497,7 +497,7 @@ class Documents(unittest.TestCase):
         path.write_text(opposed, encoding="utf-8")
         self.assertIn("FACT_GUESS DEV-62-장애대응-체크중복.HabitCheck.md", check_file(path, schema))
         cause = original.replace(
-            "추측: 화면이 낙관적 갱신을 겹친다. 저장 건수는 1이어야 한다(DEV-22 AC-2)",
+            "추측: 화면이 낙관적 갱신을 겹친다. DEV-22 AC-2",
             "추측: 구현 코드가 있다",
             1,
         )
