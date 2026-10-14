@@ -18,7 +18,7 @@
 | 이름 | 종류 | 입력 | 출력 |
 |---|---|---|---|
 | CheckInToday | 함수 | habitId | streak는 `HC-STREAK` (`_examples/DEV-30-구조명세서.HabitCheck.md`). 이 칸은 그 문장을 다시 쓰지 않는다. 시그니처 타입은 미정 |
-| AddHabit | 함수 | name, weeklyGoal | 저장되는 필드는 DEV-35의 Habit. 반환 타입 이름은 미정 |
+| AddHabit | 함수 | name, weeklyGoal | 반환 타입 이름은 미정 |
 
 ## ＊ 의존
 | 대상 | 방향 | 허용? | 설명 |
@@ -42,7 +42,6 @@
 | DEV-30 | `DEV-30-구조명세서.HabitCheck.md` |
 | DEV-70 | `DEV-70-오늘체크.HabitCheck.md` |
 | DEV-50 | `DEV-50-로컬DB-drift.HabitCheck.md` |
-| DEV-35 | `DEV-35-습관체크인.HabitCheck.md` |
 | DEV-22 | `DEV-22-오늘체크.HabitCheck.md` |
 ## 미결
 | ID | 미결 | 다음에 할 일 |
