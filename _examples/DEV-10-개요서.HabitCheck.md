@@ -51,7 +51,7 @@
 ## ○ 성공·검증
 | 성공 모습 | 검증 방법 |
 |---|---|
-| 상세 streak가 `HC-STREAK` (`_examples/DEV-30-구조명세서.HabitCheck.md`)와 같다 | 1) 개발 행으로 실행한다. 2) 습관 하나를 추가한다. 3) DEV-70의 Clock 포트로 날짜를 바꾼다. DEV-35. CheckInToday를 호출한다. 4) 상세 streak와 CheckIn 건수를 그 정의와 비교한다. 휴대폰 시계로 날짜를 기다리는 절차는 아니다 |
+| 상세 streak가 `HC-STREAK` (`_examples/DEV-30-구조명세서.HabitCheck.md`)와 같다 | 1) 개발 행으로 실행한다. 2) 습관 하나를 추가한다. 3) DEV-70의 Clock 포트로 날짜를 바꾼다. DEV-35. 4) CheckInToday를 호출한다. 5) 상세 streak와 CheckIn 건수를 그 정의와 비교한다. 휴대폰 시계로 날짜를 기다리는 절차는 아니다 |
 
 ## ○ 관련 문서
 | 코드 | 경로 |
