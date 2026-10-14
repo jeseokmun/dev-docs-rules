@@ -33,7 +33,8 @@
 | draft | 필수 절이 lint를 통과. `공지 없음`도 통과한다 |
 | 리뷰 | 본문이 누구에게, 다음에 언제 알릴지, 무엇을 말하지 않는지를 빠뜨리지 않았는지 본다 |
 | active | 보낸 공지와 이 파일의 본문이 같다 |
-| deprecated | 다음 공지가 이 파일을 대체하면 deprecated로 두고 ○ 관련에 새 파일 경로를 적는다 |
+| deprecated | 다음 공지가 이 파일을 대체하면 이 파일을 deprecated로 둔다 |
+| deprecated | 새 파일 경로는 ○ 관련에 적는다 |
 
 이 저장소에는 유형별 이상형 체크리스트 파일이 없다. `_tools/ideal_check_min.py`는 DEV-10·DEV-30만 본다.
 
