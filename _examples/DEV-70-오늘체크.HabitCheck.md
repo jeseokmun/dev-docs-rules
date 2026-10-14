@@ -28,7 +28,7 @@
 ## ＊ 완료 조건
 | # | 조건 |
 |---|---|
-| 1 | CheckInToday는 같은 날 두 번에도 체크인 1건(DEV-22 AC-2). DEV-35 |
+| 1 | DEV-22 AC-2 |
 | 2 | 반환 streak는 `HC-STREAK` (`_examples/DEV-30-구조명세서.HabitCheck.md`)와 같다 |
 | 3 | DEV-30 |
 
