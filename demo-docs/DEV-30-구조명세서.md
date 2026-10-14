@@ -16,7 +16,7 @@
 | 모듈 | 책임 | 비고 |
 |---|---|---|
 | 화면 presentation | 목록·상세·체크 UI | 유스케이스만 호출 |
-| 유스케이스 application | 추가·오늘 체크·streak 조회 | 한 의도당 한 유스케이스. 오늘 체크의 이름은 CheckInToday(habitId)다(DEV-32) |
+| 유스케이스 application | 추가·오늘 체크·streak 조회 | 한 의도당 한 유스케이스. 오늘 체크의 이름은 DEV-32. DEV-35 |
 | 도메인 domain | Habit·CheckIn, streak, 날짜 경계 | 규칙만 적용. 날짜 경계의 값은 HC-MIDNIGHT. 주인은 `DEV-70-구현작업명세서/DEV-70-001-오늘체크-유스케이스.md`다 |
 | 인프라 infrastructure | 로컬 DB, 마이그레이션, 시계 | 저장·조회와 모델 매핑. 제품명을 적을지는 HC-DRIFT-STATE. 주인은 `DEV-50-기술결정기록/DEV-50-로컬DB-drift.md`다. 이 칸은 그 문장을 다시 쓰지 않는다 |
 
@@ -61,8 +61,8 @@ streak는 한 습관의 CheckIn.localDate만 센다. 가장 최근 체크인 날
 | 단계 | 행위자 | 행동 |
 |---|---|---|
 | 1 | 사용자 | 습관을 체크 |
-| 2 | 화면 | CheckInToday(habitId)를 유스케이스에 전달한다 |
-| 3 | 유스케이스 | 그 habitId와 오늘 localDate 행을 조회한다 |
+| 2 | 화면 | CheckInToday를 유스케이스에 전달한다. DEV-35 |
+| 3 | 유스케이스 | 오늘 행을 조회한다. DEV-35 |
 | 4 | 유스케이스 | 행이 없으면 도메인 규칙으로 체크인을 만들어 저장하고 streak를 계산한다 |
 | 5 | 유스케이스 | 행이 있으면 새 행을 만들지 않고 기존 건으로 streak를 계산한다(DEV-22 AC-2) |
 | 6 | 유스케이스 | streak를 화면에 돌려준다. 저장 실패의 반환값은 미결 2 |
