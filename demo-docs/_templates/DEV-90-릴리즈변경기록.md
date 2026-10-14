@@ -33,7 +33,9 @@
 | draft | 필수 세 절이 lint를 통과. ＊ 버전·날짜는 2행이 아니면 `MIN_ROWS`다 |
 | 리뷰 | 날짜를 모르면 날짜 칸에 `계획일 미정`이라고 적는다. 글자 `YYYY-MM-DD`와 `TBD`, `TODO`, `…`는 자리표시라 `FAKEFILL`이다. 판정은 `_tools/docs_common.py`의 `placeholder`다 |
 | active | 변경 행이 사용자가 보는 말과 같고, 사용자에게 보이는 변화가 없으면 사용자 영향 칸에 그 사실을 적는다. 폐기 행을 만들기 위해 없는 폐기를 적지 않는다 |
-| deprecated | 그 릴리즈를 대체하면 이 파일을 기록으로 남기고 상태만 deprecated로 둔다. 변경 행을 지우지 않는다 |
+| deprecated | 그 릴리즈를 대체하면 이 파일을 기록으로 남긴다 |
+| deprecated | 상태는 deprecated로 둔다 |
+| deprecated | 변경 행을 지우지 않는다 |
 
 이 저장소에는 유형별 이상형 체크리스트 파일이 없다. `_tools/ideal_check_min.py`는 DEV-10·DEV-30만 본다. 사람 검토를 못 채운 것은 헌법 §1.5.5대로 draft 실패가 아니다.
 
