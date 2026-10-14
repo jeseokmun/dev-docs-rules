@@ -35,7 +35,7 @@
 ## ＊ 검증
 | # | 방법 |
 |---|---|
-| 1 | 단위 테스트: 같은 날 두 번 호출 → CheckIn 1건 |
+| 1 | DEV-22 AC-2 |
 | 2 | 단위 테스트: 연속 체크의 streak는 `HC-STREAK` (`_examples/DEV-30-구조명세서.HabitCheck.md`). 시나리오 위치는 DEV-65 |
 | 3 | DEV-22 미결 |
 
