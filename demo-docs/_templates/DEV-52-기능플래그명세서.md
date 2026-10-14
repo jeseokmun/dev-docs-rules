@@ -33,7 +33,8 @@ light·full의 필수 집합(DEV-10·DEV-30, full은 추가 DEV-20·DEV-50·DEV-
 | draft | ＊ 플래그 1행이 lint를 통과 |
 | 리뷰 | 기본값·제거 조건 중 모르는 것은 미결의 다음 행동으로 남긴다 |
 | active | 기본값과 대상을 코드에서 다시 읽고, 제거 조건이 날짜·마일스톤·'아직 없음' 중 확인된 문장이다 |
-| deprecated | 플래그를 코드에서 뺀 뒤 이 파일을 deprecated로 두고, 그 릴리즈를 DEV-90에 적는다 |
+| deprecated | 플래그를 코드에서 뺀 뒤 이 파일을 deprecated로 둔다 |
+| deprecated | 그 릴리즈는 DEV-90에 적는다 |
 
 이 저장소에는 유형별 이상형 체크리스트 파일이 없다. `_tools/ideal_check_min.py`는 DEV-10·DEV-30만 본다. 사람 검토를 못 채운 것은 헌법 §1.5.5대로 draft 실패가 아니다.
 
