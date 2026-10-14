@@ -48,7 +48,9 @@
 | ＊ 관측 | 임계는 심각도다 |
 | ＊ 관측 | 알림은 받는 곳이다. OWASP Logging Cheat Sheet는 기록 위치(Where to record event data)와 빼야 할 데이터(Data to exclude)를 나눈다. 알림 칸에 빼야 할 데이터 규칙을 다시 쓰지 않고 DEV-55를 가리킨다. 원격 수집이 없으면 알림에 `알림 채널 없음`이라고 적는다 |
 | ＊ 관측 | 대응은 처음 하는 일이다. 원격 수집이 없으면 그 사실을 코드에서 본 범위를 대응 또는 미결에 적는다 |
-| ○ 대시보드 | 열 `이름`·`링크`·`비고`. 링크는 있는 주소다. `비고` 헤더라 그 칸의 빈 값과 `…`는 lint를 통과한다. `이름`과 `링크`의 `…`는 선택 표라 `FAKEFILL`은 아니나 사람 검토는 假채움으로 본다. |
+| ○ 대시보드 | 이름만 적는다. 열 `이름`·`링크`·`비고`. `이름`의 `…`는 선택 표라 `FAKEFILL`은 아니나 사람 검토는 假채움으로 본다 |
+| ○ 대시보드 | 링크는 있는 주소다. `링크`의 `…`는 선택 표라 `FAKEFILL`은 아니나 사람 검토는 假채움으로 본다 |
+| ○ 대시보드 | `비고` 헤더라 그 칸의 빈 값과 `…`는 lint를 통과한다 |
 
 헌법 §1 원칙 2대로 같은 사실을 복붙하지 않는다. 반복되는 사실은 `_schemas/fact-owners.json`의 id를 쓴다. 주인 문서가 그 사실을 한 번 적고, 다른 문서는 id와 경로만 인용한다. 값이 없는 id `HC-REPO`, `HC-DRIFT-VER`, `HC-HASH`, `HC-PKG`, `HC-LEGAL`, `HC-CHANNEL`은 비워 둔다. `HC-STREAK`의 주인은 DEV-30, `HC-DRIFT-STATE`의 주인은 DEV-50, `HC-FLAG`의 주인은 DEV-52, `HC-MIDNIGHT`의 주인은 DEV-70, `HC-PLATFORM`의 주인은 DEV-10, `TOOL-PY`의 주인은 `README`, `TOOL-EXIT`의 주인은 `_tools/README.md`이다.
 
