@@ -40,7 +40,8 @@
 | ○ 접근 | 요소는 누르는 요소만 적는다. 열은 `요소`·`읽는 이름`·`확인`. 대비 비율이나 점수는 만들지 않는다 |
 | ○ 접근 | 읽는 이름은 그 이름만 적는다. Android 접근성 안내의 content label이다. 문구 전문은 DEV-28 키로 가리킨다. 아직 키가 없으면 그 사실을 적고 이름을 짓지 않는다. W3C WCAG 2.2의 4.1.2 Name, Role, Value는 이름과 역할을 나눈다. 동작은 ＊ 주요 UI 요소에 둔다. W3C WCAG 2.2 Understanding 3.3.2 Labels or Instructions는 입력을 받는 요소의 라벨이 무엇을 넣는지 말하라고 한다. 그 요소의 읽는 이름 칸은 그 키만 적고, 문구 문서 전체를 그 칸에 두지 않는다 |
 | ○ 접근 | 확인만 적는다 |
-| ○ 흐름 (Mermaid) | 스키마 type은 string이다. 표 열이 없다. 화면 이동을 적을 때 mermaid 펜스를 넣는다. 표시 라벨은 DOC-CONFIG language를 따른다 (헌법 §1.8). lint는 이 선택 절의 펜스와 문법을 보지 않는다. W3C WCAG 2.2 Understanding 2.4.6 Headings and Labels는 라벨이 그 일의 목적을 말하라고 한다. 한 라벨에 목적을 둘 적지 않는다 |
+| ○ 흐름 (Mermaid) | 화면 이동을 적을 때 mermaid 펜스를 넣는다. 스키마 type은 string이다. 표 열이 없다. lint는 이 선택 절의 펜스와 문법을 보지 않는다 |
+| ○ 흐름 (Mermaid) | 표시 라벨은 그 일의 목적만 말한다. DOC-CONFIG language를 따른다 (헌법 §1.8). W3C WCAG 2.2 Understanding 2.4.6 Headings and Labels는 라벨이 그 일의 목적을 말하라고 한다. 한 라벨에 목적을 둘 적지 않는다 |
 | □ 시안 | 종류와 링크. 헌법 §5의 시안은 링크이다. 제품 문서에 이 제목이 없어도 lint는 통과한다 |
 | ○ 관련 문서 | 코드와 실제 경로. 문구는 DEV-28일 수 있다. 없는 파일은 행으로 두지 않는다 |
 
