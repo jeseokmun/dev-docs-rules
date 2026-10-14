@@ -12,7 +12,7 @@
 ## ＊ 환경
 | 환경 | 대상 | 비고 |
 |---|---|---|
-| 내부 테스터 Android | `HC-PLATFORM` (`_examples/DEV-10-개요서.HabitCheck.md`) | 사이드로드 |
+| 내부 테스터 Android | `HC-PLATFORM` (`_examples/DEV-10-개요서.HabitCheck.md`) | DEV-10 |
 
 ## ○ 승인
 | 무엇 | 역할 | 사람 |
