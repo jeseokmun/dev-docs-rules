@@ -20,7 +20,7 @@
 | Habit | weeklyGoal | int | 1 이상 |
 | CheckIn | id | UUID | PK |
 | CheckIn | habitId | UUID | FK → Habit.id |
-| CheckIn | localDate | date | unique(habitId, localDate). DEV-22 AC-2의 같은 날 1건 |
+| CheckIn | localDate | date | unique(habitId, localDate). DEV-22 AC-2 |
 
 ## ＊ 관계
 | 출발 | 도착 | 기수 | 설명 |

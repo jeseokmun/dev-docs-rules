@@ -20,7 +20,7 @@
 | Habit | weeklyGoal | int | 1 이상. 상한은 미결 3. `HC-STREAK` (`../DEV-30-구조명세서.md`) |
 | CheckIn | id | UUID | PK. 생성 주체는 미결 4 |
 | CheckIn | habitId | UUID | FK → Habit.id. ON DELETE는 미결 1이 닫힌 뒤에 적는다 |
-| CheckIn | localDate | date | unique(habitId, localDate). DEV-22 AC-2의 같은 날 1건 |
+| CheckIn | localDate | date | unique(habitId, localDate). DEV-22 AC-2 |
 
 ## ＊ 관계
 | 출발 | 도착 | 기수 | 설명 |
