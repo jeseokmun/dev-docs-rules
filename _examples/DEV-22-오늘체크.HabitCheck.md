@@ -18,9 +18,9 @@
 ## ＊ 인수 조건
 | ID | 조건 | 검증 |
 |---|---|---|
-| AC-1 | 체크하면 그 습관·오늘 localDate의 체크인이 1건 생긴다 | CheckIn에 그 habitId와 오늘 localDate 행이 1건 있다 |
-| AC-2 | 같은 날 다시 체크해도 체크인 건수는 1이다 | 같은 localDate로 CheckInToday를 두 번 호출해 건수 1을 확인(DEV-70 검증 1) |
-| AC-3 | 해제하면 오늘 localDate 행이 없어진다. streak는 `HC-STREAK` (`_examples/DEV-30-구조명세서.HabitCheck.md`). 이 칸은 그 문장을 다시 쓰지 않는다 | 기대 숫자는 그 주인 문장을 본다 |
+| AC-1 | 체크하면 그 습관·오늘의 체크인이 1건 생긴다 | DEV-35 |
+| AC-2 | 같은 날 다시 체크해도 체크인 건수는 1이다 | DEV-35. DEV-70 검증 1 |
+| AC-3 | 해제하면 오늘의 행이 없어진다. DEV-35. streak는 `HC-STREAK` (`_examples/DEV-30-구조명세서.HabitCheck.md`). 이 칸은 그 문장을 다시 쓰지 않는다 | 기대 숫자는 그 주인 문장을 본다 |
 
 ## ＊ 통과 / 실패
 | 결과 | 기준 |
@@ -36,6 +36,7 @@
 | DEV-70 | `DEV-70-오늘체크.HabitCheck.md` |
 | DEV-28 | `DEV-28-UI문구-목록.HabitCheck.md` |
 | DEV-30 | `DEV-30-구조명세서.HabitCheck.md` |
+| DEV-35 | `DEV-35-습관체크인.HabitCheck.md` |
 | DEV-50 | `DEV-50-로컬DB-drift.HabitCheck.md` |
 ## 미결
 | ID | 미결 | 다음에 할 일 |
