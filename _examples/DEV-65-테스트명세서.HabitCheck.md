@@ -18,7 +18,7 @@
 ## ＊ 필수 시나리오
 | 케이스 | 사전 | 절차 | 기대 |
 |---|---|---|---|
-| 연속 체크 | 습관 1개, 체크인 0건. 날짜는 Clock으로 고정(DEV-70) | DEV-35. Clock으로 날짜를 옮겨 CheckInToday를 호출한다 | streak와 CheckIn 건수는 `HC-STREAK` (`_examples/DEV-30-구조명세서.HabitCheck.md`) |
+| 연속 체크 | 습관 1개, 체크인 0건. 날짜는 Clock으로 고정(DEV-70) | 1) DEV-70의 Clock으로 날짜를 옮긴다. DEV-35. 2) CheckInToday를 호출한다 | streak와 CheckIn 건수는 `HC-STREAK` (`_examples/DEV-30-구조명세서.HabitCheck.md`) |
 | 같은 날 두 번 | 습관 1개, 체크인 0건. 날짜는 Clock으로 고정(DEV-70) | DEV-35. CheckInToday를 두 번 호출 | DEV-22 AC-2 |
 | 습관 삭제 | 습관 1개, 체크인 1건 | 그 습관을 삭제 | 목록에서 사라짐 |
 
