@@ -68,9 +68,12 @@
 | 힌트 | `_tools/ideal_check_min.py`가 보는 것 |
 |---|---|
 | 경로 | 백틱 안에 `/src`, `/lib`, `/app`, `/Assets`가 있거나, 백틱 안이 `.ts` `.tsx` `.js` `.dart` `.cs` `.py`로 끝난다. 저장소 트리와 같은지는 SKIP |
-| 연결 | 본문에 DEV-35 또는 DEV-50이 없으면 FAIL. 도구의 실패 문구는 light에서 그 파일이 없는 일이 흔하다고 적는다 |
+| 연결 | 본문에 DEV-35 또는 DEV-50이 없으면 FAIL이다 |
+| 연결 | 도구의 실패 문구는 light에서 그 파일이 없는 일이 흔하다고 적는다 |
 | 테스트 | `테스트`, `test`, DEV-65가 없으면 FAIL |
-| Mermaid | 펜스가 없으면 존재 힌트가 FAIL. 펜스가 있고 language가 ko인데 한글이 없으면 라벨 힌트가 FAIL. ko가 아니면 라벨 힌트는 SKIP |
+| Mermaid | 펜스가 없으면 존재 힌트가 FAIL이다 |
+| Mermaid | 펜스가 있고 language가 ko인데 한글이 없으면 라벨 힌트가 FAIL이다 |
+| Mermaid | ko가 아니면 라벨 힌트는 SKIP이다 |
 | SKIP | 실패·멱등 흐름의 품질 |
 
 모양 예시이다. `가칭가`부터 `가칭라`는 제품 모듈이 아니다.
